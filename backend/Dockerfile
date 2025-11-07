@@ -10,7 +10,7 @@ ENV PATH /backend/node_modules/.bin:$PATH
 
 # install and cache backend dependencies
 COPY package.json /backend/package.json
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # add backend source
 COPY . /backend
