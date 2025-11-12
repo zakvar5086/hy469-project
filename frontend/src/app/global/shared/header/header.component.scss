@@ -6,8 +6,8 @@
     align-items: center;
     flex-shrink: 0;
     align-self: stretch;
-    //background-color: #fff;
-   // box-sizing: border-box;
+    border-bottom: 0.5px solid rgba(181, 181, 181, 0.439);
+    box-shadow: 0 2px 30px -10px rgba(0, 0, 0, 0.2);
 }
 
 .header-left {
@@ -21,13 +21,10 @@
         width: 72px;
         height: 73px;
         flex-shrink: 0;
-    // border-radius: 4.5625rem;
-    // background: lightgray 50% / cover no-repeat;  
   }
 
   .greeting {
         color: #000;
-        font-family: sans-serif;
         font-size: 36px;
         font-style: normal;
         font-weight: 400;

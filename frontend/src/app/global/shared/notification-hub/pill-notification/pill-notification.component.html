@@ -1,0 +1,7 @@
+<div class="pill-card" [class.taken]="data.taken">
+  <div>
+    <h3>It’s time for the {{ data.time }} pill</h3>
+    <p>{{ data.note }}</p>
+  </div>
+  <div class="status">{{ data.taken ? 'Taken' : 'Pending' }}</div>
+</div>

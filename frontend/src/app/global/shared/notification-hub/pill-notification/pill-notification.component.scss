@@ -1,0 +1,27 @@
+.pill-card {
+  border: 3px solid #4caf50;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  width: 400px;
+  transition: all 0.3s ease-in-out;
+
+  &.taken {
+    opacity: 0.8;
+  }
+
+  .status {
+    background: #4caf50;
+    color: white;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+  }
+}

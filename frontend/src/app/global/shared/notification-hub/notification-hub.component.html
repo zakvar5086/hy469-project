@@ -1,0 +1,9 @@
+<div class="notification-hub" *ngIf="type">
+    <app-pill-notification 
+        *ngIf="type === 'pill'" [data]="data">
+    </app-pill-notification>
+    
+    <app-month-end-notification 
+        *ngIf="type === 'monthEnd'" [data]="data">
+    </app-month-end-notification>
+</div>

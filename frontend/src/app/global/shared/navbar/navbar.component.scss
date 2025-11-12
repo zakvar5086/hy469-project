@@ -1,12 +1,11 @@
 .navbar-container {
-  border-right: 2px solid black;
-  border-top: 2px solid black;
-  border-radius: 10px;
+  border-right: 0.5px solid rgba(181, 181, 181, 0.439);
   position: fixed;
   height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
+  box-shadow: 0 2px 30px -10px rgba(0, 0, 0, 0.2);
 
   .navbar_contents {
     display: flex;
@@ -34,9 +33,10 @@
 
 @media (max-width: 600px) {
   .navbar-container {
-    border-top: 2px solid black;
+    //border-top: 2px solid black;
+    border-top: 0.5px solid rgba(181, 181, 181, 0.439);
+    box-shadow: 0 2px 30px -10px rgba(0, 0, 0, 0.2);
     border-right: none;
-    border-radius: 10px 10px 0 0;
     height: 70px;
     width: 100vw;
     bottom: 0;
