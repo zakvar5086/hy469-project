@@ -1,6 +1,6 @@
 .pill-card {
     display: flex;
-    width: auto;
+    width: 100%;
     height: auto;
     padding: 10px;
     align-items: center;
@@ -8,7 +8,7 @@
     border-radius: 40px;
     //border: 1px solid #000000;
     background-color: white;
-    gap: 420px;
+    justify-content: space-between;
 
     .left-content {
         display: flex;

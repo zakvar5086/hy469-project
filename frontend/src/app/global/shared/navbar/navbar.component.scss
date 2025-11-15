@@ -6,7 +6,8 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 30px -10px rgba(0, 0, 0, 0.2);
-    background-color: #6684D3;
+    background-color: #6685d3d2;
+    overflow-y: hidden ;
 
     .navbar_contents {
         display: flex;
@@ -15,7 +16,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 100px;
+        gap: 70px;
         align-self: stretch;
         
           .navbar_img {

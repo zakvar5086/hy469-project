@@ -1,16 +1,19 @@
 .main-container{
     background-color: #EAF3FF;
     min-height: 100vh; // takes full screen height
-//   display: flex;
-//   flex-direction: column;
+    //display: flex;
+    //flex-direction: column;
+    overflow-x: hidden;
 
 
     .top-content {
         display: flex;
         height: 151px;//8.75rem;
+        width: 100%;
         justify-content: space-between;
         align-items: center;
-        margin-left: 10rem;
+        padding-left: 10rem;
+        padding-right: calc(10rem - 90px);
         //margin: 5rem 0 0 9rem;
 
 
@@ -18,39 +21,21 @@
             display: flex;
             width: auto;//33.3125rem;
             //height: auto;
-            padding: 0 15px;
             align-items: center;
             flex-shrink: 0;
             align-self: stretch;
         }
-        .dropdown-btn{
-            height: 50px;
-            width: 50px;
-            transition: transform 0.2s ease;
-            cursor: pointer;
         
-            &:hover {
-                transform: scale(1.1);
-            }
-        }
     }
 
     .bottom-content {
-        // display: flex;
-        // height: auto;
-        // //justify-content: space-between;
-        // align-items: start;
-        // padding: 0 15px;
-        
         display: flex;
-        //height: 555px;
         padding: 10px 15px;
         flex-direction: column;
-        // align-items: center;
-        //align-items: stretch;
         gap: 20px;
         align-self: stretch;
-        margin: 3rem 0 0 10rem;
+        padding-left: 10rem;
+        padding-right: calc(10rem - 90px);
 
 
         app-pill-card {

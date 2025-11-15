@@ -1,6 +1,14 @@
 <div class="calendar-layout">
 
     <div class="left-pane">
+        <div class="calendar-header">
+
+        <button (click)="previousMonth()">< </button>
+        <div class="month-title">
+            <h1>{{ viewDate | date: 'MMMM yyyy' }}</h1>
+        </div>
+        <button (click)="nextMonth()">></button>
+    </div>
         <mwl-calendar-month-view
             [viewDate]="viewDate"
             (dayClicked)="onDayClick($event.day.date)">
@@ -8,7 +16,10 @@
     </div>
 
     <div class="right-pane">
-        <h3>Pills for {{ viewDate | date: 'fullDate' }}</h3>
+        <div class="card-header">
+            <h3>Pills for {{ viewDate | date: 'EEEE  d' }}</h3>
+            <button>+</button>
+        </div>
         <div style="margin-top: 2rem;"></div>
 
         <div *ngIf="groupedPills.length === 0" class="no-pills">No pills scheduled for this date.</div>

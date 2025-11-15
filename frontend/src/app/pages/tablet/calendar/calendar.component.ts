@@ -37,9 +37,25 @@ export class TabletCalendarComponent {
 
     this.samplePills = [
       { id: 1, name: 'Aspirin', date: today.toISOString().split('T')[0], time: '08:00', dosage: '1 tablet' },
-      { id: 2, name: 'Vitamin D', date: today.toISOString().split('T')[0], time: '12:30', dosage: '1 capsule' },
+      { id: 2, name: 'Vitamin D', date: today.toISOString().split('T')[0], time: '08:00', dosage: '1 capsule' },
       { id: 3, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
-      { id: 4, name: 'Calcium', date: tomorrow.toISOString().split('T')[0], time: '09:00', dosage: '1 tablet' },
+      { id: 4, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
+      { id: 5, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
+      { id: 6, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
+      { id: 7, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
+      { id: 8, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
+      { id: 9, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
+      { id: 10, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
+      { id: 11, name: 'Calcium', date: tomorrow.toISOString().split('T')[0], time: '09:00', dosage: '1 tablet' },
+      { id: 12, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
+      { id: 13, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
+      { id: 14, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
+      { id: 15, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
+      { id: 16, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
+      { id: 17, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
+      { id: 18, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
+      { id: 19, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
+
     ];
   }
 
@@ -68,4 +84,17 @@ export class TabletCalendarComponent {
     if (!date) return;
     this.viewDate = date;
   }
+
+
+    previousMonth() {
+        const date = new Date(this.viewDate);
+        date.setMonth(date.getMonth() - 1);
+        this.viewDate = date;
+    }
+
+    nextMonth() {
+        const date = new Date(this.viewDate);
+        date.setMonth(date.getMonth() + 1);
+        this.viewDate = date;
+    }
 }
