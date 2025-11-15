@@ -1,0 +1,53 @@
+
+.calendar-layout {
+	display: flex;
+	gap: 1rem;
+	align-items: flex-start;
+    margin-left: 100px;
+}
+
+.left-pane {
+	flex: 1 1 60%;
+	min-width: 320px;
+}
+
+.right-pane {
+	flex: 0 0 36%;
+	background: #fff;
+	border-radius: 8px;
+	padding: 1rem;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.pill-section {
+	margin-bottom: 1rem;
+}
+
+.pill-list {
+	list-style: none;
+	padding: 0;
+	margin: 0.5rem 0 0 0;
+}
+
+.pill-item {
+	display: flex;
+	justify-content: space-between;
+	padding: 0.5rem;
+	border-radius: 6px;
+	background: #f7fbff;
+	margin-bottom: 0.5rem;
+}
+
+.pill-name {
+	font-weight: 600;
+}
+
+.pill-dosage {
+	color: #666;
+	font-size: 0.95rem;
+}
+
+.no-pills {
+	color: #777;
+	padding: 0.75rem 0;
+}
