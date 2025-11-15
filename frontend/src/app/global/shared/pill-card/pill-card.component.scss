@@ -1,7 +1,7 @@
 .pill-card {
     display: flex;
-    width: 1001px;
-    height: 110px;
+    width: auto;
+    height: auto;
     padding: 10px;
     align-items: center;
     flex-shrink: 0;
@@ -31,9 +31,6 @@
         justify-content: center;
         align-items: flex-start;
 
-        h3,h4 {
-            margin: 0;
-        }
     }
 
     .right-content {

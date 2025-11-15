@@ -14,11 +14,10 @@ import { PillContainerComponent } from './global/shared/pill-container/pill-cont
 import { PillCardComponent } from './global/shared/pill-card/pill-card.component';
 
 
-
 const socketIoConfig: SocketIoConfig = { url: environment.host, options: {} };
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     SocketIoModule.forRoot(socketIoConfig),
