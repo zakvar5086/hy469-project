@@ -2,24 +2,26 @@
 
   <div class="top-content">
     <div class="date-indicator">
-      <h1>Monday 18th</h1>
+        <h1>Monday 18th</h1>
+        <img src="assets/icons/dropdown.svg" class="dropdown-btn"/>
     </div>
-
+    
     <div class="notification-hub">
-    <!--
-      <app-notification-hub
-        [type]="'pill'"
-        [data]="{ time: '10am', note: 'Take before you eat', taken: false }">
-      </app-notification-hub>
-    -->
-      <app-notification-hub
-        [type]="'monthEnd'"
-        [data]="{ percentage: 80, change: 10 }">
-      </app-notification-hub>
+        <!--
+        <app-notification-hub
+            [type]="'pill'"
+            [data]="{ time: '10am', note: 'Take before you eat', taken: false }">
+        </app-notification-hub>
+        -->
+        <app-notification-hub
+            [type]="'monthEnd'"
+            [data]="{ percentage: 80, change: 10 }">
+        </app-notification-hub>
     </div>
   </div>
 
   <div class="bottom-content">
-
-  </div>
+    <app-pill-container></app-pill-container>
+    <app-pill-card></app-pill-card>
+</div>
 </div>

@@ -1,16 +1,66 @@
-.top-content {
-    display: flex;
-    height: 8.75rem;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: 9rem;
+.main-container{
+    background-color: #EAF3FF;
+  min-height: 100vh; // takes full screen height
+//   display: flex;
+//   flex-direction: column;
 
-    .date-picker {
+
+    .top-content {
         display: flex;
-        width: 33.3125rem;
-        padding: 0 0.9375rem;
+        height: 151px;//8.75rem;
+        justify-content: space-between;
         align-items: center;
-        flex-shrink: 0;
+        margin-left: 10rem;
+        //margin: 5rem 0 0 9rem;
+
+
+        .date-indicator {
+            display: flex;
+            width: auto;//33.3125rem;
+            //height: auto;
+            padding: 0 15px;
+            align-items: center;
+            flex-shrink: 0;
+            align-self: stretch;
+        }
+        .dropdown-btn{
+            height: 50px;
+            width: 50px;
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    .bottom-content {
+        // display: flex;
+        // height: auto;
+        // //justify-content: space-between;
+        // align-items: start;
+        // padding: 0 15px;
+        
+        display: flex;
+        //height: 555px;
+        padding: 10px 15px;
+        flex-direction: column;
+        // align-items: center;
+        //align-items: stretch;
+        gap: 20px;
         align-self: stretch;
+        margin: 3rem 0 0 10rem;
+
+
+        app-pill-card {
+            display: flex;
+            justify-content: center; 
+
+
+            .pill-card {
+                margin: 0 auto;       
+            }
+        }
     }
 }

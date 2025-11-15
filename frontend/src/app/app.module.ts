@@ -27,7 +27,9 @@ const socketIoConfig: SocketIoConfig = { url: environment.host, options: {} };
     HttpClientModule,
     HeaderComponent,
     NavbarComponent,
-    NotificationHubComponent
+    NotificationHubComponent,
+    PillContainerComponent,
+    PillCardComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
