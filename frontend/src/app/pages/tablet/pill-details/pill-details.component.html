@@ -1,0 +1,23 @@
+<div class="pill-container">
+     <div class="back">
+        <img src="assets/icons/back.svg"/>
+        <h3>Back</h3>
+    </div>
+
+    <div *ngFor="let p of pill" class="pill-det">
+
+        <h1 class="title">{{p.name}}</h1>
+
+        <img [src]="p.image" class="img"/>
+
+        <div *ngFor="let inst of p.shortIn" class="short">
+            {{inst.short}}
+        </div>
+
+        <div class="long">
+            <h2 class="long-header">Further Details</h2>
+            {{p.longIn}}
+        </div>
+
+    </div>
+</div>

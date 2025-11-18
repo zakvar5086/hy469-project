@@ -1,0 +1,14 @@
+<div class="notifications-container">
+   
+    <div *ngFor="let notif of notifications" class="notif-header">
+        <h2>{{notif.date}}</h2>
+        <div *ngFor="let item of notif.card" class="notif-body">
+            <img *ngIf="item.image" [src]="item.image" class="notif-image">
+            <div class="notif-content">
+                <div class="notif-title">{{ item.title }}</div>
+                <div class="notif-message">{{ item.message }}</div>
+                <div class="notif-time">{{ item.time }}</div>
+            </div>
+        </div>
+    </div>
+</div>

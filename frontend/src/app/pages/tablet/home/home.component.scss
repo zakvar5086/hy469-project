@@ -1,14 +1,12 @@
 .main-container{
     background-color: #EAF3FF;
-    min-height: 100vh; // takes full screen height
-    //display: flex;
-    //flex-direction: column;
+    min-height: 100vh; 
     overflow-x: hidden;
 
 
     .top-content {
         display: flex;
-        height: 151px;//8.75rem;
+        height: 151px;
         width: 100%;
         justify-content: space-between;
         align-items: center;

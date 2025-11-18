@@ -13,6 +13,7 @@ import { MonthEndNotificationComponent } from './global/shared/notification-hub/
 import { PillContainerComponent } from './global/shared/pill-container/pill-container.component';
 import { PillCardComponent } from './global/shared/pill-card/pill-card.component';
 
+
 const socketIoConfig: SocketIoConfig = { url: environment.host, options: {} };
 @NgModule({
   declarations: [
