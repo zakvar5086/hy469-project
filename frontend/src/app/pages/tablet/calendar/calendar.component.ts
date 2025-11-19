@@ -42,20 +42,9 @@ export class TabletCalendarComponent {
       { id: 4, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
       { id: 5, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
       { id: 6, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
-      { id: 7, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
+      { id: 7, name: 'Calcium', date: tomorrow.toISOString().split('T')[0], time: '09:00', dosage: '1 tablet' },
       { id: 8, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
       { id: 9, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
-      { id: 10, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
-      { id: 11, name: 'Calcium', date: tomorrow.toISOString().split('T')[0], time: '09:00', dosage: '1 tablet' },
-      { id: 12, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
-      { id: 13, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
-      { id: 14, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
-      { id: 15, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
-      { id: 16, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
-      { id: 17, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
-      { id: 18, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
-      { id: 19, name: 'Metformin', date: today.toISOString().split('T')[0], time: '20:00', dosage: '500 mg' },
-
     ];
   }
 

@@ -60,6 +60,22 @@
             }
         }
 
+        .low-warning {
+        margin-top: 5px;
+        color: #d22;
+        font-size: 16px;
+        text-decoration: underline;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+            .triangle {
+              color: red;
+              font-weight: 900;
+            }
+        }
+
+
         .rest {
         display: flex;       // make it a flex box too
         justify-content: center;

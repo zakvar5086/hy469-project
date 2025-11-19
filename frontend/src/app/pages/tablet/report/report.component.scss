@@ -1,0 +1,77 @@
+.report-container {
+  padding: 50px 0 0 100px;
+  margin: 0 auto;
+  height: 100vh;
+  background-color: #EAF3FF;
+}
+
+h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
+
+/* TABS */
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 0.75rem;
+  background: #f2f2f2;
+  border: none;
+  font-size: 1rem;
+  border-radius: 8px;
+  margin: 0 0.3rem;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: #4a90e2;
+  color: white;
+  font-weight: bold;
+}
+
+.tab-section {
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Percentage circle */
+.percentage-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin: 1rem auto;
+  background: #e5f2ff;
+  border: 4px solid #4a90e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.percentage-circle span {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4a90e2;
+}
+
+/* Send button */
+.send-btn {
+  background: #4a90e2;
+  color: white;
+  border: none;
+  padding: 0.9rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+}

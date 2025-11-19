@@ -1,24 +1,26 @@
 <div class="pill-card">
     <div class="left-content">
         <div>
-            <img src="assets/icons/pill.svg" class="pill-img"/>
+            <img [src]="pillIcon" class="pill-img"/>
         </div>
         <div class="description">
-            <div>
-                <h2>Aspirin</h2>
-            </div>
-            <div>
-                <h4>Take 1 after meal</h4>
-            </div>
+            <h2>{{ pillName }}</h2>
+
+            <p *ngIf="!lowPillWarning">{{ dosage }}</p>
+
+            <p *ngIf="lowPillWarning" class="low-warning">
+                <span class="triangle">▲</span>
+                {{ lowPillWarning }}
+            </p>
         </div>
     </div>
 
     <div class="right-content">
-        <div class="label"> 
-            <p>Upcoming</p>
+        <div class="label" [ngClass]="status">
+            <p>{{ status }}</p>
         </div>
         <div class="rest">
-            <p>7 days left</p>
+            <p>{{ daysLeft }} days left</p>
         </div>
     </div>
 </div>

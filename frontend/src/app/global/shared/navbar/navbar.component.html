@@ -1,9 +1,30 @@
 <div class="navbar-container">
-    <div class="navbar_contents">
-        <img src="assets/icons/home-white.svg" alt="Home" class="navbar_img" />
-        <img src="assets/icons/calendar.svg" alt="Calendar" class="navbar_img" />
-        <img src="assets/icons/report.svg" alt="Report" class="navbar_img" />
-        <img src="assets/icons/notifications.svg " alt="Notifications" class="navbar_img"/>
-        <img [src]="profileImage" alt="User profile" class="profile-img" />
-    </div>
+  <div class="navbar_contents">
+
+    <img [src]="getIcon('home')" 
+         alt="Home" 
+         class="navbar_img" 
+         (click)="navigateTo('/home')" />
+
+    <img [src]="getIcon('calendar')" 
+         alt="Calendar" 
+         class="navbar_img" 
+         (click)="navigateTo('/calendar')" />
+
+    <img [src]="getIcon('report')" 
+         alt="Report" 
+         class="navbar_img" 
+         (click)="navigateTo('/report')" />
+
+    <img [src]="getIcon('notifications')" 
+         alt="Notifications" 
+         class="navbar_img" 
+         (click)="navigateTo('/notifications')" />
+
+    <img [src]="profileImage" 
+         alt="User profile" 
+         class="profile-img" 
+         (click)="navigateTo('/profile')" />
+
+  </div>
 </div>

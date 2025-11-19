@@ -2,5 +2,21 @@
     <div class="schedule-time">
         <h2>10:00</h2>
     </div>
-    <app-pill-card></app-pill-card>
+    <app-pill-card
+        pillName="Aspirin"
+        dosage="1 tablet after meal"
+        pillIcon="assets/icons/pill.svg"
+        status="Upcoming"
+        [daysLeft]="7"
+        lowPillWarning="5 pills remaining for 7 days"
+    ></app-pill-card>
+    <br/>
+    <app-pill-card
+        pillName="Vitamin D"
+        dosage="1 every morning"
+        pillIcon="assets/icons/pill.svg"
+        status="Upcoming"
+        [daysLeft]="30"
+        [lowPillWarning]="null"
+    ></app-pill-card>
 </div>
