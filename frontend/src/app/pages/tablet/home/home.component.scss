@@ -1,5 +1,5 @@
 .main-container{
-    background-color: #EAF3FF;
+    background-color: #F7FAFE;
     min-height: 100vh; 
     overflow-x: hidden;
 
@@ -18,10 +18,13 @@
         .date-indicator {
             display: flex;
             width: auto;//33.3125rem;
-            //height: auto;
             align-items: center;
             flex-shrink: 0;
             align-self: stretch;
+
+            h1{
+                font-weight: 600;
+            }
         }
         
     }
@@ -30,7 +33,6 @@
         display: flex;
         padding: 10px 15px;
         flex-direction: column;
-        gap: 20px;
         align-self: stretch;
         padding-left: 10rem;
         padding-right: calc(10rem - 90px);

@@ -43,7 +43,7 @@ export class NavbarComponent implements OnInit {
     const active = this.isActive(route);
 
     return active
-      ? `assets/icons/${name}-white.svg`
+      ? `assets/icons/${name}-blue.svg`
       : `assets/icons/${name}.svg`;
   }
 }

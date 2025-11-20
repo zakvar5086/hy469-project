@@ -6,12 +6,16 @@
         <div class="description">
             <h2>{{ pillName }}</h2>
 
-            <p *ngIf="!lowPillWarning">{{ dosage }}</p>
+            <p >{{ dosage }}</p>
 
-            <p *ngIf="lowPillWarning" class="low-warning">
-                <span class="triangle">▲</span>
+            <div *ngIf="lowPillWarning" class="low-warning">
+                <!-- <span class="triangle"><img class="low-icon" src="assets/icons/low-icon.svg"/></span> -->
+                <div class="triangle" style="width: 20px; height:20px;">
+                    <svg viewBox="0 0 30 30" style="width: 100%; height:100%;"><polygon points="0,7.5 15,30 30,7.5" style="fill:rgb(255, 0, 0);"></polygon></svg>
+                </div>
+
                 {{ lowPillWarning }}
-            </p>
+            </div>
         </div>
     </div>
 

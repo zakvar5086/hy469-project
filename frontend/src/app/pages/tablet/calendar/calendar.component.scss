@@ -29,7 +29,7 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        background: #6684D3;
+        background: #2E5CFF;
         color: white;
         border: none;
         padding-bottom: 0.3rem;
@@ -88,7 +88,7 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        background: #6684D3;
+        background: #2E5CFF;
         color: white;
         border: none;
         padding-bottom: 0.3rem;
@@ -131,16 +131,17 @@
           justify-content: space-between;
           padding: 0.5rem;
           border-radius: 6px;
-          background: #f7fbff;
+          background: #EAF3FF;
           margin-bottom: 0.5rem;
 
           .pill-name {
             font-weight: 600;
+            font-size: 20px;
           }
 
           .pill-dosage {
             color: #666;
-            font-size: 0.95rem;
+            font-size: 18px;//0.95rem;
           }
         }
       }

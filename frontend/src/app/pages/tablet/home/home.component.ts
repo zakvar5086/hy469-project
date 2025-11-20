@@ -10,4 +10,6 @@ import { PillContainerComponent } from 'src/app/global/shared/pill-container/pil
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {}
+export class HomeComponent {
+    today = new Date();
+}

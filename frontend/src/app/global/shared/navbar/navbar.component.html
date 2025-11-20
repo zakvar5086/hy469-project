@@ -2,29 +2,34 @@
   <div class="navbar_contents">
 
     <img [src]="getIcon('home')" 
-         alt="Home" 
-         class="navbar_img" 
-         (click)="navigateTo('/home')" />
+        alt="Home" 
+        class="navbar_img" 
+        [class.active]="isActive('/home')"
+        (click)="navigateTo('/home')" />
 
     <img [src]="getIcon('calendar')" 
-         alt="Calendar" 
-         class="navbar_img" 
-         (click)="navigateTo('/calendar')" />
+        alt="Calendar" 
+        class="navbar_img" 
+        [class.active]="isActive('/calendar')"
+        (click)="navigateTo('/calendar')" />
 
     <img [src]="getIcon('report')" 
-         alt="Report" 
-         class="navbar_img" 
-         (click)="navigateTo('/report')" />
+        alt="Report" 
+        class="navbar_img" 
+        [class.active]="isActive('/report')"
+        (click)="navigateTo('/report')" />
 
     <img [src]="getIcon('notifications')" 
-         alt="Notifications" 
-         class="navbar_img" 
-         (click)="navigateTo('/notifications')" />
+        alt="Notifications" 
+        class="navbar_img" 
+        [class.active]="isActive('/notifications')"
+        (click)="navigateTo('/notifications')" />
 
     <img [src]="profileImage" 
-         alt="User profile" 
-         class="profile-img" 
-         (click)="navigateTo('/profile')" />
+        alt="User profile" 
+        class="profile-img" 
+        [class.active]="isActive('/profile')"
+        (click)="navigateTo('/profile')" />
 
   </div>
 </div>
