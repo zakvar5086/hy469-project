@@ -33,10 +33,10 @@ export class NavbarComponent implements OnInit {
   getDevicePrefix(): string {
     const url = this.router.url.split('?')[0];
 
-    if (url.startsWith('/tablet')) return '/tablet';
-    if (url.startsWith('/phone')) return '/phone';
-    if (url.startsWith('/watch')) return '/watch';
-    if (url.startsWith('/speaker')) return '/speaker';
+    if(url.startsWith('/tablet')) return '/tablet';
+    if(url.startsWith('/phone')) return '/phone';
+    if(url.startsWith('/watch')) return '/watch';
+    if(url.startsWith('/speaker')) return '/speaker';
 
     return '/tablet';
   }

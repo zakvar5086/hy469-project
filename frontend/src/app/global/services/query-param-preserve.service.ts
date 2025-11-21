@@ -6,20 +6,31 @@ import { ProfileStateService } from './profile-state.service';
 @Injectable({ providedIn: 'root' })
 export class QueryParamPreserveService {
 
-  constructor(private router: Router, private profileState: ProfileStateService) {
-    this.router.events
-      .pipe(filter(e => e instanceof NavigationStart))
-      .subscribe((e: NavigationStart) => {
+  private enabled = false;
 
-        const profile = this.profileState.getProfile();
-        if (!profile) return;
+  constructor(
+    private router: Router,
+    private profileState: ProfileStateService
+  ) {
+      this.router.events
+        .pipe(filter(event => event instanceof NavigationStart))
+        .subscribe(event => {
+          if(!this.enabled) return;
 
-        const url = e.url.split('?')[0];
+          const profile = this.profileState.getProfile();
+          if(!profile) return;
+          
+          const nav = event as NavigationStart;
+          if(nav.url.includes(`profile=${profile}`)) return;
 
-        this.router.navigate([url], {
-          queryParams: { profile },
-          replaceUrl: true
+          const url = nav.url.split('?')[0];
+
+          this.router.navigate([url], {
+            queryParams: { profile },
+            replaceUrl: true
+          });
         });
-      });
-  }
+    }
+  enable() { this.enabled = true; }
+  disable() { this.enabled = false; }
 }

@@ -59,7 +59,7 @@ export class TabletCalendarComponent {
     const pills = this.getPillsForDate(this.viewDate);
     const map = new Map<string, Pill[]>();
     for (const p of pills) {
-      if (!map.has(p.time)) map.set(p.time, []);
+      if(!map.has(p.time)) map.set(p.time, []);
       map.get(p.time)!.push(p);
     }
 
@@ -70,7 +70,7 @@ export class TabletCalendarComponent {
 
   // Called when a day is clicked on the calendar month view
   onDayClick(date: Date) {
-    if (!date) return;
+    if(!date) return;
     this.viewDate = date;
   }
 

@@ -34,7 +34,7 @@ export class ReportComponent implements AfterViewInit {
   switchTab(tab: 'overview' | 'missed' | 'postponed') {
     this.activeTab = tab;
 
-    if (tab === 'overview') {
+    if(tab === 'overview') {
       setTimeout(() => this.createPieChart(), 50);
     }
   }
@@ -46,9 +46,9 @@ export class ReportComponent implements AfterViewInit {
   private createPieChart() {
     const canvas: any = document.getElementById('reportPieChart');
 
-    if (!canvas) return;
+    if(!canvas) return;
 
-    if (this.pieChart) {
+    if(this.pieChart) {
       this.pieChart.destroy();
     }
 

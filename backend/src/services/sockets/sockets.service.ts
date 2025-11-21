@@ -18,7 +18,7 @@ export class SocketsService {
    * @returns
    */
   public async start(server: http.Server) {
-    if (this.socketServer) { return; }
+    if(this.socketServer) { return; }
 
     this.socketServer = new SocketServer();
     await this.socketServer.start(server);

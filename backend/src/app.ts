@@ -111,7 +111,7 @@ export class App {
         const errors = error.errors || undefined;
 
         // cast mongoose errors to bad request
-        if (error instanceof mongoose.Error.CastError
+        if(error instanceof mongoose.Error.CastError
             || error instanceof mongoose.Error.ValidationError) {
             status = StatusCodes.UNPROCESSABLE_ENTITY;
         }

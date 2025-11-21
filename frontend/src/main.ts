@@ -5,7 +5,7 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 import { Logger } from './app/global/utils/logger';
 const logger: Logger = new Logger();
-if (environment.production) {
+if(environment.production) {
   enableProdMode();
 }
 
