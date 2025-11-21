@@ -27,19 +27,20 @@
   <div class="tab-content">
     <div *ngIf="activeTab === 'overview'" class="tab-section">
       <h2>Monthly Intake Overview</h2>
-
-      <div class="percentage-circle">
-        <span>{{ intakePercentage }}%</span>
+    
+      <div class="chart-wrapper">
+        <canvas id="reportPieChart"></canvas>
       </div>
-
+    
       <p class="description">
         Pills taken this month.
       </p>
-
+    
       <button class="send-btn" (click)="sendToDoctor()">
         Send Report to Doctor
       </button>
     </div>
+
 
     <div *ngIf="activeTab === 'missed'" class="tab-section">
       <h2>Missed Pills</h2>

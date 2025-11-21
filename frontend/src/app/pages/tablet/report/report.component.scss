@@ -43,6 +43,18 @@ h2 {
 .tab-section {
   text-align: center;
   padding: 1rem;
+
+  .chart-wrapper {
+  width: 260px;
+  height: 260px;
+  margin: 0 auto 1.5rem auto;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
 }
 
 /* Percentage circle */
