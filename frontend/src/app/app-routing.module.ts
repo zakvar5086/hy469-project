@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-    { path: 'home', loadChildren: () => import('./pages/tablet/home/home.module').then(m => m.HomeModule) },
-    { path: 'calendar', loadComponent: () => import('./pages/tablet/calendar/calendar.component').then(m => m.TabletCalendarComponent) },
-    { path: 'notifications', loadComponent: () => import('./pages/tablet/notifications/notifications.component').then(m => m.TabletNotificationsComponent) },
-    { path: 'pills', loadComponent: () => import('./pages/tablet/pill-details/pill-details.component').then(m => m.PillDetailesComponent) },
-    { path: 'report', loadComponent: () => import('./pages/tablet/report/report.component').then(m => m.ReportComponent) },
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: '**', redirectTo: 'home' },
+    { path: 'persona', loadComponent: () => import('./pages/persona/persona.component').then(m => m.PersonaComponent) },
+    { path: 'tablet', loadChildren: () => import('./pages/tablet/tablet.module').then(m => m.TabletModule) },
+    { path: 'phone', loadChildren: () => import('./pages/phone/phone.module').then(m => m.PhoneModule) },
+    { path: 'watch', loadChildren: () => import('./pages/watch/watch.module').then(m => m.WatchModule) },
+    
+    { path: '', redirectTo: 'persona', pathMatch: 'full' },
+    { path: '**', redirectTo: 'persona' }
 ];
 
 @NgModule({

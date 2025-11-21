@@ -1,0 +1,42 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 100vh;
+  width: 100%;
+
+  background: #f5f7fa;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+button {
+  width: 200px;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+
+  background: #9dc8f6;
+  border: none;
+  border-radius: 6px;
+
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #005dc1;
+  }
+
+  &:active {
+    background: #004c9c;
+  }
+}

@@ -30,17 +30,32 @@ export class NavbarComponent implements OnInit {
       : 'assets/avatars/persona1.svg';
   }
 
+  getDevicePrefix(): string {
+    const url = this.router.url.split('?')[0];
+
+    if (url.startsWith('/tablet')) return '/tablet';
+    if (url.startsWith('/phone')) return '/phone';
+    if (url.startsWith('/watch')) return '/watch';
+    if (url.startsWith('/speaker')) return '/speaker';
+
+    return '/tablet';
+  }
+
   navigateTo(route: string) {
-    this.router.navigate([route]);
+    const device = this.getDevicePrefix();
+    this.router.navigate([device + route], {
+      queryParamsHandling: 'merge'
+    });
   }
 
   isActive(route: string): boolean {
-    return this.router.url.startsWith(route);
+    const device = this.getDevicePrefix();
+    return this.router.url.startsWith(device + route);
   }
 
   getIcon(name: string): string {
-    const route = '/' + name;
-    const active = this.isActive(route);
+    const baseRoute = '/' + name;
+    const active = this.isActive(baseRoute);
 
     return active
       ? `assets/icons/${name}-blue.svg`
