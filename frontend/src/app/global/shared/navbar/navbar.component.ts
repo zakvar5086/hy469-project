@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { ProfileStateService } from 'src/app/global/services/profile-state.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,35 +11,56 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  username = "Eleni";
-  profileImage = 'assets/avatars/persona1.png';
+  avatarSrc = '';
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private profileState: ProfileStateService
+  ) {}
 
   ngOnInit() {
-    this.updateProfileImage();
+    this.updateAvatar();
   }
 
   @HostListener('window:resize')
   onResize() {
-    this.updateProfileImage();
+    this.updateAvatar();
+    this.autoSwitchDeviceOnResize();
   }
 
-  private updateProfileImage() {
-    this.profileImage = window.innerWidth <= 600
-      ? 'assets/avatars/persona2.svg'
-      : 'assets/avatars/persona1.svg';
+  updateAvatar() {
+    const device = this.getDeviceFromWidth();
+    this.avatarSrc = this.profileState.getAvatarForDevice(device);
+  }
+
+  getDeviceFromWidth(): string {
+    const w = window.innerWidth;
+    if (w >= 900) return '/tablet';
+    if (w >= 600) return '/phone';
+    return '/watch';
   }
 
   getDevicePrefix(): string {
     const url = this.router.url.split('?')[0];
 
-    if(url.startsWith('/tablet')) return '/tablet';
-    if(url.startsWith('/phone')) return '/phone';
-    if(url.startsWith('/watch')) return '/watch';
-    if(url.startsWith('/speaker')) return '/speaker';
+    // If route already indicates device, use that
+    if (url.startsWith('/tablet')) return '/tablet';
+    if (url.startsWith('/phone')) return '/phone';
+    if (url.startsWith('/watch')) return '/watch';
+    if (url.startsWith('/speaker')) return '/speaker';
 
-    return '/tablet';
+    // Otherwise fallback to detection
+    return this.getDeviceFromWidth();
+  }
+
+  autoSwitchDeviceOnResize() {
+    const device = this.getDeviceFromWidth();
+    const current = this.router.url.split('?')[0];
+    const page = current.split('/')[2] || 'home';
+
+    this.router.navigate([`${device}/${page}`], {
+      queryParamsHandling: 'merge'
+    });
   }
 
   navigateTo(route: string) {

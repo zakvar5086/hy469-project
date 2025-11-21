@@ -9,8 +9,8 @@ const routes: Routes = [
             { path: 'calendar', loadComponent: () => import('./calendar/calendar.component').then(m => m.CalendarComponent) },
             { path: 'notifications', loadComponent: () => import('./notifications/notifications.component').then(m => m.NotificationsComponent) },
             { path: 'report', loadComponent: () => import('./report/report.component').then(m => m.ReportComponent) },
+            { path: 'settings', loadComponent: () => import('./settings/settings.component').then(m => m.SettingsComponent) },
             /* { path: 'pill-details', loadComponent: () => import('./pill-details/pill-details.component').then(m => m.PillDetailesComponent) }, */
-            /* { path: 'settings', loadComponent: () => import('./settings/settings.component').then(m => m.SettingsComponent) }, */
 
             { path: '', redirectTo: 'home', pathMatch: 'full' }
         ]

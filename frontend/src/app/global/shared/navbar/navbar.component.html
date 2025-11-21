@@ -25,11 +25,10 @@
         [class.active]="isActive('/notifications')"
         (click)="navigateTo('/notifications')" />
 
-    <img [src]="profileImage" 
-        alt="User profile" 
+    <img [src]="avatarSrc" 
+        alt="User" 
         class="profile-img" 
-        [class.active]="isActive('/profile')"
-        (click)="navigateTo('/profile')" />
+        (click)="navigateTo('/settings')" />
 
   </div>
 </div>

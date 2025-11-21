@@ -6,6 +6,7 @@ const routes: Routes = [
     { path: 'tablet', loadChildren: () => import('./pages/tablet/tablet.module').then(m => m.TabletModule) },
     { path: 'phone', loadChildren: () => import('./pages/phone/phone.module').then(m => m.PhoneModule) },
     { path: 'watch', loadChildren: () => import('./pages/watch/watch.module').then(m => m.WatchModule) },
+    /* { path: 'speaker', loadChildren: () => import('./pages/speaker/speaker.module').then(m => m.SpeakerModule) }, */
     
     { path: '', redirectTo: 'persona', pathMatch: 'full' },
     { path: '**', redirectTo: 'persona' }

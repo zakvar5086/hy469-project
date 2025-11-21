@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
-import { HeaderComponent } from './global/shared/header/header.component';
 import { NavbarComponent } from './global/shared/navbar/navbar.component';
 import { NotificationHubComponent } from './global/shared/notification-hub/notification-hub.component';
 import { PillContainerComponent } from './global/shared/pill-container/pill-container.component';
@@ -21,7 +20,6 @@ const socketIoConfig: SocketIoConfig = { url: environment.host, options: {} };
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    HeaderComponent,
     NavbarComponent,
     NotificationHubComponent,
     PillContainerComponent,
