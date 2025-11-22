@@ -61,7 +61,7 @@ export class ProfileRoutingService {
   updateDeviceOnResize() {
     const newDevice = this.deviceService.detect();
 
-    if (newDevice !== this.currentDevice) {
+    if(newDevice !== this.currentDevice) {
       this.currentDevice = newDevice;
       this.switchToCurrentDevice();
     }

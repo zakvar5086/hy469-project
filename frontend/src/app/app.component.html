@@ -1,3 +1,6 @@
 <!-- START: menu navbar. Delete this code in order to remove the menu -->
-<app-navbar></app-navbar>
+<div *ngIf="showNavbar()">
+    <app-navbar></app-navbar>
+</div>
+
 <router-outlet></router-outlet>

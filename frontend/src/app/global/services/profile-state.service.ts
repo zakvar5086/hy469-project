@@ -30,7 +30,7 @@ export class ProfileStateService {
     const profile = this.getProfile();
 
     // Fallback if no persona
-    if (!profile) return 'assets/avatars/persona1.svg';
+    if(!profile) return 'assets/avatars/persona1.svg';
 
     switch (device) {
       case '/tablet':
