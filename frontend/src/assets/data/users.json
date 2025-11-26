@@ -4,21 +4,6 @@
       "id": "persona1",
       "name": "Eleni Papadaki",
       "age": 76,
-      "occupation": "Retired primary school teacher",
-      "livingSituation": "Lives alone in Heraklion, Greece; her children live in Athens.",
-      "healthProfile": {
-        "conditions": ["Chronic heart failure", "Hypertension"],
-        "details": "Takes five pills daily. Mild short-term memory issues."
-      },
-      "technologyProfile": {
-        "device": "tablet",
-        "preferences": ["Large text", "High contrast", "Voice interaction", "Touch interaction"]
-      },
-      "behavioralTraits": [
-        "Routine-driven",
-        "Calm reminders",
-        "Gets anxious if devices behave unpredictably"
-      ],
       "username": "Eleni",
       "avatar": "assets/avatars/persona1"
     },
@@ -26,21 +11,6 @@
       "id": "persona2",
       "name": "Maria Kostaki",
       "age": 42,
-      "occupation": "Accountant, working remotely",
-      "livingSituation": "Married, mother of three (ages 5, 9, 13).",
-      "healthProfile": {
-        "conditions": [],
-        "details": "Takes iron supplements and vitamin D. Occasional antibiotics."
-      },
-      "technologyProfile": {
-        "device": "phone",
-        "preferences": ["Visual dashboards", "Push notifications"]
-      },
-      "behavioralTraits": [
-        "Multitasks constantly",
-        "Forgets medication when busy",
-        "Prefers low-effort systems"
-      ],
       "username": "Maria",
       "avatar": "assets/avatars/persona2"
     },
@@ -48,21 +18,6 @@
       "id": "persona3",
       "name": "Sofia Lianou",
       "age": 9,
-      "occupation": "Primary school student",
-      "livingSituation": "Lives with parents and older brother.",
-      "healthProfile": {
-        "conditions": ["Recent cold", "Mild bronchitis"],
-        "details": "On a 2-week course of antibiotics and syrup."
-      },
-      "technologyProfile": {
-        "device": "speaker",
-        "preferences": ["Audio feedback", "Simple voice commands"]
-      },
-      "behavioralTraits": [
-        "Finds routine tasks boring",
-        "Loves praise",
-        "Requires supervision"
-      ],
       "username": "Sofia",
       "avatar": "assets/avatars/persona3"
     },
@@ -70,22 +25,6 @@
       "id": "persona4",
       "name": "Andreas Michas",
       "age": 23,
-      "occupation": "Junior software engineer",
-      "livingSituation": "Lives alone. Travels frequently for work.",
-      "healthProfile": {
-        "conditions": ["Asthma", "Seasonal allergies"],
-        "details": "Uses preventive inhaler and vitamin B complex."
-      },
-      "technologyProfile": {
-        "device": "watch",
-        "preferences": ["Quick interactions", "Haptic alerts"]
-      },
-      "behavioralTraits": [
-        "Tech-savvy",
-        "Forgetful when busy",
-        "Tracks workouts",
-        "Prefers non-intrusive reminders"
-      ],
       "username": "Andreas",
       "avatar": "assets/avatars/persona4"
     }
