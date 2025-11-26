@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProfileStateService } from './profile-state.service';
+import { ProfileStateService, UserProfile } from './profile-state.service';
 import { QueryParamPreserveService } from './query-param-preserve.service';
 import { DeviceService } from './device.service';
 
@@ -16,36 +16,61 @@ export class ProfileRoutingService {
     private deviceService: DeviceService
   ) {}
 
-  redirectByPersona(profile: string) {
-    this.profileState.setActiveProfile(profile);
-    this.qpPreserver.enable();
+  redirectByPersona(persona: string) {
 
-    switch (profile) {
+    let profile: UserProfile;
+
+    switch (persona) {
       case 'persona1':
+        profile = {
+          persona,
+          username: 'Eleni Papadaki',
+          avatar: 'assets/avatars/persona1'
+        };
         this.currentDevice = '/tablet';
-        this.router.navigate(['/tablet/home'], { queryParams: { profile } });
         break;
 
       case 'persona2':
+        profile = {
+          persona,
+          username: 'Maria Kostaki',
+          avatar: 'assets/avatars/persona2'
+        };
         this.currentDevice = '/phone';
-        this.router.navigate(['/phone/home'], { queryParams: { profile } });
         break;
 
       case 'persona3':
+        profile = {
+          persona,
+          username: 'Sofia Lianou',
+          avatar: 'assets/avatars/persona3'
+        };
         this.currentDevice = '/speaker';
-        this.router.navigate(['/speaker/home'], { queryParams: { profile } });
         break;
 
       case 'persona4':
+        profile = {
+          persona,
+          username: 'Andreas Michas',
+          avatar: 'assets/avatars/persona4'
+        };
         this.currentDevice = '/watch';
-        this.router.navigate(['/watch/home'], { queryParams: { profile } });
         break;
 
       default:
+        profile = {
+          persona,
+          username: 'Unknown',
+          avatar: 'assets/avatars/default'
+        };
         this.currentDevice = '/tablet';
-        this.router.navigate(['/tablet/home'], { queryParams: { profile } });
-        break;
     }
+
+    this.profileState.setUserProfile(profile);
+    this.qpPreserver.enable();
+    this.router.navigate([`${this.currentDevice}/home`], {
+      queryParams: { profile: persona }
+    });
   }
 
   logoutToPersonaSelector() {
@@ -61,7 +86,7 @@ export class ProfileRoutingService {
   updateDeviceOnResize() {
     const newDevice = this.deviceService.detect();
 
-    if(newDevice !== this.currentDevice) {
+    if (newDevice !== this.currentDevice) {
       this.currentDevice = newDevice;
       this.switchToCurrentDevice();
     }
@@ -82,7 +107,7 @@ export class ProfileRoutingService {
     });
   }
 
-  isActive(route: string): boolean {
+  isActive(route: string) {
     return this.router.url.startsWith(this.currentDevice + route);
   }
 }

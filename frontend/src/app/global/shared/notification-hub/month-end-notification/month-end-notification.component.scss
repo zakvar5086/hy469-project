@@ -10,6 +10,17 @@
   height:131px;
   margin-top: 5px;
 
+  .info-text {
+    // align them in the center vertically
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    p { margin: 0; }
+    h3 { margin: 0; }
+
+  }
+
   .circle {
     border: 7px solid #4caf50;
     border-radius: 50%;
@@ -22,5 +33,25 @@
     font-size: 30px;
     color: #2e7d32;
     aspect-ratio: 1/1;
+  }
+}
+
+@media (max-width: 768px) {
+  .month-card {
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    flex-direction: row;
+    gap: 1rem;
+
+    h3 { font-size: 1rem; }
+    p { font-size: 0.9rem; }
+
+    .circle {
+      width: 70px;
+      height: 70px;
+      font-size: 20px;
+      border-width: 5px;
+    }
   }
 }

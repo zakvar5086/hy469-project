@@ -1,0 +1,162 @@
+.calendar-mobile {
+  width: 100vw;
+  min-height: 100vh;
+  background: #EAF3FF;
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+  /* --- Calendar header --- */
+  .calendar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    .month-title h1 {
+      font-size: 1.4rem;
+      margin: 0;
+      text-align: center;
+    }
+
+    button {
+      background: #2E5CFF;
+      color: white;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      cursor: pointer;
+
+      &:hover { background: #005bbb; }
+    }
+  }
+
+  ::ng-deep mwl-calendar-month-view .cal-cell {
+      height: 50px !important;
+      min-height: 50px !important;
+    }
+
+    ::ng-deep .cal-day-number {
+      font-size: 1rem !important;
+      line-height: 1 !important;
+      padding: 2px !important;
+    }
+
+
+  /* ---- Pills panel ---- */
+  .pills-panel {
+    width: 100%;
+    max-height: none !important;
+    height: auto;
+    margin-top: 1.5rem;
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem 1rem 3rem 1rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  }
+
+  .pills-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .add-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #2E5CFF;
+      color: white;
+      border: none;
+      font-size: 1.7rem;
+
+      &:hover { background: #005bbb; }
+    }
+  }
+
+  .no-pills {
+    width: 100%;
+    max-height: none !important;
+    height: auto;
+    color: #777;
+    text-align: center;
+  }
+
+  .pill-section {
+    margin-top: 1rem;
+
+    h4 {
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .pill-list {
+      padding: 0;
+      list-style: none;
+
+      .pill-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.6rem;
+        background: #EAF3FF;
+        border-radius: 6px;
+        margin-bottom: 0.5rem;
+
+        .pill-name {
+          font-weight: 600;
+          font-size: 1rem;
+        }
+
+        .pill-dosage {
+          font-size: 0.9rem;
+          color: #666;
+        }
+      }
+    }
+  }
+}
+
+
+/* Tablet portrait (600–768) */
+@media (min-width: 600px) {
+  .calendar-mobile {
+    padding: 2rem;
+
+    .calendar-header .month-title h1 {
+      font-size: 1.8rem;
+    }
+
+    .pill-item {
+      padding: 0.8rem !important;
+    }
+  }
+}
+
+/* Small phones (321–480) */
+@media (max-width: 480px) {
+  .calendar-header {
+    gap: .5rem;
+  }
+
+  .calendar-header .month-title h1 {
+    font-size: 1.2rem;
+  }
+
+  .pills-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .pill-item {
+    padding: 0.5rem !important;
+
+    .pill-name { font-size: 0.95rem; }
+    .pill-dosage { font-size: 0.85rem; }
+  }
+}

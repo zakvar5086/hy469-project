@@ -1,0 +1,19 @@
+.main-container {
+    min-height: 100vh; 
+    overflow-x: hidden;
+
+    h1 { margin: 0; }
+
+    .top-content {
+        padding: 1rem;
+        .date-indicator {
+            // border on the bottom only
+            border-bottom: 2px solid #E0E0E0;
+            box-shadow: 0 2px 5px -2px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .bottom-content {
+        padding: 1rem;
+    }
+}

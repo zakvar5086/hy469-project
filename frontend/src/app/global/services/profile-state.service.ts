@@ -1,46 +1,63 @@
 import { Injectable } from '@angular/core';
 
+export interface UserProfile {
+  persona: string;
+  username: string;
+  avatar: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ProfileStateService {
-  
-  private activeProfile: string | null = null;
+
+  private profile: UserProfile | null = null;
 
   constructor() {
-    const saved = localStorage.getItem('activeProfile');
-    if(saved) {
-      this.activeProfile = saved;
+    const saved = localStorage.getItem('userProfile');
+    if (saved) {
+      this.profile = JSON.parse(saved);
+      console.log("Loaded profile:", this.profile);
     }
   }
 
-  setActiveProfile(profile: string) {
-    this.activeProfile = profile;
-    localStorage.setItem('activeProfile', profile);
+  setUserProfile(profile: UserProfile) {
+    this.profile = profile;
+    localStorage.setItem('userProfile', JSON.stringify(profile));
   }
 
-  getProfile() {
-    return this.activeProfile;
+  getUserProfile(): UserProfile | null {
+    return this.profile;
   }
 
-  clearProfile() {
-    this.activeProfile = null;
-    localStorage.removeItem('activeProfile');
+  getPersona(): string | null {
+    return this.profile?.persona ?? null;
+  }
+
+  getUsername(): string | null {
+    return this.profile?.username ?? null;
+  }
+
+  getAvatarBase(): string | null {
+    return this.profile?.avatar ?? null;
   }
 
   getAvatarForDevice(device: string): string {
-    const profile = this.getProfile();
-
-    // Fallback if no persona
-    if(!profile) return 'assets/avatars/persona1.svg';
+    const base = this.getAvatarBase();
+    if (!base) return 'assets/avatars/default.svg';
 
     switch (device) {
       case '/tablet':
-        return `assets/avatars/${profile}.svg`;
+        return `${base}.svg`;
       case '/phone':
-        return `assets/avatars/${profile}.svg`;
+        return `${base}.svg`;
       case '/watch':
-        return `assets/avatars/${profile}.svg`;
+        return `${base}.svg`;
       default:
-        return `assets/avatars/${profile}.svg`;
+        return `${base}.svg`;
     }
+  }
+
+  clearProfile() {
+    this.profile = null;
+    localStorage.removeItem('userProfile');
   }
 }

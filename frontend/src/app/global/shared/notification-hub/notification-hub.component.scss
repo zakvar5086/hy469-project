@@ -6,3 +6,10 @@
     align-items: center;
     flex-shrink: 0;
 }
+
+@media (max-width: 768px) {
+  .notification-hub {
+    flex-direction: column;
+    padding: 0 1rem;
+  }
+}

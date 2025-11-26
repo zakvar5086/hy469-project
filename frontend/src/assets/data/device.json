@@ -1,0 +1,8 @@
+{
+  "devices": {
+    "persona1": "tablet",
+    "persona2": "phone",
+    "persona3": "speaker",
+    "persona4": "watch"
+  }
+}

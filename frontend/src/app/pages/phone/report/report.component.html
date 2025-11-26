@@ -1,1 +1,56 @@
-<p>report works!</p>
+<div class="report-container">
+  <!-- Tab Navigation -->
+  <div class="tabs">
+    <button 
+      class="tab-btn" 
+      [class.active]="activeTab === 'overview'"
+      (click)="switchTab('overview')">
+      Overview
+    </button>
+    
+    <button 
+      class="tab-btn" 
+      [class.active]="activeTab === 'missed'"
+      (click)="switchTab('missed')">
+      Missed Pills
+    </button>
+
+    <button 
+      class="tab-btn" 
+      [class.active]="activeTab === 'postponed'"
+      (click)="switchTab('postponed')">
+      Postponed
+    </button>
+  </div>
+
+  <br>
+  <!--Tab Content-->
+  <div class="tab-content">
+    <div *ngIf="activeTab === 'overview'" class="tab-section">
+      <h2>Monthly Intake Overview</h2>
+    
+      <div class="chart-wrapper">
+        <canvas id="reportPieChart"></canvas>
+      </div>
+    
+      <p class="description">
+        Pills taken this month.
+      </p>
+    
+      <button class="send-btn" (click)="sendToDoctor()">
+        Send Report to Doctor
+      </button>
+    </div>
+
+
+    <div *ngIf="activeTab === 'missed'" class="tab-section">
+      <h2>Missed Pills</h2>
+      <p class="description">You missed {{ missedPills }} pills this month.</p>
+    </div>
+
+    <div *ngIf="activeTab === 'postponed'" class="tab-section">
+      <h2>Postponed Pills</h2>
+      <p class="description">You postponed intake {{ postponedTimes }} times.</p>
+    </div>
+  </div>
+</div>

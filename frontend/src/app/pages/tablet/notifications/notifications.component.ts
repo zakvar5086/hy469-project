@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
 interface NotificationCard {
     time: string;
     title: string;
@@ -14,7 +13,6 @@ interface totalNotification {
     card: NotificationCard[];
 }
 
-
 @Component({
   selector: 'app-tablet-notifications',
   standalone: true,
@@ -23,11 +21,7 @@ interface totalNotification {
   styleUrls: ['./notifications.component.scss']
 })
 
-
 export class TabletNotificationsComponent {
-
-
-
 
      notifications: totalNotification[] = [
     {
@@ -57,5 +51,13 @@ export class TabletNotificationsComponent {
       ]
     }
   ];
+  
+  deleteNotification(notif: any, index: number) {
+    notif.card.splice(index, 1);
+
+    if (notif.card.length === 0) {
+      this.notifications = this.notifications.filter(n => n !== notif);
+    }
+  }
 
 }

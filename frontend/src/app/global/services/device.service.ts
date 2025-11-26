@@ -6,8 +6,9 @@ export class DeviceService {
   detect(): string {
     const w = window.innerWidth;
 
-    if(w >= 900) return '/tablet';
-    if(w >= 600) return '/phone';
-    return '/watch'; // default small screen
+    if (w >= 768) return '/tablet';
+    if (w >= 321) return '/phone';
+
+    return '/watch';
   }
 }

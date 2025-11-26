@@ -73,7 +73,7 @@ export class ReportComponent implements AfterViewInit {
             position: 'bottom',
             labels: {
               font: {
-                size: 16
+                size: 22
               }
             }
           }

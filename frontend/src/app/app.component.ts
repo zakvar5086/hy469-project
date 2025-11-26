@@ -23,9 +23,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const saved = this.profileState.getProfile();
+    const saved = this.profileState.getUserProfile();
 
-    if(saved) this.qpPreserver.enable();
+    if (saved) this.qpPreserver.enable();
 
     // Initial device detection
     this.profileRouting.initializeDeviceFromWidth();
