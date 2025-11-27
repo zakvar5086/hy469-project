@@ -16,6 +16,7 @@ export class SettingsComponent {
   avatar = "assets/avatars/persona1.svg";
   appVersion = "1.0.0";
   project = "CS452";
+  
 
   constructor(
     private profileRouting: ProfileRoutingService,

@@ -1,0 +1,29 @@
+<div class="back" (click)="navigateTo('schedule')">
+   <img src="assets/icons/back.svg"/>
+</div>
+<div class="pill-container">
+
+    <div *ngFor="let p of pill" class="pill-det">
+
+        <div class="header">
+            <img [src]="p.image" class="pill-img"/>
+            <h1 class="title">{{p.name}}</h1>
+        </div>
+
+
+        <div *ngFor="let inst of p.shortIn" class="short">
+            {{inst.short}}
+        </div>
+
+        <div class="more-details" (click)="toggleDetails()">
+            More Details
+        </div>
+
+        <div class="long" *ngIf="showDetails">
+            <h2>Details</h2>
+            <p>{{p.longIn}}</p>
+        </div>
+
+
+    </div>
+</div>

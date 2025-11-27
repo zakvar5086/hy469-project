@@ -1,84 +1,226 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 import Chart from 'chart.js/auto';
+import { AfterViewInit, HostListener, ChangeDetectionStrategy, signal } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-report',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.scss']
 })
 export class ReportComponent implements AfterViewInit {
 
-  activeTab: 'overview' | 'missed' | 'postponed' = 'overview';
+    intakePercentage = 92;
 
-  intakePercentage = 92;
-  missedPills = 3;
-  postponedTimes = 5;
+    dailyTaken = 2;
+    dailyMissed = 0;
+    dailyPostponed = 1;
 
-  totalPillsThisMonth = 0;
+    weeklyTaken = 10;
+    weeklyMissed = 4;
+    weeklyPostponed = 1;
 
-  private pieChart: Chart | null = null;
+    monthlyTaken = 56;
+    monthlyMissed = 4;
+    monthlyPostponed = 4;
 
-  constructor() {
-    this.totalPillsThisMonth =
-      this.missedPills + this.postponedTimes + Math.round((this.intakePercentage / 100) *
-      (this.missedPills + this.postponedTimes + 30));
-  }
+    totalPillsThisMonth = 60;
 
-  ngAfterViewInit() {
-    this.createPieChart();
-  }
+    private touchStartX = 0;
+    private touchEndX = 0;
+    private swipeThreshold = 40;
 
-  switchTab(tab: 'overview' | 'missed' | 'postponed') {
-    this.activeTab = tab;
-
-    if(tab === 'overview') {
-      setTimeout(() => this.createPieChart(), 50);
+    constructor(private router: Router) {
+        // this.totalPillsThisMonth =
+        //     this.missedPills + this.postponeTimes + Math.round((this.intakePercentage / 100) *
+        //     (this.missedPills + this.postponeTimes + 30));
     }
-  }
-
-  sendToDoctor() {
-    alert('Report sent to doctor!');
-  }
-
-  private createPieChart() {
-    const canvas: any = document.getElementById('reportPieChart');
-
-    if(!canvas) return;
-
-    if(this.pieChart) {
-      this.pieChart.destroy();
+    private getDevicePrefix(): string {
+        return '/watch/';
     }
 
-    const taken = Math.round(this.intakePercentage);
-    const missed = this.missedPills;
-    const postponed = this.postponedTimes;
-
-    this.pieChart = new Chart(canvas, {
-      type: 'pie',
-      data: {
-        labels: ['Taken', 'Missed', 'Postponed'],
-        datasets: [{
-          data: [taken, missed, postponed],
-          backgroundColor: ['#4a90e2', '#e57373', '#f2c94c'],
-          hoverBackgroundColor: ['#6aa5f3', '#ef8a8a', '#f4d87c'],
-          borderWidth: 0
-        }]
-      },
-      options: {
-        plugins: {
-          legend: {
-            position: 'bottom',
-            labels: {
-              font: {
-                size: 16
-              }
-            }
-          }
-        }
+     navigateTo(route: string) {
+        console.log("Navigating to", route);  
+        const device = this.getDevicePrefix();
+        this.router.navigate([device + route], {
+          queryParamsHandling: 'merge'
+        });
       }
-    });
-  }
+
+
+      activeTab: 'Daily' | 'Weekly' | 'Monthly' = 'Daily';
+      
+       
+    
+      
+        private dailyChart: Chart | null = null;
+        private weeklyChart: Chart | null = null;
+        private monthlyChart: Chart | null = null;
+      
+        ngAfterViewInit() {
+          this.renderChartForTab('Daily');
+        }
+
+        @HostListener('touchstart', ['$event'])
+        onTouchStart(event: TouchEvent){
+            this.touchStartX = event.changedTouches[0].screenX;
+        }
+      
+
+         @HostListener('touchend', ['$event'])
+        onTouchEnd(event: TouchEvent){
+            this.touchStartX = event.changedTouches[0].screenX;
+            this.handleSwipeGesture();
+        }
+
+        private handleSwipeGesture(){
+            const deltaX = this.touchEndX - this.touchStartX;
+
+            if(Math.abs(deltaX) < this.swipeThreshold) return;
+
+            if(deltaX < 0){
+                this.goToNextTab();
+            }else{
+                this.goToPrevTab();
+            }
+        }
+
+        private goToNextTab(){
+            if(this.activeTab === 'Daily') this.switchTab('Weekly');
+            else if(this.activeTab === 'Weekly') this.switchTab('Monthly');
+        }
+
+        private goToPrevTab(){
+            if(this.activeTab === 'Monthly') this.switchTab('Weekly');
+            else if(this.activeTab === 'Weekly') this.switchTab('Daily');
+        }
+
+
+        switchTab(tab: 'Daily' | 'Weekly' | 'Monthly') {
+          this.activeTab = tab;
+          setTimeout(() => this.renderChartForTab(tab), 50); 
+        }
+      
+        sendToDoctor() {
+          alert('Report sent to doctor!');
+        }
+
+        private renderChartForTab(tab: string) {
+            switch(tab) {
+                case 'Daily':
+                    this.createDailyChart();
+                    break;
+                case 'Weekly':
+                    this.createWeeklyChart();
+                    break;
+                case 'Monthly':
+                    this.createMonthlyChart();
+                    break;
+            }
+        }
+
+      
+        private createDailyChart() {
+            const canvas = document.getElementById('dailyPieChart') as HTMLCanvasElement;
+            if (!canvas) return;
+
+            if (this.dailyChart) this.dailyChart.destroy();
+
+            this.dailyChart = new Chart(canvas, {
+            type: 'pie',
+            data: {
+                labels: ['Taken', 'Missed', 'Postpone'],
+                datasets: [{
+                data: [this.dailyTaken, this.dailyMissed, this.dailyPostponed],
+                backgroundColor: ['#4a90e2', '#e57373', '#f2c94c'],
+                hoverBackgroundColor: ['#6aa5f3', '#ef8a8a', '#f4d87c'],
+
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 20
+                                }
+                            }
+                    }
+                }
+            }
+            });
+        }
+
+
+        private createWeeklyChart() {
+            const canvas = document.getElementById('weeklyPieChart') as HTMLCanvasElement;
+            if (!canvas) return;
+
+            if (this.weeklyChart) this.weeklyChart.destroy();
+
+            this.weeklyChart = new Chart(canvas, {
+            type: 'pie',
+            data: {
+                labels: ['Taken', 'Missed', 'Postpone'],
+                datasets: [{
+                data: [this.weeklyTaken, this.weeklyMissed, this.weeklyPostponed],
+                backgroundColor: ['#4a90e2', '#e57373', '#f2c94c'],
+                hoverBackgroundColor: ['#6aa5f3', '#ef8a8a', '#f4d87c'],
+
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 20
+                                }
+                            }
+                    }
+                }
+            }
+            });
+        }
+
+        
+        private createMonthlyChart() {
+            const canvas = document.getElementById('monthlyPieChart') as HTMLCanvasElement;
+            if (!canvas) return;
+
+            if (this.monthlyChart) this.monthlyChart.destroy();
+
+            this.monthlyChart = new Chart(canvas, {
+            type: 'pie',
+            data: {
+                labels: ['Taken', 'Missed', 'Postpone'],
+                datasets: [{
+                data: [this.monthlyTaken, this.monthlyMissed, this.monthlyPostponed],
+                backgroundColor: ['#4a90e2', '#e57373', '#f2c94c'],
+                hoverBackgroundColor: ['#6aa5f3', '#ef8a8a', '#f4d87c'],
+
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 20
+                                }
+                            }
+                    }
+                }
+            }
+            });
+        }
 }

@@ -1,0 +1,11 @@
+<div class="schedule-container">
+    
+    <div class="back" (click)="navigateTo('home')">
+        <img src="assets/icons/back.svg"/>
+    </div>
+
+    <div class="date-indicator" >
+        <p (click)="navigateTo('calendar')">{{selectedDate | date:'MMM d YYYY'}}</p>
+         <app-pill-container></app-pill-container>
+    </div>
+</div>

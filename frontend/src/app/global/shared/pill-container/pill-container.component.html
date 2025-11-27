@@ -1,4 +1,4 @@
-<div class="pill-container">
+<!-- <div class="pill-container">
     <div class="schedule-time">
         <h2>10:00</h2>
     </div>
@@ -19,4 +19,31 @@
         [daysLeft]="30"
         [lowPillWarning]="null"
     ></app-pill-card>
+</div> -->
+
+
+<div class="pill-container">
+
+  <ng-container *ngFor="let time of (pillsByTime | keyvalue)">
+    
+    <div class="schedule-time">
+      <h2>{{ time.key }}</h2>
+    </div>
+
+    <ng-container *ngFor="let pill of time.value">
+      <app-pill-card
+          [pillName]="pill.pillName"
+          [dosage]="pill.dosage"
+          [pillIcon]="pill.pillIcon"
+          [status]="pill.status"
+          [daysLeft]="pill.daysLeft"
+          [lowPillWarning]="pill.lowPillWarning"
+      ></app-pill-card>
+      <br />
+    </ng-container>
+
+    <br />
+
+  </ng-container>
+
 </div>

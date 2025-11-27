@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   showNavbar(): boolean {
-    return !this.router.url.startsWith('/persona');
+    return !this.router.url.startsWith('/watch');
   }
 
   ngOnInit() {

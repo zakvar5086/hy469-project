@@ -1,40 +1,38 @@
 <div class="report-container">
-  <!-- Tab Navigation -->
-  <div class="tabs">
+    <div class="tabs">
     <button 
       class="tab-btn" 
-      [class.active]="activeTab === 'overview'"
-      (click)="switchTab('overview')">
-      Overview
+      [class.active]="activeTab === 'Daily'"
+      (click)="switchTab('Daily')">
+      Daily
     </button>
     
     <button 
       class="tab-btn" 
-      [class.active]="activeTab === 'missed'"
-      (click)="switchTab('missed')">
-      Missed Pills
+      [class.active]="activeTab === 'Weekly'"
+      (click)="switchTab('Weekly')">
+      Weekly
     </button>
 
     <button 
       class="tab-btn" 
-      [class.active]="activeTab === 'postponed'"
-      (click)="switchTab('postponed')">
-      Postponed
+      [class.active]="activeTab === 'Monthly'"
+      (click)="switchTab('Monthly')">
+      Monthly
     </button>
   </div>
 
-  <!--Tab Content-->
+  
   <div class="tab-content">
-    <div *ngIf="activeTab === 'overview'" class="tab-section">
-      <h2>Monthly Intake Overview</h2>
+    <div *ngIf="activeTab === 'Daily'" class="tab-section">
+      <h2>Daily Intake Overview</h2>
     
       <div class="chart-wrapper">
-        <canvas id="reportPieChart"></canvas>
+        <canvas id="dailyPieChart"></canvas>
       </div>
+      
     
-      <p class="description">
-        Pills taken this month.
-      </p>
+
     
       <button class="send-btn" (click)="sendToDoctor()">
         Send Report to Doctor
@@ -42,14 +40,32 @@
     </div>
 
 
-    <div *ngIf="activeTab === 'missed'" class="tab-section">
-      <h2>Missed Pills</h2>
-      <p class="description">You missed {{ missedPills }} pills this month.</p>
+    <div *ngIf="activeTab === 'Weekly'" class="tab-section">
+      <h2>Weekly Intake Overview</h2>
+       <div class="chart-wrapper">
+        <canvas id="weeklyPieChart"></canvas>
+      </div>
+    
+
+    
+      <button class="send-btn" (click)="sendToDoctor()">
+        Send Report to Doctor
+      </button>
     </div>
 
-    <div *ngIf="activeTab === 'postponed'" class="tab-section">
-      <h2>Postponed Pills</h2>
-      <p class="description">You postponed intake {{ postponedTimes }} times.</p>
+    <div *ngIf="activeTab === 'Monthly'" class="tab-section">
+      <h2>Monthly Intake Overview</h2>
+        <div class="chart-wrapper">
+        <canvas id="monthlyPieChart"></canvas>
+      </div>
+
+    
+      <button class="send-btn" (click)="sendToDoctor()">
+        Send Report to Doctor
+      </button>
     </div>
-  </div>
+ </div>
+
+
+        
 </div>

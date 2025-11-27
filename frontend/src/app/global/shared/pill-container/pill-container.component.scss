@@ -8,3 +8,11 @@
     //flex: 1;
     //border: 2px solid black;
 }
+
+
+
+@media (max-width: 280px){
+    .schedule-time h2{
+        font-size: 20px;
+    }
+}
