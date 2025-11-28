@@ -11,74 +11,101 @@ import Chart from 'chart.js/auto';
 })
 export class ReportComponent implements AfterViewInit {
 
-  activeTab: 'overview' | 'missed' | 'postponed' = 'overview';
+  activeTab: 'monthly' | 'weekly' | 'daily' = 'monthly';
+
+  private chart: Chart | null = null;
 
   intakePercentage = 92;
   missedPills = 3;
   postponedTimes = 5;
 
-  totalPillsThisMonth = 0;
-
-  private pieChart: Chart | null = null;
-
-  constructor() {
-    this.totalPillsThisMonth =
-      this.missedPills + this.postponedTimes + Math.round((this.intakePercentage / 100) *
-      (this.missedPills + this.postponedTimes + 30));
-  }
-
   ngAfterViewInit() {
-    this.createPieChart();
+    this.createMonthlyChart();
   }
 
-  switchTab(tab: 'overview' | 'missed' | 'postponed') {
+  switchTab(tab: 'daily' | 'weekly' | 'monthly') {
     this.activeTab = tab;
 
-    if(tab === 'overview') {
-      setTimeout(() => this.createPieChart(), 50);
+    setTimeout(() => {
+      this.destroyChart();
+
+      if (tab === 'daily') this.createDailyChart();
+      if (tab === 'weekly') this.createWeeklyChart();
+      if (tab === 'monthly') this.createMonthlyChart();
+    }, 50);
+  }
+
+  private destroyChart() {
+    if (this.chart) {
+      this.chart.destroy();
+      this.chart = null;
     }
   }
 
-  sendToDoctor() {
-    alert('Report sent to doctor!');
+  // DAILY BAR CHART
+  private createDailyChart() {
+    const canvas = document.getElementById('dailyChart') as HTMLCanvasElement;
+    if (!canvas) return;
+
+    this.chart = new Chart(canvas, {
+      type: 'bar',
+      data: {
+        labels: ['Morning', 'Afternoon', 'Evening'],
+        datasets: [{
+          label: 'Pills Taken',
+          data: [1, 0, 1],
+          backgroundColor: '#4a90e2'
+        }]
+      },
+      options: { responsive: true }
+    });
   }
 
-  private createPieChart() {
-    const canvas: any = document.getElementById('reportPieChart');
+  // WEEKLY LINE CHART
+  private createWeeklyChart() {
+    const canvas = document.getElementById('weeklyChart') as HTMLCanvasElement;
+    if (!canvas) return;
 
-    if(!canvas) return;
+    this.chart = new Chart(canvas, {
+      type: 'line',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'Daily Intake',
+          data: [1, 1, 0, 1, 1, 0, 1],
+          borderColor: '#f2c94c',
+          borderWidth: 3,
+          tension: 0.3,
+          fill: false
+        }]
+      },
+      options: { responsive: true }
+    });
+  }
 
-    if(this.pieChart) {
-      this.pieChart.destroy();
-    }
+  // MONTHLY PIE CHART
+  private createMonthlyChart() {
+    const canvas = document.getElementById('monthlyChart') as HTMLCanvasElement;
+    if (!canvas) return;
 
-    const taken = Math.round(this.intakePercentage);
-    const missed = this.missedPills;
-    const postponed = this.postponedTimes;
-
-    this.pieChart = new Chart(canvas, {
+    this.chart = new Chart(canvas, {
       type: 'pie',
       data: {
         labels: ['Taken', 'Missed', 'Postponed'],
         datasets: [{
-          data: [taken, missed, postponed],
-          backgroundColor: ['#4a90e2', '#e57373', '#f2c94c'],
-          hoverBackgroundColor: ['#6aa5f3', '#ef8a8a', '#f4d87c'],
-          borderWidth: 0
+          data: [
+            Math.round(this.intakePercentage),
+            this.missedPills,
+            this.postponedTimes
+          ],
+          backgroundColor: ['#4a90e2', '#e57373', '#f2c94c']
         }]
       },
-      options: {
-        plugins: {
-          legend: {
-            position: 'bottom',
-            labels: {
-              font: {
-                size: 22
-              }
-            }
-          }
-        }
-      }
+      options: { responsive: true }
     });
+  }
+
+  sendToDoctor() {
+    alert('Report sent to doctor!');
   }
 }

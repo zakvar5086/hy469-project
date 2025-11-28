@@ -11,32 +11,25 @@ import Chart from 'chart.js/auto';
 })
 export class ReportComponent implements AfterViewInit {
 
-  activeTab: 'overview' | 'missed' | 'postponed' = 'overview';
+  activeTab: 'daily' | 'weekly' | 'monthly' = 'monthly';
 
+  private chart: Chart | null = null;
+
+  // Example data
   intakePercentage = 92;
   missedPills = 3;
   postponedTimes = 5;
 
-  totalPillsThisMonth = 0;
-  private pieChart: Chart | null = null;
-
-  // Swipe Variables
+  // Swipe variables
   private touchStartX = 0;
   private touchEndX = 0;
-  private swipeThreshold = 40; // px
-
-  constructor() {
-    this.totalPillsThisMonth =
-      this.missedPills + this.postponedTimes + Math.round((this.intakePercentage / 100) *
-      (this.missedPills + this.postponedTimes + 30));
-  }
+  private swipeThreshold = 40;
 
   ngAfterViewInit() {
-    this.createPieChart();
+    this.createMonthlyChart();
   }
 
-  // Swipe
-
+  // ----------------- SWIPE HANDLING -----------------
   @HostListener('touchstart', ['$event'])
   onTouchStart(event: TouchEvent) {
     this.touchStartX = event.changedTouches[0].screenX;
@@ -45,82 +38,110 @@ export class ReportComponent implements AfterViewInit {
   @HostListener('touchend', ['$event'])
   onTouchEnd(event: TouchEvent) {
     this.touchEndX = event.changedTouches[0].screenX;
-    this.handleSwipeGesture();
+    this.handleSwipe();
   }
 
-  private handleSwipeGesture() {
-    const deltaX = this.touchEndX - this.touchStartX;
+  private handleSwipe() {
+    const delta = this.touchEndX - this.touchStartX;
+    if (Math.abs(delta) < this.swipeThreshold) return;
 
-    // Ignore tiny movements
-    if (Math.abs(deltaX) < this.swipeThreshold) return;
-
-    if (deltaX < 0) {
-      // Swipe left → next tab
-      this.goToNextTab();
-    } else {
-      // Swipe right → previous tab
-      this.goToPrevTab();
-    }
+    if (delta < 0) this.goNext();
+    else this.goPrev();
   }
 
-  private goToNextTab() {
-    if (this.activeTab === 'overview') this.switchTab('missed');
-    else if (this.activeTab === 'missed') this.switchTab('postponed');
+  private goNext() {
+    if (this.activeTab === 'monthly') this.switchTab('weekly');
+    else if (this.activeTab === 'weekly') this.switchTab('daily');
   }
 
-  private goToPrevTab() {
-    if (this.activeTab === 'postponed') this.switchTab('missed');
-    else if (this.activeTab === 'missed') this.switchTab('overview');
+  private goPrev() {
+    if (this.activeTab === 'daily') this.switchTab('weekly');
+    else if (this.activeTab === 'weekly') this.switchTab('monthly');
   }
 
-  switchTab(tab: 'overview' | 'missed' | 'postponed') {
+  // ----------------- TAB SWITCHING -----------------
+  switchTab(tab: 'daily' | 'weekly' | 'monthly') {
     this.activeTab = tab;
 
-    if (tab === 'overview') {
-      setTimeout(() => this.createPieChart(), 50);
+    setTimeout(() => {
+      this.destroyChart();
+
+      if (tab === 'daily') this.createDailyChart();
+      if (tab === 'weekly') this.createWeeklyChart();
+      if (tab === 'monthly') this.createMonthlyChart();
+
+    }, 50);
+  }
+
+  private destroyChart() {
+    if (this.chart) {
+      this.chart.destroy();
+      this.chart = null;
     }
   }
 
-  sendToDoctor() {
-    alert('Report sent to doctor!');
-  }
-
-  private createPieChart() {
-    const canvas: any = document.getElementById('reportPieChart');
-
+  // ----------------- CHARTS -----------------
+  private createDailyChart() {
+    const canvas = document.getElementById('dailyChart') as HTMLCanvasElement;
     if (!canvas) return;
 
-    if (this.pieChart) {
-      this.pieChart.destroy();
-    }
+    this.chart = new Chart(canvas, {
+      type: 'bar',
+      data: {
+        labels: ['Morning', 'Afternoon', 'Evening'],
+        datasets: [{
+          label: 'Pills Taken',
+          data: [1, 0, 1],
+          backgroundColor: '#4a90e2'
+        }]
+      },
+      options: { responsive: true }
+    });
+  }
 
-    const taken = Math.round(this.intakePercentage);
-    const missed = this.missedPills;
-    const postponed = this.postponedTimes;
+  private createWeeklyChart() {
+    const canvas = document.getElementById('weeklyChart') as HTMLCanvasElement;
+    if (!canvas) return;
 
-    this.pieChart = new Chart(canvas, {
+    this.chart = new Chart(canvas, {
+      type: 'line',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'Daily Intake',
+          data: [1, 1, 0, 1, 1, 0, 1],
+          borderWidth: 3,
+          borderColor: '#f2c94c',
+          fill: false,
+          tension: 0.3
+        }]
+      },
+      options: { responsive: true }
+    });
+  }
+
+  private createMonthlyChart() {
+    const canvas = document.getElementById('monthlyChart') as HTMLCanvasElement;
+    if (!canvas) return;
+
+    this.chart = new Chart(canvas, {
       type: 'pie',
       data: {
         labels: ['Taken', 'Missed', 'Postponed'],
         datasets: [{
-          data: [taken, missed, postponed],
-          backgroundColor: ['#4a90e2', '#e57373', '#f2c94c'],
-          hoverBackgroundColor: ['#6aa5f3', '#ef8a8a', '#f4d87c'],
-          borderWidth: 0
+          data: [
+            Math.round(this.intakePercentage),
+            this.missedPills,
+            this.postponedTimes
+          ],
+          backgroundColor: ['#4a90e2', '#e57373', '#f2c94c']
         }]
       },
-      options: {
-        plugins: {
-          legend: {
-            position: 'bottom',
-            labels: {
-              font: {
-                size: 16
-              }
-            }
-          }
-        }
-      }
+      options: { responsive: true }
     });
+  }
+
+  sendToDoctor() {
+    alert('Report sent to doctor!');
   }
 }

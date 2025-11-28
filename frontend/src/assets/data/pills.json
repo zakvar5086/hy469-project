@@ -10,6 +10,12 @@
           "time": "08:00"
         },
         {
+          "id": "p1-med6",
+          "name": "Heart Failure Medication Β",
+          "dosage": "20mg",
+          "time": "08:00"
+        },
+        {
           "id": "p1-med2",
           "name": "Hypertension Pill",
           "dosage": "10mg",

@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
+import { DataService, User } from './data.services';
+import { take } from 'rxjs';
 
 export interface UserProfile {
   persona: string;
   username: string;
   avatar: string;
+  age?: number;
+  name?: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -11,7 +15,7 @@ export class ProfileStateService {
 
   private profile: UserProfile | null = null;
 
-  constructor() {
+  constructor(private dataService: DataService) {
     const saved = localStorage.getItem('userProfile');
     if (saved) {
       this.profile = JSON.parse(saved);
@@ -24,6 +28,24 @@ export class ProfileStateService {
     localStorage.setItem('userProfile', JSON.stringify(profile));
   }
 
+  setUserProfileFromData(personaId: string, callback?: () => void) {
+    this.dataService.getUserById(personaId).pipe(take(1)).subscribe(user => {
+      if (user) {
+        const profile: UserProfile = {
+          persona: user.id,
+          username: user.username,
+          avatar: user.avatar,
+          age: user.age,
+          name: user.name
+        };
+        this.setUserProfile(profile);
+        if (callback) callback();
+      } else {
+        console.warn(`User with ID ${personaId} not found`);
+      }
+    });
+  }
+
   getUserProfile(): UserProfile | null {
     return this.profile;
   }
@@ -34,6 +56,14 @@ export class ProfileStateService {
 
   getUsername(): string | null {
     return this.profile?.username ?? null;
+  }
+
+  getName(): string | null {
+    return this.profile?.name ?? null;
+  }
+
+  getAge(): number | null {
+    return this.profile?.age ?? null;
   }
 
   getAvatarBase(): string | null {

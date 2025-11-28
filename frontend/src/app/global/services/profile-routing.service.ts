@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProfileStateService, UserProfile } from './profile-state.service';
+import { ProfileStateService } from './profile-state.service';
 import { QueryParamPreserveService } from './query-param-preserve.service';
 import { DeviceService } from './device.service';
+import { DataService } from './data.services';
+import { take } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ProfileRoutingService {
@@ -13,63 +15,36 @@ export class ProfileRoutingService {
     private router: Router,
     private profileState: ProfileStateService,
     private qpPreserver: QueryParamPreserveService,
-    private deviceService: DeviceService
+    private deviceService: DeviceService,
+    private dataService: DataService
   ) {}
 
   redirectByPersona(persona: string) {
+    // Load user data and device mapping from JSON
+    this.dataService.getUserById(persona).pipe(take(1)).subscribe(user => {
+      if (!user) {
+        console.error(`User ${persona} not found`);
+        return;
+      }
 
-    let profile: UserProfile;
+      // Get the device mapping for this persona
+      this.dataService.getDeviceForPersona(persona).pipe(take(1)).subscribe(deviceType => {
+        if (!deviceType) {
+          console.error(`Device mapping for ${persona} not found`);
+          return;
+        }
 
-    switch (persona) {
-      case 'persona1':
-        profile = {
-          persona,
-          username: 'Eleni Papadaki',
-          avatar: 'assets/avatars/persona1'
-        };
-        this.currentDevice = '/tablet';
-        break;
+        // Map device type to route
+        this.currentDevice = `/${deviceType}`;
 
-      case 'persona2':
-        profile = {
-          persona,
-          username: 'Maria Kostaki',
-          avatar: 'assets/avatars/persona2'
-        };
-        this.currentDevice = '/phone';
-        break;
-
-      case 'persona3':
-        profile = {
-          persona,
-          username: 'Sofia Lianou',
-          avatar: 'assets/avatars/persona3'
-        };
-        this.currentDevice = '/speaker';
-        break;
-
-      case 'persona4':
-        profile = {
-          persona,
-          username: 'Andreas Michas',
-          avatar: 'assets/avatars/persona4'
-        };
-        this.currentDevice = '/watch';
-        break;
-
-      default:
-        profile = {
-          persona,
-          username: 'Unknown',
-          avatar: 'assets/avatars/default'
-        };
-        this.currentDevice = '/tablet';
-    }
-
-    this.profileState.setUserProfile(profile);
-    this.qpPreserver.enable();
-    this.router.navigate([`${this.currentDevice}/home`], {
-      queryParams: { profile: persona }
+        // Set the profile
+        this.profileState.setUserProfileFromData(persona, () => {
+          this.qpPreserver.enable();
+          this.router.navigate([`${this.currentDevice}/home`], {
+            queryParams: { profile: persona }
+          });
+        });
+      });
     });
   }
 

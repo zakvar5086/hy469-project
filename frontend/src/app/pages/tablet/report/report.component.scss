@@ -44,10 +44,18 @@ h2 {
   text-align: center;
   padding: 1rem;
 
-  .chart-wrapper {
-  width: 380px;
-  height: 380px;
-  margin: 0 auto 1.5rem auto;
+  .chart-daily,
+  .chart-weekly {
+    width: 60%;
+    max-width: 600px;
+    height: 280px;
+    margin: 0 auto 1.5rem auto;
+  }
+  
+  .chart-monthly {
+    width: 260px;
+    height: 260px;
+    margin: 0 auto 1.5rem auto;
   }
 
   canvas {

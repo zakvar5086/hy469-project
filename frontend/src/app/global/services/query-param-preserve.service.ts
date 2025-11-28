@@ -22,7 +22,6 @@ export class QueryParamPreserveService {
         if (!profile) return;
 
         const nav = event as NavigationStart;
-
         if (nav.url.includes(`profile=${profile}`)) return;
 
         const url = nav.url.split('?')[0];

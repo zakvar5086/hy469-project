@@ -1,6 +1,18 @@
 <h2>Select Persona</h2>
 
-<button (click)="selectPersona('persona1')">Persona 1 (Tablet)</button>
-<button (click)="selectPersona('persona2')">Persona 2 (Phone)</button>
-<button (click)="selectPersona('persona3')">Persona 3 (Speaker)</button>
-<button (click)="selectPersona('persona4')">Persona 4 (Watch)</button>
+<div class="persona-grid" *ngIf="users$ | async as users">
+  <button 
+    *ngFor="let user of users" 
+    (click)="selectPersona(user.id)"
+    class="persona-button">
+    <img [src]="user.avatar + '.svg'" [alt]="user.name" class="persona-avatar" />
+    <div class="persona-info">
+      <span class="persona-name">{{ user.name }}</span>
+      <span class="persona-device">({{ getDeviceLabel(user.id) }})</span>
+    </div>
+  </button>
+</div>
+
+<div *ngIf="!(users$ | async)" class="loading">
+  Loading personas...
+</div>

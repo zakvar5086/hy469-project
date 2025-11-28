@@ -24,9 +24,6 @@ h2 {
   margin-top: 0.5rem;
 }
 
-/* ===========================
-      TABS (2-ROW LAYOUT)
-   =========================== */
 .tabs {
   display: flex;
   justify-content: space-evenly;
@@ -56,16 +53,20 @@ h2 {
 }
 
 
-/* ===========================
-       TAB CONTENT SECTIONS
-   =========================== */
 .tab-section {
   padding: 0.5rem 0;
   text-align: center;
 }
 
 /* Chart container */
-.chart-wrapper {
+.chart-daily,
+.chart-weekly {
+  width: auto;
+  height: auto;
+  margin: 0 auto 1rem auto;
+}
+
+.chart-monthly {
   width: 240px;
   height: 240px;
   margin: 0 auto 1rem auto;
