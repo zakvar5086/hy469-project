@@ -16,6 +16,8 @@ export class PillContainerComponent implements OnInit, OnDestroy {
 
   pillGroups: { time: string; pills: Pill[] }[] = [];
   private destroy$ = new Subject<void>();
+  
+  private daysLeftCache = new Map<string, number>();
 
   constructor(
     private dataService: DataService,
@@ -30,6 +32,7 @@ export class PillContainerComponent implements OnInit, OnDestroy {
         .pipe(takeUntil(this.destroy$))
         .subscribe(groups => {
           this.pillGroups = groups;
+          this.cacheAllDaysLeft();
         });
     }
   }
@@ -39,8 +42,24 @@ export class PillContainerComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  private cacheAllDaysLeft() {
+    this.pillGroups.forEach(group => {
+      group.pills.forEach(pill => {
+        if (!this.daysLeftCache.has(pill.id)) {
+          this.daysLeftCache.set(pill.id, Math.floor(Math.random() * 30) + 1);
+        }
+      });
+    });
+  }
+
   getDaysLeft(pill: Pill): number {
-    return Math.floor(Math.random() * 30) + 1;
+    // Return cached value or generate and cache if not exists
+    if (!this.daysLeftCache.has(pill.id)) {
+      const daysLeft = Math.floor(Math.random() * 30) + 1;
+      this.daysLeftCache.set(pill.id, daysLeft);
+      return daysLeft;
+    }
+    return this.daysLeftCache.get(pill.id)!;
   }
 
   // Helper to check if pill stock is low

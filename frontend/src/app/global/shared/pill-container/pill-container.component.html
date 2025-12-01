@@ -6,9 +6,10 @@
         
         <ng-container *ngFor="let pill of group.pills; let i = index">
             <app-pill-card
+                [pillId]="pill.id"
                 [pillName]="pill.name"
                 [dosage]="pill.dosage"
-                [pillIcon]="'assets/icons/pill.svg'"
+                [pillIcon]="pill.image || 'assets/icons/pill.svg'"
                 [status]="'Upcoming'"
                 [daysLeft]="getDaysLeft(pill)"
                 [lowPillWarning]="isLowStock(pill)"

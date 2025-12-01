@@ -15,6 +15,9 @@ export interface Pill {
   name: string;
   dosage: string;
   time: string;
+  image?: string;
+  shortInstructions?: string[];
+  longDescription?: string;
 }
 
 export interface UserPills {
@@ -75,6 +78,12 @@ export class DataService {
         const userPills = pillData.find(p => p.userId === userId);
         return userPills ? userPills.items : [];
       })
+    );
+  }
+
+  getPillById(userId: string, pillId: string): Observable<Pill | undefined> {
+    return this.getPillsForUser(userId).pipe(
+      map(pills => pills.find(p => p.id === pillId))
     );
   }
 

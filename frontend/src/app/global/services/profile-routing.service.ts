@@ -68,10 +68,24 @@ export class ProfileRoutingService {
   }
 
   private switchToCurrentDevice() {
+    // Get URL without query params
     const current = this.router.url.split('?')[0];
-    const page = current.split('/')[2] || 'home';
+    // Split the path into segments
+    const segments = current.split('/');
+    // Extract segments after the device segment
+    const pathSegments = segments.slice(2);
+    // Construct new path with the current device
+    const newPath = [this.currentDevice, ...pathSegments].join('/');
+    
+    console.log('Device switch:', {
+      from: segments[1],
+      to: this.currentDevice,
+      oldPath: current,
+      newPath: newPath,
+      segments: pathSegments
+    });
 
-    this.router.navigate([`${this.currentDevice}/${page}`], {
+    this.router.navigate([newPath], {
       queryParamsHandling: 'merge'
     });
   }
