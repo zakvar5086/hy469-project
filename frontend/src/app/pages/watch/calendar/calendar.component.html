@@ -1,1 +1,39 @@
-<p>calendar works!</p>
+<div class="calendar-container">
+    <div class="back" (click)="navigateTo('schedule')">
+        <img  src="assets/icons/back.svg"/>
+    </div>
+
+    <div class="content">
+        <div class="selection-overlay"></div>
+
+        <div #dayRef class="spinner day" (scroll)="onScroll('day')">
+            <div class="spinner-item" 
+                 *ngFor="let day of getDaysList()" 
+                 [class.selected]="day === selectedDay">
+                {{ day }}
+            </div>
+        </div>
+    
+        <div #monthRef class="spinner month" (scroll)="onScroll('month')">
+            <div class="spinner-item" 
+                 *ngFor="let month of month" 
+                 [class.selected]="month === selectedMonth">
+                {{ month }}
+            </div>
+        </div>
+    
+        <div #yearRef class="spinner year" (scroll)="onScroll('year')">
+            <div class="spinner-item" 
+                 *ngFor="let year of years" 
+                 [class.selected]="year === selectedYear">
+                {{ year }}
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="ok">
+        <button class="okBtn" (click)="onOk()">OK</button>
+    </div>
+
+    </div>
