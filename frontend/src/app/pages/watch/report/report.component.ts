@@ -64,20 +64,21 @@ export class ReportComponent implements AfterViewInit {
         private monthlyChart: Chart | null = null;
       
         ngAfterViewInit() {
-          this.renderChartForTab('Daily');
+            window.addEventListener('touchstart', this.onTouchStart.bind(this), { passive: true });
+            window.addEventListener('touchend', this.onTouchEnd.bind(this), { passive: true });
+
+            this.renderChartForTab('Daily');
         }
 
-        @HostListener('touchstart', ['$event'])
-        onTouchStart(event: TouchEvent){
+        onTouchStart(event: TouchEvent) {
             this.touchStartX = event.changedTouches[0].screenX;
         }
-      
 
-         @HostListener('touchend', ['$event'])
-        onTouchEnd(event: TouchEvent){
-            this.touchStartX = event.changedTouches[0].screenX;
+        onTouchEnd(event: TouchEvent) {
+            this.touchEndX = event.changedTouches[0].screenX;
             this.handleSwipeGesture();
         }
+
 
         private handleSwipeGesture(){
             const deltaX = this.touchEndX - this.touchStartX;

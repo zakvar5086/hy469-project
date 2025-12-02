@@ -1,21 +1,21 @@
-.popup-container{
+.postpone-container{
     display: flex;
     width: 208px;
     height: 252px;
     padding: 10px;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    justify-content: space-between;
     background: #1E1E1E;
 
-    .reminder-message{  
+    .postpone-message{  
         display: flex;
         padding: 0 10px;
         align-items: center;
         flex-direction: column;
 
 
-        .time{
+        .postpone{
             font-size: 20px;
             color: white;
             margin: 0;
@@ -26,13 +26,20 @@
             color: white;
             margin: 0;
         }
+
+        .for{
+            font-size: 20px;
+            color: white;
+            margin-top: 15px;
+            margin-bottom: 0;
+        }
     }
 
     .confirm-btn{
         display: flex;
-        width: 114px;
-        height: 50px;
-        padding: 11px 12px;
+        width: 100%;
+        height: auto;
+        padding: 9px 12px;
         justify-content: center;
         align-items: center;
         gap: 10px;

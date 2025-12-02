@@ -9,7 +9,9 @@
         <p>Confirm</p>
     </div>
 
-     <div class="postpone-message">
+     <div    class="postpone-msg"
+        (touchstart)="startSwipe($event)"
+        (touchmove)="moveSwipe($event)">
         <p>Swipe to postpone</p>
     </div>
 

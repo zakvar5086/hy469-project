@@ -6,6 +6,6 @@
 
     <div class="date-indicator" >
         <p (click)="navigateTo('calendar')">{{selectedDate | date:'MMM d YYYY'}}</p>
-         <app-pill-container></app-pill-container>
+         <app-pill-container (click)="navigateTo('pills')" ></app-pill-container>
     </div>
 </div>
