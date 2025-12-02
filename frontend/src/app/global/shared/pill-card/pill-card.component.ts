@@ -29,7 +29,6 @@ export class PillCardComponent {
 
   onCardClick() {
     if (this.pillId) {
-      console.log('PillCard clicked, navigating to details for pillId:', this.pillId);
       this.profileRouting.navigateTo(`/pill-details/${this.pillId}`);
     }
   }

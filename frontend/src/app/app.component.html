@@ -4,3 +4,11 @@
 </div>
 
 <router-outlet></router-outlet>
+
+<!-- Global Pill Popup -->
+<app-pill-popup
+  *ngIf="(pillPopupService.pill$ | async) as pill"
+  [pill]="pill">
+</app-pill-popup>
+
+<app-pill-popup-test-trigger></app-pill-popup-test-trigger>

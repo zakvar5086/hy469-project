@@ -19,7 +19,6 @@ export class ProfileStateService {
     const saved = localStorage.getItem('userProfile');
     if (saved) {
       this.profile = JSON.parse(saved);
-      console.log("Loaded profile:", this.profile);
     }
   }
 

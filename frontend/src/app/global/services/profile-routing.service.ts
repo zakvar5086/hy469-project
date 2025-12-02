@@ -76,14 +76,6 @@ export class ProfileRoutingService {
     const pathSegments = segments.slice(2);
     // Construct new path with the current device
     const newPath = [this.currentDevice, ...pathSegments].join('/');
-    
-    console.log('Device switch:', {
-      from: segments[1],
-      to: this.currentDevice,
-      oldPath: current,
-      newPath: newPath,
-      segments: pathSegments
-    });
 
     this.router.navigate([newPath], {
       queryParamsHandling: 'merge'

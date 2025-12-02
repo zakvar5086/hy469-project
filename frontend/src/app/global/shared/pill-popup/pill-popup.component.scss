@@ -1,0 +1,194 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.popup {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 450px;
+  width: 90%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease-out;
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #999;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #f0f0f0;
+    color: #333;
+  }
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2E5CFF;
+  margin-bottom: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.pill-image {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin: 1rem auto;
+  display: block;
+  background: #f5f5f5;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.pill-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.dosage {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 0 0 1rem 0;
+}
+
+.instruction {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin: 1rem 0 2rem 0;
+  padding: 1rem;
+  background: #EAF3FF;
+  border-radius: 10px;
+}
+
+.buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  flex: 1;
+  min-width: 100px;
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.skip {
+  background: #f5f5f5;
+  color: #666;
+
+  &:hover {
+    background: #e0e0e0;
+  }
+}
+
+.take {
+  background: #4CAF50;
+  color: white;
+
+  &:hover {
+    background: #45a049;
+  }
+}
+
+.postpone {
+  background: #FFA726;
+  color: white;
+
+  &:hover {
+    background: #FB8C00;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .popup {
+    padding: 1.5rem;
+    max-width: 95%;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .pill-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .pill-name {
+    font-size: 1.1rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    min-width: auto;
+  }
+}
