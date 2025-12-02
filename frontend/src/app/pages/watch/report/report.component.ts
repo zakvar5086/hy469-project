@@ -70,10 +70,12 @@ export class ReportComponent implements AfterViewInit {
             this.renderChartForTab('Daily');
         }
 
+        @HostListener('touchstart', ['$event'])
         onTouchStart(event: TouchEvent) {
             this.touchStartX = event.changedTouches[0].screenX;
         }
 
+        @HostListener('touchend', ['$event'])
         onTouchEnd(event: TouchEvent) {
             this.touchEndX = event.changedTouches[0].screenX;
             this.handleSwipeGesture();
