@@ -10,7 +10,7 @@ const routes: Routes = [
             { path: 'notifications', loadComponent: () => import('./notifications/notifications.component').then(m => m.NotificationsComponent) },
             { path: 'report', loadComponent: () => import('./report/report.component').then(m => m.ReportComponent) },
             { path: 'settings', loadComponent: () => import('./settings/settings.component').then(m => m.SettingsComponent) },
-            /* { path: 'pill-details', loadComponent: () => import('./pill-details/pill-details.component').then(m => m.PillDetailesComponent) }, */
+            { path: 'pill-details/:pillId', loadComponent: () => import('./pill-details/pill-details.component').then(m => m.PillDetailsComponent) },
 
             { path: '', redirectTo: 'home', pathMatch: 'full' }
         ]

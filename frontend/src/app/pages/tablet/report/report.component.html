@@ -3,53 +3,60 @@
   <div class="tabs">
     <button 
       class="tab-btn" 
-      [class.active]="activeTab === 'overview'"
-      (click)="switchTab('overview')">
-      Overview
+      [class.active]="activeTab === 'monthly'"
+      (click)="switchTab('monthly')">
+      Monthly
     </button>
     
     <button 
       class="tab-btn" 
-      [class.active]="activeTab === 'missed'"
-      (click)="switchTab('missed')">
-      Missed Pills
+      [class.active]="activeTab === 'weekly'"
+      (click)="switchTab('weekly')">
+      Weekly
     </button>
 
     <button 
       class="tab-btn" 
-      [class.active]="activeTab === 'postponed'"
-      (click)="switchTab('postponed')">
-      Postponed
+      [class.active]="activeTab === 'daily'"
+      (click)="switchTab('daily')">
+      Daily
     </button>
   </div>
 
   <!--Tab Content-->
   <div class="tab-content">
-    <div *ngIf="activeTab === 'overview'" class="tab-section">
-      <h2>Monthly Intake Overview</h2>
+  
+    <!-- DAILY TAB -->
+    <div *ngIf="activeTab === 'daily'" class="tab-section">
+      <h2>Daily Report</h2>
+      <div class="chart-wrapper chart-daily">
+        <canvas id="dailyChart"></canvas>
+      </div>
+      <p class="description">Daily intake breakdown.</p>
+    </div>
+  
+    <!-- WEEKLY TAB -->
+    <div *ngIf="activeTab === 'weekly'" class="tab-section">
+      <h2>Weekly Report</h2>
+      <div class="chart-wrapper chart-weekly">
+        <canvas id="weeklyChart"></canvas>
+      </div>
+      <p class="description">Weekly summary of pill intake.</p>
+    </div>
+  
+    <!-- MONTHLY TAB -->
+    <div *ngIf="activeTab === 'monthly'" class="tab-section">
+      <h2>Monthly Overview</h2>
     
-      <div class="chart-wrapper">
-        <canvas id="reportPieChart"></canvas>
+      <div class="chart-wrapper chart-monthly">
+        <canvas id="monthlyChart"></canvas>
       </div>
     
-      <p class="description">
-        Pills taken this month.
-      </p>
+      <p class="description">Pills taken this month.</p>
     
       <button class="send-btn" (click)="sendToDoctor()">
         Send Report to Doctor
       </button>
-    </div>
-
-
-    <div *ngIf="activeTab === 'missed'" class="tab-section">
-      <h2>Missed Pills</h2>
-      <p class="description">You missed {{ missedPills }} pills this month.</p>
-    </div>
-
-    <div *ngIf="activeTab === 'postponed'" class="tab-section">
-      <h2>Postponed Pills</h2>
-      <p class="description">You postponed intake {{ postponedTimes }} times.</p>
     </div>
   </div>
 </div>

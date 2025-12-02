@@ -11,9 +11,9 @@ export class ProfileGuard implements CanActivate {
   ) {}
 
   canActivate(): boolean {
-    const profile = this.profileState.getProfile();
+    const profile = this.profileState.getUserProfile();
 
-    if(!profile) {
+    if (!profile) {
       this.router.navigate(['/persona']);
       return false;
     }

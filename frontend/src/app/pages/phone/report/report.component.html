@@ -1,1 +1,64 @@
-<p>report works!</p>
+<div class="report-container">
+
+  <!-- Tab Navigation -->
+  <div class="tabs">
+    <button 
+      class="tab-btn"
+      [class.active]="activeTab === 'monthly'"
+      (click)="switchTab('monthly')">
+      Monthly
+    </button>
+
+    <button 
+      class="tab-btn"
+      [class.active]="activeTab === 'weekly'"
+      (click)="switchTab('weekly')">
+      Weekly
+    </button>
+
+    <button 
+      class="tab-btn"
+      [class.active]="activeTab === 'daily'"
+      (click)="switchTab('daily')">
+      Daily
+    </button>
+  </div>
+
+  <br>
+
+  <!-- CONTENT -->
+  <div class="tab-content">
+
+    <!-- DAILY -->
+    <div *ngIf="activeTab === 'daily'" class="tab-section">
+      <h2>Daily Intake</h2>
+      <div class="chart-wrapper chart-daily">
+        <canvas id="dailyChart"></canvas>
+      </div>
+    </div>
+
+    <!-- WEEKLY -->
+    <div *ngIf="activeTab === 'weekly'" class="tab-section">
+      <h2>Weekly Intake</h2>
+      <div class="chart-wrapper chart-weekly">
+        <canvas id="weeklyChart"></canvas>
+      </div>
+    </div>
+
+    <!-- MONTHLY -->
+    <div *ngIf="activeTab === 'monthly'" class="tab-section">
+      <h2>Monthly Intake</h2>
+
+      <div class="chart-wrapper chart-monthly">
+        <canvas id="monthlyChart"></canvas>
+      </div>
+
+      <p class="description">Monthly overview.</p>
+
+      <button class="send-btn" (click)="sendToDoctor()">
+        Send Report to Doctor
+      </button>
+    </div>
+
+  </div>
+</div>

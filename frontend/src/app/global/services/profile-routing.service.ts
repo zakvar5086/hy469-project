@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ProfileStateService } from './profile-state.service';
 import { QueryParamPreserveService } from './query-param-preserve.service';
 import { DeviceService } from './device.service';
+import { DataService } from './data.services';
+import { take } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ProfileRoutingService {
@@ -13,39 +15,37 @@ export class ProfileRoutingService {
     private router: Router,
     private profileState: ProfileStateService,
     private qpPreserver: QueryParamPreserveService,
-    private deviceService: DeviceService
+    private deviceService: DeviceService,
+    private dataService: DataService
   ) {}
 
-  redirectByPersona(profile: string) {
-    this.profileState.setActiveProfile(profile);
-    this.qpPreserver.enable();
+  redirectByPersona(persona: string) {
+    // Load user data and device mapping from JSON
+    this.dataService.getUserById(persona).pipe(take(1)).subscribe(user => {
+      if (!user) {
+        console.error(`User ${persona} not found`);
+        return;
+      }
 
-    switch (profile) {
-      case 'persona1':
-        this.currentDevice = '/tablet';
-        this.router.navigate(['/tablet/home'], { queryParams: { profile } });
-        break;
+      // Get the device mapping for this persona
+      this.dataService.getDeviceForPersona(persona).pipe(take(1)).subscribe(deviceType => {
+        if (!deviceType) {
+          console.error(`Device mapping for ${persona} not found`);
+          return;
+        }
 
-      case 'persona2':
-        this.currentDevice = '/phone';
-        this.router.navigate(['/phone/home'], { queryParams: { profile } });
-        break;
+        // Map device type to route
+        this.currentDevice = `/${deviceType}`;
 
-      case 'persona3':
-        this.currentDevice = '/speaker';
-        this.router.navigate(['/speaker/home'], { queryParams: { profile } });
-        break;
-
-      case 'persona4':
-        this.currentDevice = '/watch';
-        this.router.navigate(['/watch/home'], { queryParams: { profile } });
-        break;
-
-      default:
-        this.currentDevice = '/tablet';
-        this.router.navigate(['/tablet/home'], { queryParams: { profile } });
-        break;
-    }
+        // Set the profile
+        this.profileState.setUserProfileFromData(persona, () => {
+          this.qpPreserver.enable();
+          this.router.navigate([`${this.currentDevice}/home`], {
+            queryParams: { profile: persona }
+          });
+        });
+      });
+    });
   }
 
   logoutToPersonaSelector() {
@@ -61,17 +61,23 @@ export class ProfileRoutingService {
   updateDeviceOnResize() {
     const newDevice = this.deviceService.detect();
 
-    if(newDevice !== this.currentDevice) {
+    if (newDevice !== this.currentDevice) {
       this.currentDevice = newDevice;
       this.switchToCurrentDevice();
     }
   }
 
   private switchToCurrentDevice() {
+    // Get URL without query params
     const current = this.router.url.split('?')[0];
-    const page = current.split('/')[2] || 'home';
+    // Split the path into segments
+    const segments = current.split('/');
+    // Extract segments after the device segment
+    const pathSegments = segments.slice(2);
+    // Construct new path with the current device
+    const newPath = [this.currentDevice, ...pathSegments].join('/');
 
-    this.router.navigate([`${this.currentDevice}/${page}`], {
+    this.router.navigate([newPath], {
       queryParamsHandling: 'merge'
     });
   }
@@ -82,7 +88,7 @@ export class ProfileRoutingService {
     });
   }
 
-  isActive(route: string): boolean {
+  isActive(route: string) {
     return this.router.url.startsWith(this.currentDevice + route);
   }
 }

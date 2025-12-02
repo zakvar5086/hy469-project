@@ -1,1 +1,19 @@
-<p>home works!</p>
+<div class="main-container">
+    <div class="top-content">
+        <div class="notification-hub">
+            <app-notification-hub
+                [type]="'monthEnd'"
+                [data]="{ percentage: 80, change: 10 }">
+            </app-notification-hub>
+        </div>
+        <br>
+
+        <div class="date-indicator">
+            <h1>{{ today | date: 'EEEE  d' }}</h1>
+        </div>
+    </div>
+
+    <div class="bottom-content">
+        <app-pill-container></app-pill-container>
+    </div>
+</div>

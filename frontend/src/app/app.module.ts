@@ -9,6 +9,8 @@ import { NavbarComponent } from './global/shared/navbar/navbar.component';
 import { NotificationHubComponent } from './global/shared/notification-hub/notification-hub.component';
 import { PillContainerComponent } from './global/shared/pill-container/pill-container.component';
 import { PillCardComponent } from './global/shared/pill-card/pill-card.component';
+import { PillPopupComponent } from './global/shared/pill-popup/pill-popup.component';
+import { PillPopupTestTriggerComponent } from 'src/app/global/shared/pill-popup-test-trigger/pill-popup-test-trigger.component';
 
 const socketIoConfig: SocketIoConfig = { url: environment.host, options: {} };
 @NgModule({
@@ -23,7 +25,9 @@ const socketIoConfig: SocketIoConfig = { url: environment.host, options: {} };
     NavbarComponent,
     NotificationHubComponent,
     PillContainerComponent,
-    PillCardComponent
+    PillCardComponent,
+    PillPopupComponent,
+    PillPopupTestTriggerComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

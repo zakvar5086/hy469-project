@@ -20,13 +20,45 @@
         
         .notif-body{
             border-radius: 10px;
-           // background: #EAF3FF;
+            background: #ffffff;
             display: flex;
             align-items: center;
             padding: 12px 0 12px 20px;
             margin-bottom: 10px;
             width: calc(100% - 150px);
+            position: relative;
 
+            .delete-btn {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+
+                width: 26px;
+                height: 26px;
+
+                border: none;
+                border-radius: 50%;
+
+                background: rgba(0,0,0,0.08);
+                color: #333;
+                font-size: 1rem;
+                cursor: pointer;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                z-index: 2;
+                transition: 0.15s ease;
+
+                &:hover {
+                  background: rgba(0,0,0,0.15);
+                }
+            
+                &:active {
+                  transform: scale(0.9);
+                }
+            }
         
             //border-bottom: 2px solid #2E5CFF;
 

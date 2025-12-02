@@ -12,25 +12,27 @@ export class QueryParamPreserveService {
     private router: Router,
     private profileState: ProfileStateService
   ) {
-      this.router.events
-        .pipe(filter(event => event instanceof NavigationStart))
-        .subscribe(event => {
-          if(!this.enabled) return;
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationStart))
+      .subscribe(event => {
 
-          const profile = this.profileState.getProfile();
-          if(!profile) return;
-          
-          const nav = event as NavigationStart;
-          if(nav.url.includes(`profile=${profile}`)) return;
+        if (!this.enabled) return;
 
-          const url = nav.url.split('?')[0];
+        const profile = this.profileState.getPersona();
+        if (!profile) return;
 
-          this.router.navigate([url], {
-            queryParams: { profile },
-            replaceUrl: true
-          });
+        const nav = event as NavigationStart;
+        if (nav.url.includes(`profile=${profile}`)) return;
+
+        const url = nav.url.split('?')[0];
+
+        this.router.navigate([url], {
+          queryParams: { profile },
+          replaceUrl: true
         });
-    }
+      });
+  }
+
   enable() { this.enabled = true; }
   disable() { this.enabled = false; }
 }

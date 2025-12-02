@@ -1,22 +1,24 @@
 <div class="pill-container">
-    <div class="schedule-time">
-        <h2>10:00</h2>
+    <div *ngFor="let group of pillGroups" class="time-group">
+        <div class="schedule-time">
+            <h2>{{ group.time }}</h2>
+        </div>
+        
+        <ng-container *ngFor="let pill of group.pills; let i = index">
+            <app-pill-card
+                [pillId]="pill.id"
+                [pillName]="pill.name"
+                [dosage]="pill.dosage"
+                [pillIcon]="pill.image || 'assets/icons/pill.svg'"
+                [status]="'Upcoming'"
+                [daysLeft]="getDaysLeft(pill)"
+                [lowPillWarning]="isLowStock(pill)"
+            ></app-pill-card>
+            <br *ngIf="i < group.pills.length - 1" />
+        </ng-container>
     </div>
-    <app-pill-card
-        pillName="Aspirin"
-        dosage="1 tablet after meal"
-        pillIcon="assets/icons/pill.svg"
-        status="Upcoming"
-        [daysLeft]="7"
-        lowPillWarning="5 pills remaining for 7 days"
-    ></app-pill-card>
-    <br/>
-    <app-pill-card
-        pillName="Vitamin D"
-        dosage="1 every morning"
-        pillIcon="assets/icons/pill.svg"
-        status="Upcoming"
-        [daysLeft]="30"
-        [lowPillWarning]="null"
-    ></app-pill-card>
+
+    <div *ngIf="pillGroups.length === 0" class="no-pills">
+        <p>No pills scheduled for today.</p>
+    </div>
 </div>

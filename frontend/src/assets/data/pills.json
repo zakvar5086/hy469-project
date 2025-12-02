@@ -1,0 +1,196 @@
+{
+  "pills": [
+    {
+      "userId": "persona1",
+      "items": [
+        {
+          "id": "p1-med1",
+          "name": "Heart Failure Medication A",
+          "dosage": "20mg",
+          "time": "08:00",
+          "image": "assets/icons/pill.svg",
+          "shortInstructions": [
+            "Take with water",
+            "Take before breakfast",
+            "Do not crush or chew"
+          ],
+          "longDescription": "This medication is used to treat heart failure and improve heart function. It helps the heart pump blood more effectively and reduces symptoms such as shortness of breath and fatigue. Take this medication exactly as prescribed by your doctor. Do not stop taking it suddenly without consulting your healthcare provider, as this may worsen your condition. Common side effects may include dizziness, headache, and fatigue. If you experience severe side effects such as irregular heartbeat, swelling, or difficulty breathing, seek immediate medical attention."
+        },
+        {
+          "id": "p1-med6",
+          "name": "Heart Failure Medication Β",
+          "dosage": "20mg",
+          "time": "08:00",
+          "image": "assets/icons/pill.svg",
+          "shortInstructions": [
+            "Take with food",
+            "Take at the same time daily",
+            "May cause dizziness"
+          ],
+          "longDescription": "This is a secondary heart failure medication that works in conjunction with your primary treatment. It helps reduce the workload on your heart and improves blood flow. Regular monitoring of blood pressure and heart function is recommended while taking this medication. Avoid alcohol consumption as it may enhance certain side effects. Store at room temperature away from moisture and heat."
+        },
+        {
+          "id": "p1-med2",
+          "name": "Hypertension Pill",
+          "dosage": "10mg",
+          "time": "09:00",
+          "image": "assets/icons/pill.svg",
+          "shortInstructions": [
+            "Take once daily",
+            "May take with or without food",
+            "Monitor blood pressure regularly"
+          ],
+          "longDescription": "This medication is used to treat high blood pressure (hypertension). Lowering blood pressure helps prevent strokes, heart attacks, and kidney problems. This medication works by relaxing blood vessels so blood can flow more easily. Continue taking this medication even if you feel well, as most people with high blood pressure do not feel sick. It may take several weeks before the full benefit of this drug takes effect."
+        },
+        {
+          "id": "p1-med3",
+          "name": "Diuretic",
+          "dosage": "25mg",
+          "time": "18:00",
+          "image": "assets/icons/pill.svg",
+          "shortInstructions": [
+            "Take in the evening",
+            "Drink plenty of water",
+            "May increase urination"
+          ],
+          "longDescription": "This diuretic medication helps your body get rid of extra water and salt through urine. It is commonly used to treat fluid retention (edema) and high blood pressure. By reducing excess fluid, it can help reduce swelling and make it easier to breathe. Take this medication as directed, preferably in the evening to avoid nighttime bathroom trips. Your doctor may recommend regular blood tests to monitor potassium levels and kidney function."
+        },
+        {
+          "id": "p1-med4",
+          "name": "Supplement",
+          "dosage": "500mg",
+          "time": "12:00",
+          "image": "assets/icons/pill.svg",
+          "shortInstructions": [
+            "Take with lunch",
+            "Take with full glass of water",
+            "Store in cool, dry place"
+          ],
+          "longDescription": "This dietary supplement provides essential nutrients that may be lacking in your diet. It supports overall health and well-being, particularly cardiovascular and bone health. While generally safe, supplements should not replace a balanced diet. Consult your healthcare provider before starting any new supplement, especially if you are taking other medications. Some supplements may interact with prescription drugs or have side effects."
+        },
+        {
+          "id": "p1-med5",
+          "name": "Night Pill",
+          "dosage": "5mg",
+          "time": "22:00",
+          "image": "assets/icons/pill.svg",
+          "shortInstructions": [
+            "Take before bedtime",
+            "May cause drowsiness",
+            "Avoid driving after taking"
+          ],
+          "longDescription": "This medication is designed to be taken at night and may help with sleep or manage nighttime symptoms. It works by promoting relaxation and reducing symptoms that may interfere with rest. Take this medication 30 minutes to 1 hour before bedtime. Avoid alcohol and other sedatives while using this medication. Do not operate heavy machinery or drive after taking. If you experience persistent drowsiness the next day, consult your doctor about adjusting the dosage."
+        }
+      ]
+    },
+
+    {
+      "userId": "persona2",
+      "items": [
+        {
+          "id": "p2-med1",
+          "name": "Iron Supplement",
+          "dosage": "1 tablet",
+          "time": "10:00",
+          "image": "assets/icons/pill.svg",
+          "shortInstructions": [
+            "Take with orange juice for better absorption",
+            "Do not take with dairy products",
+            "May cause constipation"
+          ],
+          "longDescription": "Iron supplements are used to treat or prevent iron deficiency anemia. Iron is essential for producing hemoglobin, which carries oxygen in the blood. This is particularly important during pregnancy to support both maternal and fetal health. Take on an empty stomach for best absorption, or with food if it causes stomach upset. Vitamin C enhances iron absorption, so taking with orange juice is beneficial. Common side effects include constipation, dark stools, and stomach upset. Continue taking as prescribed even after symptoms improve."
+        },
+        {
+          "id": "p2-med2",
+          "name": "Vitamin D",
+          "dosage": "1000 IU",
+          "time": "08:00",
+          "image": "assets/icons/pill.svg",
+          "shortInstructions": [
+            "Take with breakfast",
+            "Take with fatty food for better absorption",
+            "Safe during pregnancy"
+          ],
+          "longDescription": "Vitamin D is crucial for bone health, immune function, and overall well-being. It helps your body absorb calcium and supports healthy pregnancy outcomes. Many people are deficient in vitamin D, especially those with limited sun exposure. This supplement is generally safe during pregnancy and breastfeeding when taken as directed. Vitamin D is fat-soluble, so taking it with a meal containing some fat improves absorption. Regular supplementation can help maintain optimal vitamin D levels."
+        },
+        {
+          "id": "p2-med3",
+          "name": "Antibiotics",
+          "dosage": "1 pill",
+          "time": "08:00",
+          "image": "assets/icons/pill.svg",
+          "shortInstructions": [
+            "Complete full course",
+            "Take at same time daily",
+            "May interact with some foods"
+          ],
+          "longDescription": "This antibiotic is used to treat bacterial infections. It works by stopping the growth of bacteria. Complete the full prescribed course even if symptoms improve, as stopping early can lead to antibiotic resistance and infection recurrence. Take at the same time each day to maintain consistent levels in your body. Some antibiotics should not be taken with dairy products or certain foods - follow your pharmacist's instructions. Common side effects include nausea, diarrhea, and stomach upset. Contact your doctor if you develop severe diarrhea, rash, or allergic reactions."
+        }
+      ]
+    },
+
+    {
+      "userId": "persona3",
+      "items": [
+        {
+          "id": "p3-med1",
+          "name": "Children’s Antibiotic Syrup",
+          "dosage": "10ml",
+          "time": "20:00",
+          "image": "assets/icons/pill.svg",
+          "shortInstructions": [
+            "Shake well before use",
+            "Use measuring spoon provided",
+            "Refrigerate after opening"
+          ],
+          "longDescription": "This children's antibiotic syrup is specially formulated to treat bacterial infections in young children. The pleasant taste makes it easier for children to take. Always shake the bottle well before each use to ensure proper mixing. Use only the measuring device provided to ensure accurate dosing. Store in the refrigerator after opening and discard any unused portion after the prescribed treatment period. Give the full course as prescribed, even if your child feels better. Monitor for allergic reactions such as rash, difficulty breathing, or swelling. Keep out of reach of children."
+        },
+        {
+          "id": "p3-med2",
+          "name": "Cough Syrup",
+          "dosage": "5ml",
+          "time": "18:00",
+          "image": "assets/icons/pill.svg",
+          "shortInstructions": [
+            "Do not exceed recommended dose",
+            "Use measuring cup provided",
+            "May cause drowsiness"
+          ],
+          "longDescription": "This cough syrup helps relieve cough and chest congestion in children. It works by thinning mucus and suppressing the cough reflex. Use only the measuring device provided for accurate dosing - do not use household spoons. Do not give more frequently or in larger amounts than prescribed. May cause drowsiness, so avoid activities requiring alertness after administration. Do not use with other cough and cold medications unless directed by a doctor. If cough persists for more than 7 days or is accompanied by high fever, consult your pediatrician."
+        }
+      ]
+    },
+
+    {
+      "userId": "persona4",
+      "items": [
+        {
+          "id": "p4-med1",
+          "name": "Preventive Asthma Inhaler",
+          "dosage": "2 puffs",
+          "time": "07:30",
+          "image": "assets/icons/pill.svg",
+          "shortInstructions": [
+            "Rinse mouth after use",
+            "Use spacer device if provided",
+            "Clean inhaler weekly"
+          ],
+          "longDescription": "This preventive inhaler is used daily to control asthma and prevent attacks. It contains a corticosteroid that reduces inflammation in the airways. This is not a rescue inhaler - use it regularly even when you feel well. Shake the inhaler well before each use. Breathe out fully, press the inhaler, and breathe in slowly and deeply. Hold your breath for 10 seconds if possible. Rinse your mouth with water after use to prevent oral thrush. Clean the plastic housing weekly with warm water and let it dry completely. Keep track of the number of doses used. If you need your rescue inhaler more frequently, contact your doctor."
+        },
+        {
+          "id": "p4-med2",
+          "name": "Vitamin B Complex",
+          "dosage": "1 tablet",
+          "time": "12:00",
+          "image": "assets/icons/pill.svg",
+          "shortInstructions": [
+            "Take with food",
+            "May turn urine bright yellow (normal)",
+            "Store away from light"
+          ],
+          "longDescription": "Vitamin B Complex supplements provide a combination of B vitamins that support energy production, nervous system function, and red blood cell formation. B vitamins are water-soluble and not stored in the body, so regular intake is important. Take with food to enhance absorption and reduce stomach upset. It's normal for your urine to turn bright yellow after taking B vitamins - this is harmless. These vitamins support overall health, metabolism, and may help with stress management. Athletes and active individuals may have higher B vitamin requirements. Store in a cool, dry place away from direct sunlight."
+        }
+      ]
+    }
+  ]
+}

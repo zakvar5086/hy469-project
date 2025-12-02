@@ -1,0 +1,25 @@
+<div class="overlay" (click)="popupService.close()">
+    <div class="popup" (click)="$event.stopPropagation()">
+        <button class="close-btn" (click)="popupService.close()">×</button>
+        
+        <h2 class="title">Time for your {{ pill.time }} pills</h2>
+        
+        <img [src]="pill.image || 'assets/icons/pill.svg'" 
+             [alt]="pill.name"
+             class="pill-image" />
+        
+        <h3 class="pill-name">{{ pill.name }}</h3>
+        
+        <p class="dosage">{{ pill.dosage }}</p>
+        
+        <p class="instruction">
+            {{ pill.shortInstructions?.[0] || 'Please take your medication.' }}
+        </p>
+        
+        <div class="buttons">
+            <button class="btn skip" (click)="onSkip()">Skip</button>
+            <button class="btn take" (click)="onTake()">Take</button>
+            <button class="btn postpone" (click)="onPostpone()">Postpone</button>
+        </div>
+    </div>
+</div>

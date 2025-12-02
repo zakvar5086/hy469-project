@@ -1,46 +1,92 @@
 import { Injectable } from '@angular/core';
+import { DataService, User } from './data.services';
+import { take } from 'rxjs';
+
+export interface UserProfile {
+  persona: string;
+  username: string;
+  avatar: string;
+  age?: number;
+  name?: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class ProfileStateService {
-  
-  private activeProfile: string | null = null;
 
-  constructor() {
-    const saved = localStorage.getItem('activeProfile');
-    if(saved) {
-      this.activeProfile = saved;
+  private profile: UserProfile | null = null;
+
+  constructor(private dataService: DataService) {
+    const saved = localStorage.getItem('userProfile');
+    if (saved) {
+      this.profile = JSON.parse(saved);
     }
   }
 
-  setActiveProfile(profile: string) {
-    this.activeProfile = profile;
-    localStorage.setItem('activeProfile', profile);
+  setUserProfile(profile: UserProfile) {
+    this.profile = profile;
+    localStorage.setItem('userProfile', JSON.stringify(profile));
   }
 
-  getProfile() {
-    return this.activeProfile;
+  setUserProfileFromData(personaId: string, callback?: () => void) {
+    this.dataService.getUserById(personaId).pipe(take(1)).subscribe(user => {
+      if (user) {
+        const profile: UserProfile = {
+          persona: user.id,
+          username: user.username,
+          avatar: user.avatar,
+          age: user.age,
+          name: user.name
+        };
+        this.setUserProfile(profile);
+        if (callback) callback();
+      } else {
+        console.warn(`User with ID ${personaId} not found`);
+      }
+    });
   }
 
-  clearProfile() {
-    this.activeProfile = null;
-    localStorage.removeItem('activeProfile');
+  getUserProfile(): UserProfile | null {
+    return this.profile;
+  }
+
+  getPersona(): string | null {
+    return this.profile?.persona ?? null;
+  }
+
+  getUsername(): string | null {
+    return this.profile?.username ?? null;
+  }
+
+  getName(): string | null {
+    return this.profile?.name ?? null;
+  }
+
+  getAge(): number | null {
+    return this.profile?.age ?? null;
+  }
+
+  getAvatarBase(): string | null {
+    return this.profile?.avatar ?? null;
   }
 
   getAvatarForDevice(device: string): string {
-    const profile = this.getProfile();
-
-    // Fallback if no persona
-    if(!profile) return 'assets/avatars/persona1.svg';
+    const base = this.getAvatarBase();
+    if (!base) return 'assets/avatars/default.svg';
 
     switch (device) {
       case '/tablet':
-        return `assets/avatars/${profile}.svg`;
+        return `${base}.svg`;
       case '/phone':
-        return `assets/avatars/${profile}.svg`;
+        return `${base}.svg`;
       case '/watch':
-        return `assets/avatars/${profile}.svg`;
+        return `${base}.svg`;
       default:
-        return `assets/avatars/${profile}.svg`;
+        return `${base}.svg`;
     }
+  }
+
+  clearProfile() {
+    this.profile = null;
+    localStorage.removeItem('userProfile');
   }
 }

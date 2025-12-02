@@ -7,6 +7,7 @@ import {
 } from 'angular-calendar';
 
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CustomDateFormat } from './custom-date-format'; // <-- add this
 
 export const calendar_providers = [
   {
@@ -16,5 +17,9 @@ export const calendar_providers = [
   CalendarUtils,
   CalendarA11y,
   CalendarEventTitleFormatter,
-  CalendarDateFormatter
+
+  { 
+    provide: CalendarDateFormatter, 
+    useClass: CustomDateFormat 
+  }
 ];

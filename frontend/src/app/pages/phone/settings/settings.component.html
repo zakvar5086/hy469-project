@@ -1,1 +1,28 @@
-<p>settings works!</p>
+<div class="settings-container">
+    <section class="settings-section">
+        <h2>User Settings</h2>
+        
+        <div class="user-info">
+            <img [src]="avatar" alt="User Avatar" class="avatar" />
+            <div class="info-text">
+                <p class="label">Username</p>
+                <p class="value">{{ username }}</p>
+            </div>
+        </div>
+        <button class="btn" (click)="changePersona()">Change Persona</button>
+    </section>
+
+    <section class="settings-section">
+        <h2>General Settings</h2>
+
+        <div class="info-row">
+            <span class="label">App Version</span>
+            <span class="value">{{ appVersion }}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Project</span>
+            <span class="value">{{ project }}</span>
+        </div>
+        <button class="btn danger" (click)="resetApp()">Reset App</button>
+    </section>
+</div>

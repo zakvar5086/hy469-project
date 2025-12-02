@@ -1,81 +1,154 @@
-.pill-container {
-    display: flex;
-    height: 100vh;
-    width: 100%;
-    padding: 20px 60px 0 150px;
-    flex-direction: column;
+.pill-details-container {
+  min-height: 100vh;
+  background: #F7FAFE;
+  padding-bottom: 100px;
 
+  .header {
+    background: white;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 
-    .back {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        cursor: pointer;
-        flex-direction: row;
-        cursor: pointer;
-        position: fixed;
-        
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #2E5CFF;
 
+      img {
+        width: 26px;
+        height: 26px;
+      }
 
-        h3{
-            margin: 0;
-        } 
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .pill-content {
+    padding: 2rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+
+    .pill-title {
+      font-size: 2.4rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #222;
     }
 
+    .pill-image-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
 
-    .pill-det {
+      .pill-image {
+        width: 220px;
+        height: 220px;
+        object-fit: contain;
+        border-radius: 16px;
+        background: #e7e7e7;
+        padding: 1.2rem;
+      }
+    }
+
+    .dosage-info,
+    .time-info {
+      display: flex;
+      justify-content: space-between;
+      padding: 1.2rem 1.5rem;
+      background: white;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+
+      .label {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #555;
+      }
+
+      .value {
+        color: #222;
+        font-weight: 500;
+        font-size: 1.1rem;
+      }
+    }
+
+    .instructions-section {
+      margin-top: 2.5rem;
+
+      h2 {
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: #333;
+      }
+
+      .instruction-list {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 18px;
-        flex: 1;
+        gap: 1rem;
 
-        .title {
-            font-weight: 600;
-            text-align: center;
+        .instruction-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.75rem;
+          background: #EAF3FF;
+          padding: 1rem 1.5rem;
+          border-radius: 12px;
+          font-size: 1.1rem;
+          line-height: 1.6;
+
+          .bullet {
+            color: #2E5CFF;
+            font-weight: bold;
+            font-size: 1.4rem;
+            line-height: 1;
+          }
         }
+      }
+    }
 
-        .img {
-            width: 200px;
-            height: 200px;
-            object-fit: contain;
-            border-radius: 10px;
-            background: #e7e7e7; 
-        }
+    .details-section {
+      margin-top: 3rem;
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 
+      h2 {
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: #333;
+        text-align: center;
+      }
 
-        .short {
-            display: flex;
-            flex-direction: column;
-            background: #EAF3FF;
-            padding: 7px 15px;
-            border-radius: 20px;
-            
-            color: #000;
-            font-size: 20px;
-            font-weight: 500;
-            
-            margin: 4px 0;
-            width: fit-content;
-        }
+      .long-description {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #444;
+        text-align: justify;
+        margin: 0;
+      }
+    }
+  }
 
-        .long {
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-            padding: 20px;
-            margin-top: 10px;
-            font-size: 30px;
-            line-height: 1.5;
-            color: #000;
-            border-bottom: none;
-            flex: 1;
-            box-shadow: 0 -1px 20px rgba(0, 0, 0, 0.12);
-
-
-            h2{
-                text-align: center;
-            }
-
-        }
-    } 
+  .no-pill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    font-size: 1.5rem;
+    color: #999;
+  }
 }

@@ -12,8 +12,6 @@ import { ProfileStateService } from 'src/app/global/services/profile-state.servi
 })
 export class SettingsComponent {
 
-  username = "Eleni";
-  avatar = "assets/avatars/persona1.svg";
   appVersion = "1.0.0";
   project = "CS452";
 
@@ -21,6 +19,14 @@ export class SettingsComponent {
     private profileRouting: ProfileRoutingService,
     private profileState: ProfileStateService
   ) {}
+
+  get username() {
+    return this.profileState.getUsername();
+  }
+
+  get avatar() {
+    return this.profileState.getAvatarForDevice('/phone');
+  }
 
   changePersona() {
     this.profileRouting.logoutToPersonaSelector();

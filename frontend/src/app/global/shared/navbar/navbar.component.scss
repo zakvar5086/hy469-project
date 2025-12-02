@@ -52,14 +52,14 @@
 
 
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .navbar-container {
     //border-top: 2px solid black;
     border-top: 0.5px solid rgba(181, 181, 181, 0.439);
     box-shadow: 0 2px 30px -10px rgba(0, 0, 0, 0.2);
     border-right: none;
     height: 70px;
-    width: 100vw;
+    width: 100%;
     bottom: 0;
     top: auto;
     //flex-direction: row;
@@ -78,10 +78,20 @@
 
 
       .navbar_img {
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
         cursor: pointer;
         transition: transform 0.2s ease;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+      }
+
+      .profile-img {
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
 
         &:hover {
             transform: scale(1.1);

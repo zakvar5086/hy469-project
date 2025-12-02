@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": "persona1",
+      "name": "Eleni Papadaki",
+      "age": 76,
+      "username": "Eleni",
+      "avatar": "assets/avatars/persona1"
+    },
+    {
+      "id": "persona2",
+      "name": "Maria Kostaki",
+      "age": 42,
+      "username": "Maria",
+      "avatar": "assets/avatars/persona2"
+    },
+    {
+      "id": "persona3",
+      "name": "Sofia Lianou",
+      "age": 9,
+      "username": "Sofia",
+      "avatar": "assets/avatars/persona3"
+    },
+    {
+      "id": "persona4",
+      "name": "Andreas Michas",
+      "age": 23,
+      "username": "Andreas",
+      "avatar": "assets/avatars/persona4"
+    }
+  ]
+}
