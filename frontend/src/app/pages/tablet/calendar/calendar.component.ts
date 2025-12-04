@@ -25,6 +25,8 @@ export class TabletCalendarComponent implements OnInit, OnDestroy {
   viewDate = new Date();
   view: 'month' | 'week' | 'day' = 'month';
 
+  isKid = false;
+
   allPills: PillWithDate[] = [];
   private destroy$ = new Subject<void>();
 
@@ -35,6 +37,8 @@ export class TabletCalendarComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const personaId = this.profileState.getPersona();
+
+    this.isKid = personaId === 'persona3';
     
     if (personaId) {
       this.dataService.getPillsForUser(personaId)

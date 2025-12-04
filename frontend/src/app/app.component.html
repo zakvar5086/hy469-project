@@ -11,4 +11,6 @@
   [pill]="pill">
 </app-pill-popup>
 
-<app-pill-popup-test-trigger></app-pill-popup-test-trigger>
+<div *ngIf="showpopup()">
+  <app-pill-popup-test-trigger></app-pill-popup-test-trigger>
+</div>

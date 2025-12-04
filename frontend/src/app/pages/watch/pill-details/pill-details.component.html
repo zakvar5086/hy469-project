@@ -1,29 +1,44 @@
-<div class="back" (click)="navigateTo('schedule')">
-   <img src="assets/icons/back.svg"/>
+<div class="back" (click)="navigateTo('/schedule')">
+   <img src="assets/icons/back.svg" alt="Back"/>
 </div>
-<div class="pill-container">
 
-    <div *ngFor="let p of pill" class="pill-det">
-
+<div class="pill-container" *ngIf="pill">
+    <div class="pill-det">
         <div class="header">
-            <img [src]="p.image" class="pill-img"/>
-            <h1 class="title">{{p.name}}</h1>
+            <img [src]="pill.image || 'assets/icons/pill-img.jpg'" 
+                 [alt]="pill.name"
+                 class="pill-img"/>
+            <h1 class="title">{{ pill.name }}</h1>
         </div>
 
+        <div class="pill-info">
+            <div class="info-row">
+                <span class="label">Dosage:</span>
+                <span class="value">{{ pill.dosage }}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Time:</span>
+                <span class="value">{{ pill.time }}</span>
+            </div>
+        </div>
 
-        <div *ngFor="let inst of p.shortIn" class="short">
-            {{inst.short}}
+        <div *ngFor="let inst of pill.shortInstructions" class="short">
+            • {{ inst }}
         </div>
 
         <div class="more-details" (click)="toggleDetails()">
-            More Details
+            {{ showDetails ? 'Hide Details' : 'More Details' }}
         </div>
 
         <div class="long" *ngIf="showDetails">
             <h2>Details</h2>
-            <p>{{p.longIn}}</p>
+            <p>{{ pill.longDescription }}</p>
         </div>
+    </div>
+</div>
 
-
+<div class="pill-container" *ngIf="!pill">
+    <div class="no-pill">
+        <p>Pill not found</p>
     </div>
 </div>

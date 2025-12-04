@@ -147,4 +147,27 @@
       }
     }
   }
+
+  &.kid-mode {
+    background-image: url('/assets/icons/background.png');
+    background-size: cover;
+    background-position: center;
+
+    button {
+        background: #FF6FAE !important;
+        color: white;
+    }
+
+    .pill-item {
+        background: #FFD7EC !important; 
+    }
+
+    .calendar-header button {
+        background: #FF6FAE !important;
+    }
+    
+    .calendar-header .month-title h1 {
+        color: #FF6FAE !important;
+    }
+  }
 }

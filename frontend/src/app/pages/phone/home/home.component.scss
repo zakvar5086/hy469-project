@@ -1,6 +1,7 @@
 .main-container {
     min-height: 100vh; 
     overflow-x: hidden;
+    background-color: #EAF3FF;
 
     h1 { margin: 0; }
 
@@ -16,4 +17,46 @@
     .bottom-content {
         padding: 1rem;
     }
+
+
+     &.kid-mode {
+        background-image: url('/assets/icons/background.png');
+        background-size: cover;
+        background-position: center;
+        
+            
+        h1 {
+            color: #FF6FAE;
+            font-size: 2rem;
+            white-space: nowrap; 
+            margin: 0;
+        }
+
+        .top-content {
+            .notification-hub{
+                display: none;
+            }
+
+            .date-indicator {
+                display: flex;
+                gap: 30px;
+         
+                border-bottom-color: #FF6FAE;
+                box-shadow: 0 0 0 0 #ff6fad9b;
+
+                .pet-gif {
+                    cursor: pointer;
+                    width: 150px;
+                    height: auto;
+                    margin-top: -75px;
+
+                }
+
+            }
+        }
+
+    }
+
 }
+
+

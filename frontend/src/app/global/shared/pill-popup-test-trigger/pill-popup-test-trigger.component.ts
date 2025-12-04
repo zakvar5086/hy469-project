@@ -12,7 +12,7 @@ import { take } from 'rxjs';
   template: `
     <div class="test-trigger-container">
       <button class="test-btn" (click)="toggleMenu()">
-        🧪 Test
+        SOS
       </button>
       
       <div class="test-menu" *ngIf="showMenu">
@@ -45,7 +45,7 @@ import { take } from 'rxjs';
     }
 
     .test-btn {
-      background: #9C27B0;
+      background: red;
       color: white;
       border: none;
       border-radius: 50px;
@@ -53,14 +53,11 @@ import { take } from 'rxjs';
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(156, 39, 176, 0.4);
+      box-shadow: 0 4px 12px rgba(213, 20, 20, 0.41);
       transition: all 0.2s ease;
+      outline: none;
     }
 
-    .test-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(156, 39, 176, 0.5);
-    }
 
     .test-menu {
       position: absolute;
@@ -170,6 +167,7 @@ export class PillPopupTestTriggerComponent {
 
   private loadUserPills() {
     const personaId = this.profileState.getPersona();
+    //console.log(personaId);
     
     if (personaId) {
       this.dataService.getPillsForUser(personaId)

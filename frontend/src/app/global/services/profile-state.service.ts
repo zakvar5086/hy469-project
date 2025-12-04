@@ -71,7 +71,7 @@ export class ProfileStateService {
 
   getAvatarForDevice(device: string): string {
     const base = this.getAvatarBase();
-    if (!base) return 'assets/avatars/default.svg';
+    if (!base) return 'assets/avatars/persona1.svg';
 
     switch (device) {
       case '/tablet':

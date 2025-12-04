@@ -1,4 +1,4 @@
-<div class="main-container">
+<div class="main-container" [ngClass]="{ 'kid-mode': isKid}">
     <div class="top-content">
         <div class="notification-hub">
             <app-notification-hub
@@ -10,6 +10,12 @@
 
         <div class="date-indicator">
             <h1>{{ today | date: 'EEEE  d' }}</h1>
+             <img 
+                *ngIf="isKid"
+                [src]="petSrc"
+                class="pet-gif"
+                (click)="petClicked()"
+            />
         </div>
     </div>
 

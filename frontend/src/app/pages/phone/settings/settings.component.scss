@@ -5,6 +5,13 @@
   background: #F7FAFE;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
+
+   &.kid-mode {
+        background-image: url('/assets/icons/background.png');
+        background-size: cover;
+        background-position: center;
+    }
+
 }
 
 /* SETTINGS CARD */

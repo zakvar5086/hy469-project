@@ -12,17 +12,30 @@ import { Router, RouterModule } from '@angular/router';
     styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent {
-    username = "Nikos";
-    avatar = "assets/avatars/persona2.svg";
     appVersion = "1.0.0";
     project = "CS452";
-    
 
     constructor(
         private profileRouting: ProfileRoutingService,
         private profileState: ProfileStateService,
         private router: Router
     ) {}
+
+    get username() {
+        return this.profileState.getUsername() || 'User';
+    }
+
+    get avatar() {
+        return this.profileState.getAvatarForDevice('/watch');
+    }
+
+    get name() {
+        return this.profileState.getName() || 'User';
+    }
+
+    get age() {
+        return this.profileState.getAge() || 'N/A';
+    }
 
     changePersona() {
         this.profileRouting.logoutToPersonaSelector();
@@ -31,21 +44,10 @@ export class SettingsComponent {
     resetApp() {
         localStorage.clear();
         this.profileState.clearProfile();
-
         location.href = "/persona";
     }
 
-
-        
-    private getDevicePrefix(): string {
-        return '/watch/';
+    navigateTo(route: string) {
+        this.profileRouting.navigateTo(route);
     }
-
-     navigateTo(route: string) {
-        console.log("Navigating to", route);  
-        const device = this.getDevicePrefix();
-        this.router.navigate([device + route], {
-          queryParamsHandling: 'merge'
-        });
-      }
 }

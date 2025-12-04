@@ -25,6 +25,8 @@ export class CalendarComponent implements OnInit, OnDestroy {
   viewDate = new Date();
   view: 'month' | 'week' | 'day' = 'month';
 
+  isKid = false;
+
   allPills: PillWithDate[] = [];
   private destroy$ = new Subject<void>();
 
@@ -35,6 +37,9 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const personaId = this.profileState.getPersona();
+
+    this.isKid = personaId === 'persona3';
+    //console.log("Is kid mode?", this.isKid);
     
     if (personaId) {
       this.dataService.getPillsForUser(personaId)

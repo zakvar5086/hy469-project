@@ -1,15 +1,16 @@
 <div class="settings-container">
-    <div class="back" (click)="navigateTo('home')">
-        <img src="assets/icons/back.svg"/>
+    <div class="back" (click)="navigateTo('/home')">
+        <img src="assets/icons/back.svg" alt="Back"/>
     </div>
+    
     <section class="settings-section">
         <h2>User Settings</h2>
         
         <div class="user-info">
             <img [src]="avatar" alt="User Avatar" class="avatar" />
             <div class="info-text">
-                <p class="label">Username</p>
-                <p class="value">{{ username }}</p>
+                <p class="label">{{ name }}</p>
+                <p class="value">@{{ username }}</p>
             </div>
         </div>
         <button class="btn" (click)="changePersona()">Change Persona</button>
@@ -19,7 +20,8 @@
         <h2>General Settings</h2>
 
         <div class="info-row">
-            <span class="label">Doctor List</span>
+            <span class="label">Age</span>
+            <span class="value">{{ age }}</span>
         </div>
         <div class="info-row">
             <span class="label">App Version</span>

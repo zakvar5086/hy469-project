@@ -1,6 +1,7 @@
-import { Component, AfterViewInit, HostListener } from '@angular/core';
+import { Component, AfterViewInit, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import Chart from 'chart.js/auto';
+import { ProfileStateService } from 'src/app/global/services/profile-state.service';
 
 @Component({
   selector: 'app-report',
@@ -9,11 +10,20 @@ import Chart from 'chart.js/auto';
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.scss']
 })
-export class ReportComponent implements AfterViewInit {
+export class ReportComponent implements AfterViewInit, OnInit  {
 
   activeTab: 'daily' | 'weekly' | 'monthly' = 'monthly';
 
+  isKid=false;
   private chart: Chart | null = null;
+
+
+  constructor(private profileState: ProfileStateService) {}
+
+  ngOnInit() {
+    const persona = this.profileState.getPersona();
+    this.isKid = persona === 'persona3';
+  }
 
   // Example data
   intakePercentage = 92;

@@ -20,29 +20,23 @@ export class ProfileRoutingService {
   ) {}
 
   redirectByPersona(persona: string) {
-    // Load user data and device mapping from JSON
+    // Fetch user data
     this.dataService.getUserById(persona).pipe(take(1)).subscribe(user => {
       if (!user) {
         console.error(`User ${persona} not found`);
         return;
       }
 
-      // Get the device mapping for this persona
-      this.dataService.getDeviceForPersona(persona).pipe(take(1)).subscribe(deviceType => {
-        if (!deviceType) {
-          console.error(`Device mapping for ${persona} not found`);
-          return;
-        }
+      // Detect device if not already set
+      if (!this.currentDevice) {
+        this.currentDevice = this.deviceService.detect();
+      }
 
-        // Map device type to route
-        this.currentDevice = `/${deviceType}`;
-
-        // Set the profile
-        this.profileState.setUserProfileFromData(persona, () => {
-          this.qpPreserver.enable();
-          this.router.navigate([`${this.currentDevice}/home`], {
-            queryParams: { profile: persona }
-          });
+      // Set the profile
+      this.profileState.setUserProfileFromData(persona, () => {
+        this.qpPreserver.enable();
+        this.router.navigate([`${this.currentDevice}/home`], {
+          queryParams: { profile: persona }
         });
       });
     });

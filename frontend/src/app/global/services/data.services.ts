@@ -25,22 +25,14 @@ export interface UserPills {
   items: Pill[];
 }
 
-export interface DeviceMapping {
-  devices: {
-    [key: string]: string;
-  };
-}
-
 @Injectable({ providedIn: 'root' })
 export class DataService {
 
   private usersSubject = new BehaviorSubject<User[]>([]);
   private pillsSubject = new BehaviorSubject<UserPills[]>([]);
-  private devicesSubject = new BehaviorSubject<DeviceMapping | null>(null);
 
   users$ = this.usersSubject.asObservable();
   pills$ = this.pillsSubject.asObservable();
-  devices$ = this.devicesSubject.asObservable();
 
   constructor(private http: HttpClient) {
     this.loadData();
@@ -57,12 +49,6 @@ export class DataService {
     this.http.get<{ pills: UserPills[] }>('assets/data/pills.json').subscribe({
       next: (data) => this.pillsSubject.next(data.pills),
       error: (err) => console.error('Error loading pills:', err)
-    });
-
-    // Load device mappings
-    this.http.get<DeviceMapping>('assets/data/device.json').subscribe({
-      next: (data) => this.devicesSubject.next(data),
-      error: (err) => console.error('Error loading devices:', err)
     });
   }
 
@@ -84,12 +70,6 @@ export class DataService {
   getPillById(userId: string, pillId: string): Observable<Pill | undefined> {
     return this.getPillsForUser(userId).pipe(
       map(pills => pills.find(p => p.id === pillId))
-    );
-  }
-
-  getDeviceForPersona(personaId: string): Observable<string | undefined> {
-    return this.devices$.pipe(
-      map(devices => devices ? devices.devices[personaId] : undefined)
     );
   }
 

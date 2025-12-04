@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileRoutingService } from 'src/app/global/services/profile-routing.service';
 import { ProfileStateService } from 'src/app/global/services/profile-state.service';
@@ -10,11 +10,17 @@ import { ProfileStateService } from 'src/app/global/services/profile-state.servi
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
 
   appVersion = "1.0.0";
   project = "CS452";
+  isKid= false;
 
+  ngOnInit() {
+    const persona = this.profileState.getPersona();
+    this.isKid = persona === 'persona3';
+    
+  }
   constructor(
     private profileRouting: ProfileRoutingService,
     private profileState: ProfileStateService

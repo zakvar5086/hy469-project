@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ProfileStateService } from 'src/app/global/services/profile-state.service';
 
 interface NotificationCard {
     time: string;
@@ -21,7 +22,15 @@ interface totalNotification {
   styleUrls: ['./notifications.component.scss']
 })
 
-export class TabletNotificationsComponent {
+export class TabletNotificationsComponent implements OnInit {
+    isKid=false;
+
+    constructor(private profileState: ProfileStateService) {}
+
+    ngOnInit() {
+        const persona = this.profileState.getPersona();
+        this.isKid = persona === 'persona3';
+    }
 
      notifications: totalNotification[] = [
     {

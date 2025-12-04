@@ -6,8 +6,25 @@
   background-color: #EAF3FF;
   min-height: 100vh;
   box-sizing: border-box;
-}
+  outline: none;
 
+
+    &.kid-mode {
+            background-image: url('/assets/icons/background.png');
+            background-size: cover;
+            background-position: center;
+
+            .tab-btn.active {
+                background: #FF6FAE;
+            }
+
+            .send-btn {
+                background: #FF6FAE;
+            }
+
+    }
+
+}
 /* Section titles */
 h2 {
   font-size: 1.25rem;
@@ -44,6 +61,7 @@ h2 {
   cursor: pointer;
   white-space: nowrap;
   transition: 0.2s;
+  outline: none;
 }
 
 .tab-btn.active {

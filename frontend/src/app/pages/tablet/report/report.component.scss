@@ -3,6 +3,20 @@
   margin: 0 auto;
   height: 100vh;
   background-color: #EAF3FF;
+
+  &.kid-mode {
+    background-image: url('/assets/icons/background.png');
+    background-size: cover;
+    background-position: center;
+    
+    .tab-btn.active {
+        background: #FF6FAE;
+    }
+    
+    .send-btn {
+        background: #FF6FAE;
+    }
+  }
 }
 
 h2 {

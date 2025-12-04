@@ -1,4 +1,4 @@
-<div class="calendar-mobile">
+<div class="calendar-mobile" [ngClass]="{ 'kid-mode': isKid}">
 
     <div class="calendar-header">
           <button (click)="previousMonth()"><</button>
@@ -13,7 +13,6 @@
         (dayClicked)="onDayClick($event.day.date)">
     </mwl-calendar-month-view>
 
-  <!-- PILLS PANEL -->
     <div class="pills-panel">
 
         <div class="pills-header">

@@ -1,4 +1,4 @@
-<div class="notifications-container">
+<div class="notifications-container" [ngClass]="{ 'kid-mode': isKid }">
 
   <div *ngFor="let notif of notifications" class="notif-header">
     <h2>{{ notif.date }}</h2>

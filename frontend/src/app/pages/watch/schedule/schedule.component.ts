@@ -1,57 +1,35 @@
-import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PillContainerComponent } from 'src/app/global/shared/pill-container/pill-container.component';
-import { PillCardComponent } from 'src/app/global/shared/pill-card/pill-card.component';
-
+import { ProfileRoutingService } from 'src/app/global/services/profile-routing.service';
 
 @Component({
   selector: 'app-schedule',
   standalone: true,
-  imports: [RouterModule, CommonModule, PillContainerComponent, PillCardComponent],
+  imports: [CommonModule, PillContainerComponent],
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss']
 })
-export class ScheduleComponent {
+export class ScheduleComponent implements OnInit {
     
-    
+    selectedDate: Date = new Date();
 
-
-
-
-    private getDevicePrefix(): string {
-        return '/watch/';
-    }
-
-    
-    navigateTo(route: string) {
-    //console.log("Navigating to", route);  
-    const device = this.getDevicePrefix();
-    this.router.navigate([device + route], {
-        queryParamsHandling: 'merge'
-    });
-    }
-
-
-    constructor(private router: Router) {}
-
-    selectedDate: Date = new Date;
+    constructor(
+        private profileRouting: ProfileRoutingService
+    ) {}
 
     ngOnInit() {
         const state = history.state;
 
         if (state && state.selectedDate) {
             const d = new Date(state.selectedDate);
-            this.selectedDate = d;
-
-            // if (!isNaN(d.getTime())) {      // check if valid
-            //     this.selectedDate = d;
-            // }
+            if (!isNaN(d.getTime())) {
+                this.selectedDate = d;
+            }
         }
-    }  
+    }
+
+    navigateTo(route: string) {
+        this.profileRouting.navigateTo(route);
+    }
 }
-    
-
-
-
-

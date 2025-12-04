@@ -1,12 +1,15 @@
 <div class="overlay" (click)="popupService.close()">
-    <div class="popup" (click)="$event.stopPropagation()">
+    <div class="popup" (click)="$event.stopPropagation()" [ngClass]="{'kid-mode' : isKid}">
         <button class="close-btn" (click)="popupService.close()">×</button>
         
         <h2 class="title">Time for your {{ pill.time }} pills</h2>
         
-        <img [src]="pill.image || 'assets/icons/pill.svg'" 
-             [alt]="pill.name"
-             class="pill-image" />
+        <img
+            [src]="isKid ? 'assets/icons/cartoon-pill.jpg' : (pill.image || 'assets/icons/pill.svg')"
+            [alt]="pill.name"
+            class="pill-image"
+        />
+
         
         <h3 class="pill-name">{{ pill.name }}</h3>
         

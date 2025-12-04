@@ -1,41 +1,59 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileRoutingService } from 'src/app/global/services/profile-routing.service';
 import { ProfileStateService } from 'src/app/global/services/profile-state.service';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'phone-settings',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss']
+    selector: 'app-settings',
+    standalone: true,
+    imports: [CommonModule, RouterModule],
+    templateUrl: './settings.component.html',
+    styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
+    appVersion = "1.0.0";
+    project = "CS452";
+    isKid=false;
 
-  appVersion = "1.0.0";
-  project = "CS452";
-
-  constructor(
-    private profileRouting: ProfileRoutingService,
-    private profileState: ProfileStateService
-  ) {}
-
-  get username() {
-    return this.profileState.getUsername();
+    ngOnInit() {
+    const persona = this.profileState.getPersona();
+    this.isKid = persona === 'persona3';
   }
 
-  get avatar() {
-    return this.profileState.getAvatarForDevice('/phone');
-  }
+    constructor(
+        private profileRouting: ProfileRoutingService,
+        private profileState: ProfileStateService,
+        private router: Router
+    ) {}
 
-  changePersona() {
-    this.profileRouting.logoutToPersonaSelector();
-  }
+    get username() {
+        return this.profileState.getUsername() || 'User';
+    }
 
-  resetApp() {
-    localStorage.clear();
-    this.profileState.clearProfile();
+    get avatar() {
+        return this.profileState.getAvatarForDevice('/watch');
+    }
 
-    location.href = "/persona";
-  }
+    get name() {
+        return this.profileState.getName() || 'User';
+    }
+
+    get age() {
+        return this.profileState.getAge() || 'N/A';
+    }
+
+    changePersona() {
+        this.profileRouting.logoutToPersonaSelector();
+    }
+
+    resetApp() {
+        localStorage.clear();
+        this.profileState.clearProfile();
+        location.href = "/persona";
+    }
+
+    navigateTo(route: string) {
+        this.profileRouting.navigateTo(route);
+    }
 }

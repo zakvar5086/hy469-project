@@ -17,11 +17,9 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     @ViewChild('monthRef') monthSpinner!: ElementRef<HTMLDivElement>;
     @ViewChild('yearRef') yearSpinner!: ElementRef<HTMLDivElement>;
 
- 
     daysStatic: string[] = []; 
     month: string[] = []; 
     years: string[] = [];
-
 
     selectedDay: string = '';
     selectedMonth: string = '';
@@ -33,7 +31,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
         this.selectedMonth = (today.getMonth() + 1).toString().padStart(2, '0'); 
         this.selectedYear = today.getFullYear().toString();
     }
-
 
     ngOnInit() {
         this.generateDateValues();
@@ -47,7 +44,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
         }, 0);
     }
 
-
     generateDateValues(){
         for(let i=1; i<=12; i++){
             this.month.push(i.toString().padStart(2, '0'));
@@ -58,7 +54,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
         }
         
     }
-    
 
     getDaysList(): string[] {
         const year = parseInt(this.selectedYear);
@@ -72,8 +67,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
         return days;
     }
     
-
-
     setInitialScroll(type: 'day' | 'month' | 'year', value: string): void {
         let spinnerEl: ElementRef<HTMLDivElement>;
         let list: string[];
@@ -90,8 +83,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
             spinnerEl.nativeElement.scrollTop = targetScrollTop; 
         }
     }
-    
-    
 
     private snapTimeout: any;
 
@@ -137,7 +128,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
         }, 80); 
     }
 
-   
     adjustDayForNewMonth() {
         const currentDay = parseInt(this.selectedDay);
         const maxDaysList = this.getDaysList(); 
@@ -148,7 +138,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
             this.setInitialScroll('day', this.selectedDay);
         }
     }
-
 
     private getDevicePrefix(): string {
         return '/watch/';
@@ -167,7 +156,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
         this.navigateTo('schedule', {
             selectedDate: date
         });
-        //console.log('Selected Date:', date);
+        
     }
 
 }

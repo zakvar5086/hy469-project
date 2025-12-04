@@ -27,14 +27,4 @@ export class PersonaComponent implements OnInit {
   selectPersona(personaId: string) {
     this.profileService.redirectByPersona(personaId);
   }
-
-  getDeviceLabel(personaId: string): string {
-    const deviceMap: { [key: string]: string } = {
-      'persona1': 'Tablet',
-      'persona2': 'Phone',
-      'persona3': 'Speaker',
-      'persona4': 'Watch'
-    };
-    return deviceMap[personaId] || 'Unknown';
-  }
 }

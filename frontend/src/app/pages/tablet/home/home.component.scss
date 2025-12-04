@@ -1,8 +1,7 @@
 .main-container{
-    background-color: #F7FAFE;
+    background-color: #EAF3FF;
     min-height: 100vh; 
     overflow-x: hidden;
-
 
     .top-content {
         display: flex;
@@ -13,7 +12,6 @@
         padding-left: 10rem;
         padding-right: calc(10rem - 90px);
         //margin: 5rem 0 0 9rem;
-
 
         .date-indicator {
             display: flex;
@@ -26,7 +24,36 @@
                 font-weight: 600;
             }
         }
-        
+    }
+
+    &.kid-mode {
+        background-image: url('/assets/icons/background.png');
+        background-size: cover;
+        background-position: center;
+
+        .top-content {
+            h1 {
+                color: #FF6FAE;
+                font-size: 2.2rem;
+            }
+
+            .notification-hub{
+                display: none;
+            }
+
+            .date-indicator {
+                border-bottom-color: #FF6FAE;
+                box-shadow: 0 0 0 0 #ff6fad9b;
+
+                .pet-gif {
+                    cursor: pointer;
+                    margin-left: 25px;
+                    margin-bottom: 40px;
+                    width: 250px;
+                    height: 250px;
+                }
+            }
+        }
     }
 
     .bottom-content {

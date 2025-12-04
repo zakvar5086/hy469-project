@@ -21,7 +21,12 @@ export class AppComponent implements OnInit {
   ) {}
 
   showNavbar(): boolean {
-    return !this.router.url.startsWith('/persona');
+    const hideOnRoutes = ['/persona', '/watch'];
+    return !hideOnRoutes.some(route => this.router.url.startsWith(route));
+  }
+  showpopup(): boolean {
+    const hideOnRoutes = ['/persona', '/watch'];
+    return !hideOnRoutes.some(route => this.router.url.startsWith(route));
   }
 
   ngOnInit() {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-
+import { ProfileRoutingService } from 'src/app/global/services/profile-routing.service';
+import { ProfileStateService } from 'src/app/global/services/profile-state.service';
 
 @Component({
   selector: 'app-home',
@@ -12,20 +13,10 @@ import { Router, RouterModule } from '@angular/router';
 export class HomeComponent {
 
     constructor(
-        private router: Router,
-      ) {}
+      public routing: ProfileRoutingService
+    ) {}
 
-    private getDevicePrefix(): string {
-        return '/watch/';
-    }
-
-    
-    navigateTo(route: string) {
-    console.log("Navigating to", route);  
-    const device = this.getDevicePrefix();
-    this.router.navigate([device + route], {
-      queryParamsHandling: 'merge'
-    });
+  navigateTo(route: string) {
+    this.routing.navigateTo(route);
   }
-
 }

@@ -1,9 +1,19 @@
 .notifications-container {
     padding: 20px 0 0  60px;//150px;
     margin-left: 90px;
-    background-color: #F7FAFE;
+    background-color: #EAF3FF;
     height: 100vh;
     width: 100vw;
+
+    &.kid-mode{
+        background-image: url('/assets/icons/background.png');
+        background-size: cover;
+        background-position: center;
+
+        h2{
+            border-bottom: 1px solid #FF6FAE;
+        }
+    }
 
    .notif-header{
         margin-top: 20px;
