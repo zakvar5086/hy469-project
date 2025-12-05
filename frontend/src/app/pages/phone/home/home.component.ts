@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit{
     today = new Date();
 
     isKid = false;
+    isElderly = false;
     
     petSrc = '/assets/icons/idle-pet.gif';
 
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit{
   ngOnInit() {
     const persona = this.profileState.getPersona();
     this.isKid = persona === 'persona3';
+    this.isElderly = persona ==='persona1';
   }
 
   petClicked() {

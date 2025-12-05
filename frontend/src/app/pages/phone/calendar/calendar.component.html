@@ -1,9 +1,9 @@
-<div class="calendar-mobile" [ngClass]="{ 'kid-mode': isKid}">
+<div class="calendar-mobile" [ngClass]="{ 'kid-mode': isKid, 'grandma-mode': isElderly}">
 
     <div class="calendar-header">
           <button (click)="previousMonth()"><</button>
           <div class="month-title">
-              <h1>{{ viewDate | date: 'MMMM yyyy' }}</h1>
+              <p>{{ viewDate | date: 'MMMM yyyy' }}</p>
           </div>
           <button (click)="nextMonth()">></button>
     </div>
@@ -16,7 +16,7 @@
     <div class="pills-panel">
 
         <div class="pills-header">
-            <h3>Pills for {{ viewDate | date: 'EEEE d' }}</h3>
+            <p>Pills for {{ viewDate | date: 'EEEE d' }}</p>
             <button class="add-btn">+</button>
         </div>
         <div *ngIf="groupedPills.length === 0" class="no-pills">
@@ -25,7 +25,7 @@
         </div>
 
         <div *ngFor="let group of groupedPills" class="pill-section">
-            <h4>{{ group.time }}</h4>
+            <h5>{{ group.time }}</h5>
             <ul class="pill-list">
                 <li *ngFor="let pill of group.pills" class="pill-item">
                     <div class="pill-name">{{ pill.name }}</div>

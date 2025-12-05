@@ -1,7 +1,7 @@
 <div class="notifications-container" [ngClass]="{ 'kid-mode': isKid }">
 
   <div *ngFor="let notif of notifications" class="notif-header">
-    <h2>{{ notif.date }}</h2>
+    <h1>{{ notif.date }}</h1>
 
     <div 
       *ngFor="let item of notif.card; let i = index"

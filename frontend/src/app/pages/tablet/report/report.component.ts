@@ -66,7 +66,18 @@ export class ReportComponent implements AfterViewInit, OnInit {
           backgroundColor: '#4a90e2'
         }]
       },
-      options: { responsive: true }
+      options: { responsive: true,
+        plugins: {
+                    legend: {
+                        position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 16
+                                }
+                            }
+                    }
+                }
+       }
     });
   }
 
@@ -88,7 +99,18 @@ export class ReportComponent implements AfterViewInit, OnInit {
           fill: false
         }]
       },
-      options: { responsive: true }
+      options: { responsive: true,
+        plugins: {
+                    legend: {
+                        position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 16
+                                }
+                            }
+                    }
+                }
+       }
     });
   }
 
@@ -110,7 +132,18 @@ export class ReportComponent implements AfterViewInit, OnInit {
           backgroundColor: ['#4a90e2', '#e57373', '#f2c94c']
         }]
       },
-      options: { responsive: true }
+      options: { responsive: true,
+        plugins: {
+                    legend: {
+                        position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 16
+                                }
+                            }
+                    }
+                }
+       }
     });
   }
 

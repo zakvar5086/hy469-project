@@ -8,6 +8,11 @@
     box-shadow: 0 2px 30px -10px rgba(0, 0, 0, 0.2);
     background-color: white; //#6685d3d2;
     overflow-y: hidden ;
+    position: fixed;   // or sticky, depending on your design
+    top: 0;
+    left: 0;
+    //width: 100%;
+    z-index: 1000; 
 
     .navbar_contents {
         display: flex;

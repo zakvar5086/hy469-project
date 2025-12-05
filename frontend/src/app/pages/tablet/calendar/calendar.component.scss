@@ -19,6 +19,7 @@
       margin: 1rem 0 1rem 0;
 
       .month-title{
+        font-weight: 600;
         width: 400px;
         display: flex;
         justify-content:center; 
@@ -43,7 +44,7 @@
         outline: none;
 
         
-        &:hover {
+        &:active {
           background: #005bbb;
         }
       }
@@ -117,7 +118,7 @@
     .pill-section {
       margin-bottom: 1rem;
 
-      h4 {
+      h3 {
         margin-bottom: 0.3rem;
       }
 
@@ -135,7 +136,7 @@
           margin-bottom: 0.5rem;
 
           .pill-name {
-            font-weight: 600;
+            font-weight: 400;
             font-size: 20px;
           }
 

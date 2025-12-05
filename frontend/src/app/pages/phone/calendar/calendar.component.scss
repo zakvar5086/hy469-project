@@ -14,23 +14,29 @@
     gap: 1rem;
     margin-bottom: 1rem;
 
-    .month-title h1 {
-      font-size: 1.4rem;
-      margin: 0;
-      text-align: center;
+    .month-title p {
+        font-size: 1.7rem;
+        font-weight: 600;
+        width: 250px;
+        margin: 0;
+        text-align: center;
     }
 
     button {
-      background: #2E5CFF;
-      color: white;
-      border: none;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      font-size: 1.3rem;
-      cursor: pointer;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        background: #2E5CFF;
+        color: white;
+        border: none;
+        outline: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        font-size: 1.3rem;
+        cursor: pointer;
 
-      &:hover { background: #005bbb; }
+        &:active { background: #005bbb; }
     }
   }
 
@@ -63,9 +69,10 @@
     justify-content: space-between;
     align-items: center;
 
-    h3 {
+    p {
       margin: 0;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
+      font-weight: 600;
     }
 
     .add-btn {
@@ -92,7 +99,7 @@
   .pill-section {
     margin-top: 1rem;
 
-    h4 {
+    h5 {
       margin-bottom: 0.4rem;
       font-weight: 600;
     }
@@ -110,7 +117,7 @@
         margin-bottom: 0.5rem;
 
         .pill-name {
-          font-weight: 600;
+          font-weight: 400;
           font-size: 1rem;
         }
 
@@ -125,7 +132,6 @@
 
 
     &.kid-mode {
-
         background-image: url('/assets/icons/background.png');
         background-size: cover;
         background-position: center;
@@ -135,23 +141,51 @@
             color: white;
         }
 
-
-
         .pill-item {
             background: #FFD7EC !important; 
         }
-
 
         .calendar-header button {
             background: #FF6FAE !important;
         }
 
-
         .calendar-header .month-title h1 {
             color: #FF6FAE !important;
         }
+    }
+
+    &.grandma-mode{
+       .month-title p{
+            font-size: 2rem !important;
+        }
 
 
+        .pills-header p{
+            font-size: 1.8rem;
+        }
+
+        .pill-section {
+            h5 {
+                margin-bottom: 0.7rem;
+                font-weight: 600;
+            }
+
+            .pill-list {
+
+                .pill-item {
+                    .pill-name {
+                        font-weight: 400;
+                        font-size: 1.4rem;
+                    }
+
+                    .pill-dosage {
+                        font-size: 1.2rem;
+                        color: #666;
+                    }
+                }
+            }
+        }
+        
     }
 }
 

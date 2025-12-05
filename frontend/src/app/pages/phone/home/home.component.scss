@@ -1,31 +1,42 @@
 .main-container {
     min-height: 100vh; 
-    overflow-x: hidden;
+    //overflow-x: hidden;
     background-color: #EAF3FF;
 
-    h1 { margin: 0; }
+    p { 
+        margin: 0; 
+        font-weight: 600;
+        font-size: 1.7rem;
+     }
 
     .top-content {
         padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 10;  
+        background: inherit;
         .date-indicator {
-            // border on the bottom only
             border-bottom: 2px solid #E0E0E0;
-            box-shadow: 0 2px 5px -2px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.1);
         }
     }
 
     .bottom-content {
         padding: 1rem;
+        app-pill-container{
+            font-size: 1rem;
+        }
     }
 
 
-     &.kid-mode {
+     
+    &.kid-mode {
         background-image: url('/assets/icons/background.png');
         background-size: cover;
         background-position: center;
         
             
-        h1 {
+        p {
             color: #FF6FAE;
             font-size: 2rem;
             white-space: nowrap; 
@@ -55,6 +66,27 @@
             }
         }
 
+    }
+
+    &.grandma-mode{
+        p{
+            font-size: 2.3rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .notification-hub{
+            display: none;
+        }
+
+    //    .bottom-content {
+
+    //         app-pill-container{
+    //             font-size: 1.5rem;
+    //         }
+    //     }
+
+        
     }
 
 }

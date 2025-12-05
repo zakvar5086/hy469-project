@@ -1,25 +1,24 @@
 <div class="report-container" [ngClass]="{ 'kid-mode': isKid }">
-  <!-- Tab Navigation -->
   <div class="tabs">
     <button 
       class="tab-btn" 
       [class.active]="activeTab === 'monthly'"
       (click)="switchTab('monthly')">
-      Monthly
+      <h5> Monthly </h5>
     </button>
     
     <button 
       class="tab-btn" 
       [class.active]="activeTab === 'weekly'"
       (click)="switchTab('weekly')">
-      Weekly
+      <h5> Weekly </h5>
     </button>
 
     <button 
       class="tab-btn" 
       [class.active]="activeTab === 'daily'"
       (click)="switchTab('daily')">
-      Daily
+      <h5> Daily </h5>
     </button>
   </div>
 
@@ -28,25 +27,31 @@
   
     <!-- DAILY TAB -->
     <div *ngIf="activeTab === 'daily'" class="tab-section">
-      <h2>Daily Report</h2>
+      <h1>Daily Report</h1>
       <div class="chart-wrapper chart-daily">
         <canvas id="dailyChart"></canvas>
       </div>
       <p class="description">Daily intake breakdown.</p>
+      <button class="send-btn" (click)="sendToDoctor()">
+        <h5>Send Report to Doctor</h5>
+      </button>
     </div>
   
     <!-- WEEKLY TAB -->
     <div *ngIf="activeTab === 'weekly'" class="tab-section">
-      <h2>Weekly Report</h2>
+      <h1>Weekly Report</h1>
       <div class="chart-wrapper chart-weekly">
         <canvas id="weeklyChart"></canvas>
       </div>
       <p class="description">Weekly summary of pill intake.</p>
+      <button class="send-btn" (click)="sendToDoctor()">
+        <h5>Send Report to Doctor</h5>
+      </button>
     </div>
   
     <!-- MONTHLY TAB -->
     <div *ngIf="activeTab === 'monthly'" class="tab-section">
-      <h2>Monthly Overview</h2>
+      <h1>Monthly Overview</h1>
     
       <div class="chart-wrapper chart-monthly">
         <canvas id="monthlyChart"></canvas>
@@ -55,7 +60,7 @@
       <p class="description">Pills taken this month.</p>
     
       <button class="send-btn" (click)="sendToDoctor()">
-        Send Report to Doctor
+        <h5>Send Report to Doctor</h5>
       </button>
     </div>
   </div>

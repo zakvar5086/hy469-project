@@ -16,7 +16,7 @@
 
     <div class="right-pane">
         <div class="card-header">
-            <h3>Pills for {{ viewDate | date: 'EEEE  d' }}</h3>
+            <h2>Pills for {{ viewDate | date: 'EEEE  d' }}</h2>
             <button>+</button>
         </div>
         <div style="margin-top: 2rem;"></div>
@@ -24,7 +24,7 @@
         <div *ngIf="groupedPills.length === 0" class="no-pills">No pills scheduled for this date.</div>
 
         <div *ngFor="let group of groupedPills" class="pill-section">
-            <h4>{{ group.time }}</h4>
+            <h3>{{ group.time }}</h3>
             <ul class="pill-list">
                 <li *ngFor="let pill of group.pills" class="pill-item">
                     <div class="pill-name">{{ pill.name }}</div>

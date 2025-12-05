@@ -35,6 +35,9 @@
       <div class="chart-wrapper chart-daily">
         <canvas id="dailyChart"></canvas>
       </div>
+      <button class="send-btn" (click)="sendToDoctor()">
+        Send Report to Doctor
+      </button>
     </div>
 
     <!-- WEEKLY -->
@@ -43,16 +46,17 @@
       <div class="chart-wrapper chart-weekly">
         <canvas id="weeklyChart"></canvas>
       </div>
+      <button class="send-btn" (click)="sendToDoctor()">
+        Send Report to Doctor
+      </button>
     </div>
 
     <!-- MONTHLY -->
     <div *ngIf="activeTab === 'monthly'" class="tab-section">
       <h2>Monthly Intake</h2>
-
       <div class="chart-wrapper chart-monthly">
         <canvas id="monthlyChart"></canvas>
       </div>
-
       <p class="description">Monthly overview.</p>
 
       <button class="send-btn" (click)="sendToDoctor()">

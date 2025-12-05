@@ -1,7 +1,7 @@
 .main-container{
     background-color: #EAF3FF;
     min-height: 100vh; 
-    overflow-x: hidden;
+    //overflow-x: hidden;
 
     .top-content {
         display: flex;
@@ -12,6 +12,10 @@
         padding-left: 10rem;
         padding-right: calc(10rem - 90px);
         //margin: 5rem 0 0 9rem;
+        // position: sticky;
+        // top: 0;
+        // z-index: 10;   // keeps it above charts / other content
+        // background: inherit;
 
         .date-indicator {
             display: flex;
