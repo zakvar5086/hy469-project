@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Pill } from 'src/app/global/services/data.services';
+import { Pill, DataService } from 'src/app/global/services/data.services';
 
 @Injectable({ providedIn: 'root' })
 export class PillPopupService {
 
   private pillSubject = new BehaviorSubject<Pill | null>(null);
   pill$ = this.pillSubject.asObservable();
+
+  constructor(private dataService: DataService) {}
 
   open(pill: Pill) {
     this.pillSubject.next(pill);
@@ -22,6 +24,38 @@ export class PillPopupService {
 
   getCurrentPill(): Pill | null {
     return this.pillSubject.value;
+  }
+
+  // Mark current pill as taken
+  markAsTaken(userId: string) {
+    const pill = this.getCurrentPill();
+    if (!pill) return;
+
+    const today = new Date().toISOString().split('T')[0];
+    this.dataService.recordPillAction(userId, pill.id, today, 'taken');
+    this.close();
+  }
+
+  // Mark current pill as skipped
+  markAsSkipped(userId: string) {
+    const pill = this.getCurrentPill();
+    if (!pill) return;
+
+    const today = new Date().toISOString().split('T')[0];
+    this.dataService.recordPillAction(userId, pill.id, today, 'skipped');
+    this.close();
+  }
+
+  // Mark current pill as postponed
+  markAsPostponed(userId: string, postponeMinutes: number = 30) {
+    const pill = this.getCurrentPill();
+    if (!pill) return;
+
+    const today = new Date().toISOString().split('T')[0];
+    const postponedTo = new Date(Date.now() + postponeMinutes * 60000).toISOString();
+    
+    this.dataService.recordPillAction(userId, pill.id, today, 'postponed', postponedTo);
+    this.close();
   }
 
   /** FOR TESTING ONLY */

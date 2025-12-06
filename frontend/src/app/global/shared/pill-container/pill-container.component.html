@@ -10,7 +10,7 @@
                 [pillName]="pill.name"
                 [dosage]="pill.dosage"
                 [pillIcon]="pill.image || 'assets/icons/pill.svg'"
-                [status]="'Upcoming'"
+                [status]="getDisplayStatus(pill)"
                 [daysLeft]="getDaysLeft(pill)"
                 [lowPillWarning]="isLowStock(pill)"
             ></app-pill-card>

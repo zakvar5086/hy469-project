@@ -24,17 +24,18 @@ export class PillPopupComponent implements OnInit{
   constructor(public popupService: PillPopupService, private profileState: ProfileStateService) {}
 
   onTake() {
-    // TODO: Implement logic to mark pill as taken
-    this.popupService.close();
+    const userId = this.profileState.getPersona();
+    if (userId) this.popupService.markAsTaken(userId);
   }
 
   onSkip() {
-    // TODO: Implement logic to mark pill as skipped
-    this.popupService.close();
+    const userId = this.profileState.getPersona();
+    if (userId) this.popupService.markAsSkipped(userId);
   }
 
   onPostpone() {
-    // TODO: Implement logic to postpone pill reminder
-    this.popupService.close();
+    const userId = this.profileState.getPersona();
+    // Postpone 30mins default
+    if (userId) this.popupService.markAsPostponed(userId, 30);
   }
 }

@@ -3,7 +3,11 @@ import { CommonModule } from '@angular/common';
 import { PillCardComponent } from 'src/app/global/shared/pill-card/pill-card.component';
 import { DataService, Pill } from 'src/app/global/services/data.services';
 import { ProfileStateService } from 'src/app/global/services/profile-state.service';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil, combineLatest } from 'rxjs';
+
+interface PillWithStatus extends Pill {
+  currentStatus: 'taken' | 'skipped' | 'postponed' | 'upcoming';
+}
 
 @Component({
   selector: 'app-pill-container',
@@ -14,7 +18,7 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class PillContainerComponent implements OnInit, OnDestroy {
 
-  pillGroups: { time: string; pills: Pill[] }[] = [];
+  pillGroups: { time: string; pills: PillWithStatus[] }[] = [];
   private destroy$ = new Subject<void>();
   
   private daysLeftCache = new Map<string, number>();
@@ -28,11 +32,13 @@ export class PillContainerComponent implements OnInit, OnDestroy {
     const personaId = this.profileState.getPersona();
     
     if (personaId) {
-      this.dataService.getPillsGroupedByTime(personaId)
+      this.loadPillsWithStatus(personaId);
+      
+      // Re-subscribe to pillStats to get updates when pills are taken/skipped/postponed
+      this.dataService.pillStats$
         .pipe(takeUntil(this.destroy$))
-        .subscribe(groups => {
-          this.pillGroups = groups;
-          this.cacheAllDaysLeft();
+        .subscribe(() => {
+          this.loadPillsWithStatus(personaId);
         });
     }
   }
@@ -40,6 +46,36 @@ export class PillContainerComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  private loadPillsWithStatus(userId: string) {
+    const today = new Date().toISOString().split('T')[0];
+
+    combineLatest([
+      this.dataService.getPillsGroupedByTime(userId),
+      this.dataService.pillStats$
+    ])
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(([groups, stats]) => {
+      const userStats = stats.find(s => s.userId === userId);
+      
+      this.pillGroups = groups.map(group => ({
+        time: group.time,
+        pills: group.pills.map(pill => {
+          // Find the status for this pill today
+          const record = userStats?.intakeRecords.find(
+            r => r.pillId === pill.id && r.date === today
+          );
+          
+          return {
+            ...pill,
+            currentStatus: record ? record.status : 'upcoming'
+          };
+        })
+      }));
+      
+      this.cacheAllDaysLeft();
+    });
   }
 
   private cacheAllDaysLeft() {
@@ -69,5 +105,20 @@ export class PillContainerComponent implements OnInit, OnDestroy {
       return `${daysLeft} pills for 7 days`;
     }
     return null;
+  }
+
+  // Get the display status for pill card
+  getDisplayStatus(pill: PillWithStatus): string {
+    switch (pill.currentStatus) {
+      case 'taken':
+        return 'Taken';
+      case 'skipped':
+        return 'Skipped';
+      case 'postponed':
+        return 'Postponed';
+      case 'upcoming':
+      default:
+        return 'Upcoming';
+    }
   }
 }
