@@ -14,7 +14,6 @@
         align-items: center;
         flex-direction: column;
 
-
         .time{
             font-size: 20px;
             color: white;
@@ -25,6 +24,14 @@
             font-size: 25px;
             color: white;
             margin: 0;
+            text-align: center;
+        }
+
+        .dosage{
+            font-size: 16px;
+            color: #aaa;
+            margin: 5px 0 0 0;
+            text-align: center;
         }
     }
 
@@ -39,6 +46,12 @@
         flex-shrink: 0;
         border-radius: 6px;
         background: #2BC94B;
+        cursor: pointer;
+        transition: background 0.2s ease;
+
+        &:active {
+            background: #25a83f;
+        }
 
         p{
             color: white;
@@ -60,6 +73,4 @@
             margin: 0;
         }
     }
-
-
 }

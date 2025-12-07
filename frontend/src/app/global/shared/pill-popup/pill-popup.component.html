@@ -19,10 +19,23 @@
             {{ pill.shortInstructions?.[0] || 'Please take your medication.' }}
         </p>
         
-        <div class="buttons">
+        <div class="buttons" *ngIf="!showPostponeOptions">
             <button class="btn skip" (click)="onSkip()">Skip</button>
             <button class="btn take" (click)="onTake()">Take</button>
-            <button class="btn postpone" (click)="onPostpone()">Postpone</button>
+            <button class="btn postpone" (click)="togglePostponeOptions()">Postpone</button>
+        </div>
+
+        <div class="postpone-options" *ngIf="showPostponeOptions">
+            <h4>Postpone for:</h4>
+            <div class="time-options">
+                <button class="time-btn" (click)="onPostpone(5)">5 min</button>
+                <button class="time-btn" (click)="onPostpone(10)">10 min</button>
+                <button class="time-btn" (click)="onPostpone(15)">15 min</button>
+                <button class="time-btn" (click)="onPostpone(20)">20 min</button>
+                <button class="time-btn" (click)="onPostpone(25)">25 min</button>
+                <button class="time-btn" (click)="onPostpone(30)">30 min</button>
+            </div>
+            <button class="btn back-btn" (click)="togglePostponeOptions()">Back</button>
         </div>
     </div>
 </div>

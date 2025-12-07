@@ -19,7 +19,12 @@
     </div>
 
     <div class="right-content">
-        <div class="label" [ngClass]="status">
+        <div class="label" [ngClass]="{
+            'status-taken': status === 'Taken',
+            'status-skipped': status === 'Skipped',
+            'status-postponed': status === 'Postponed',
+            'status-upcoming': status === 'Upcoming'
+        }">
             <p>{{ status }}</p>
         </div>
         <div class="rest">

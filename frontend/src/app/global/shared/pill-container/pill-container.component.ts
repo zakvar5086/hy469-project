@@ -121,4 +121,16 @@ export class PillContainerComponent implements OnInit, OnDestroy {
         return 'Upcoming';
     }
   }
+
+  // Filter out taken pills from display
+  getVisiblePills(pills: PillWithStatus[]): PillWithStatus[] {
+    return pills.filter(pill => pill.currentStatus !== 'taken');
+  }
+
+  // Get total count of visible pills
+  getTotalVisiblePillsCount(): number {
+    return this.pillGroups.reduce((total, group) => {
+      return total + this.getVisiblePills(group.pills).length;
+    }, 0);
+  }
 }

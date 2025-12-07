@@ -4,7 +4,9 @@ import { ProfileRoutingService } from './global/services/profile-routing.service
 import { QueryParamPreserveService } from './global/services/query-param-preserve.service';
 import { PillPopupService } from './global/services/pill-popup.service';
 import { PillReminderService } from './global/services/pill-reminder.service';
-import { Router } from '@angular/router';
+import { WatchPillPopupService } from './global/services/watch-pill-reminder.service';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,14 +15,25 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
+  private currentRoute: string = '';
+
   constructor(
     private router: Router,
     private profileState: ProfileStateService,
     private profileRouting: ProfileRoutingService,
     private qpPreserver: QueryParamPreserveService,
     public pillPopupService: PillPopupService,
-    private pillReminderService: PillReminderService
-  ) {}
+    private pillReminderService: PillReminderService,
+    private watchPillPopupService: WatchPillPopupService
+  ) {
+    // Track current route
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        const navEnd = event as NavigationEnd;
+        this.currentRoute = navEnd.url;
+      });
+  }
 
   showNavbar(): boolean {
     const hideOnRoutes = ['/persona', '/watch'];
@@ -30,6 +43,10 @@ export class AppComponent implements OnInit {
   showpopup(): boolean {
     const hideOnRoutes = ['/persona', '/watch'];
     return !hideOnRoutes.some(route => this.router.url.startsWith(route));
+  }
+
+  isWatchRoute(): boolean {
+    return this.currentRoute.startsWith('/watch');
   }
 
   ngOnInit() {

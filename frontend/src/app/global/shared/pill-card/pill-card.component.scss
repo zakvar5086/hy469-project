@@ -6,17 +6,9 @@
     align-items: center;
     flex-shrink: 0;
     border-radius: 40px;
-    // cursor: pointer;
-    // transition: transform 120ms ease, box-shadow 120ms ease;
-    // //border:2px solid #2E5CFF;//#AEC6CF;
     box-shadow: 0 0 10px 1px #bcbcbc;
     background-color: white;
     justify-content: space-between;
-
-    // &:hover {
-    //     transform: translateY(-4px);
-    //     box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-    // }
 
     .left-content {
         display: flex;
@@ -27,21 +19,16 @@
         .pill-img {
             width: 100px;
             height: 100px;
-            // if SVG isn’t the right size, this can help:
             display: block;
         }
         .description {
             display: flex;
-            width: auto;//241px;
-            height: auto;//90px;
+            width: auto;
+            height: auto;
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
             
-            // .triangle{
-            //     width: 20px;
-            //     height: 20px;
-            // }
                 .low-warning {
                     display: flex;
                     gap: 2px;
@@ -49,7 +36,6 @@
                     .triangle {
                         width: 15px;
                         height: 15px;
-                        //display: block;
                     }
                 }
             p{
@@ -72,53 +58,53 @@
         padding: 0 10px;
         flex-direction: column;
         justify-content: space-between;
-        align-items: center; // center children horizontally instead of flex-end
+        align-items: center;
         flex-shrink: 0;
         align-self: stretch;
 
         .label {
-        display: flex;
-        width: 119px;
-        height: 45px;
-        padding: 5px 7px;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        border-radius: 25px;
-        border: 3px solid #1F9900;
+            display: flex;
+            width: 119px;
+            height: 45px;
+            padding: 5px 7px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-radius: 25px;
+            border: 3px solid #1F9900;
 
             p {
                 margin: 0;      
                 text-align: center;
             }
+
+            // Status-specific colors
+            &.status-taken {
+                border-color: #1F9900;
+            }
+
+            &.status-skipped {
+                border-color: #D32F2F;
+            }
+
+            &.status-postponed {
+                border-color: #FFA726;
+            }
+
+            &.status-upcoming {
+                border-color: #1F9900;
+            }
         }
 
-       
-        // .low-warning {
-        // margin-top: 5px;
-        // color: #d22;
-        // font-size: 16px;
-        // text-decoration: underline;
-        // display: flex;
-        // align-items: center;
-        // gap: 4px;
-
-        //     .triangle {
-        //       color: red;
-        //       font-weight: 900;
-        //     }
-        // }
-
-
         .rest {
-        display: flex;       // make it a flex box too
-        justify-content: center;
-        align-items: center;
-        color: #adadad;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #adadad;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
 
             p {
                 margin: 0;
@@ -187,8 +173,8 @@
             }
             .description {
                 display: flex;
-                width: auto;//241px;
-                height: auto;//90px;
+                width: auto;
+                height: auto;
                 flex-direction: column;
                 justify-content: center;
                 align-items: flex-start;
@@ -196,7 +182,6 @@
 
                 h2{
                     font-size: 17px;
-                   // margin: 0;
                 }
 
                 .low-warning {

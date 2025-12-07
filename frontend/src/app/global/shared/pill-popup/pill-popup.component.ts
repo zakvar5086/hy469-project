@@ -15,6 +15,7 @@ export class PillPopupComponent implements OnInit{
   @Input() pill!: Pill;
 
   isKid = false;
+  showPostponeOptions = false;
   
   ngOnInit(){
     const persona = this.profileState.getPersona();
@@ -33,9 +34,12 @@ export class PillPopupComponent implements OnInit{
     if (userId) this.popupService.markAsSkipped(userId);
   }
 
-  onPostpone() {
+  togglePostponeOptions() {
+    this.showPostponeOptions = !this.showPostponeOptions;
+  }
+
+  onPostpone(minutes: number) {
     const userId = this.profileState.getPersona();
-    // Postpone 30mins default
-    if (userId) this.popupService.markAsPostponed(userId, 30);
+    if (userId) this.popupService.markAsPostponed(userId, minutes);
   }
 }

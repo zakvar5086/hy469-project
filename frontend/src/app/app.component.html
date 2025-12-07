@@ -8,7 +8,8 @@
 <!-- Global Pill Popup -->
 <app-pill-popup
   *ngIf="(pillPopupService.pill$ | async) as pill"
-  [pill]="pill">
+  [pill]="pill"
+  [style.display]="isWatchRoute() ? 'none' : 'block'">
 </app-pill-popup>
 
 <div *ngIf="showpopup()">

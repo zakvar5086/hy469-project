@@ -1,6 +1,10 @@
-import { Component} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { WatchPillPopupService } from 'src/app/global/services/watch-pill-reminder.service';
+import { ProfileStateService } from 'src/app/global/services/profile-state.service';
+import { Pill } from 'src/app/global/services/data.services';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-pop-up',
@@ -9,26 +13,53 @@ import { CommonModule } from '@angular/common';
     templateUrl: './pop-up.component.html',
     styleUrls: ['./pop-up.component.scss'],
 })
-export class PopUpComponent  {
-    constructor(private router: Router) {}
+export class PopUpComponent implements OnInit, OnDestroy {
     
-      private getDevicePrefix(): string {
-            return '/watch/';
-        }
+    pill: Pill | null = null;
+    private destroy$ = new Subject<void>();
+    
+    constructor(
+        private router: Router,
+        private watchPopupService: WatchPillPopupService,
+        private profileState: ProfileStateService
+    ) {}
+
+    ngOnInit() {
+        this.watchPopupService.currentPill$
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(pill => {
+                this.pill = pill;
+            });
+    }
+
+    ngOnDestroy() {
+        this.destroy$.next();
+        this.destroy$.complete();
+    }
+    
+    private getDevicePrefix(): string {
+        return '/watch/';
+    }
     
     navigateTo(route: string) {
-            console.log("Navigating to", route);  
-            const device = this.getDevicePrefix();
-            this.router.navigate([device + route], {
-              queryParamsHandling: 'merge'
-            });
-          }
+        const device = this.getDevicePrefix();
+        this.router.navigate([device + route], {
+            queryParamsHandling: 'merge'
+        });
+    }
+
+    onConfirm() {
+        const userId = this.profileState.getPersona();
+        if (userId) {
+            this.watchPopupService.confirmTaken(userId);
+        }
+    }
 
     private startY: number = 0;
     private swipeThreshold = 60; 
 
     startSwipe(event: TouchEvent) {
-    this.startY = event.touches[0].clientY;
+        this.startY = event.touches[0].clientY;
     }
 
     moveSwipe(event: TouchEvent) {
