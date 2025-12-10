@@ -8,13 +8,18 @@
         <p class="for">for</p>
     </div>
 
-    <div class="time-grid">
-        <button 
-            *ngFor="let time of postponeOptions"
-            class="time-btn"
-            [class.selected]="time === selectedMinutes"
-            (click)="selectTime(time)">
-            {{ time }}min
+    <div class="time-selector">
+        <button class="arrow-btn" (click)="decreaseTime()">
+            <span>&#8249;</span>
+        </button>
+
+        <div class="time-display">
+            <span class="time-value">{{ selectedMinutes }}</span>
+            <span class="time-unit">min</span>
+        </div>
+
+        <button class="arrow-btn" (click)="increaseTime()">
+            <span>&#8250;</span>
         </button>
     </div>
 

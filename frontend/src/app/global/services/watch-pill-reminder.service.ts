@@ -46,7 +46,6 @@ export class WatchPillPopupService {
 
   // Open the notification popup (first screen)
   openNotification(pill: Pill) {
-    console.log('🔔 Watch: Opening notification for', pill.name);
     this.currentPillSubject.next(pill);
     this.stateSubject.next('notification');
     this.router.navigate(['/watch/popNot']);
@@ -54,7 +53,6 @@ export class WatchPillPopupService {
 
   // Transition to postpone screen
   showPostpone() {
-    console.log('⏰ Watch: Showing postpone screen');
     this.stateSubject.next('postpone');
     this.router.navigate(['/watch/postpone']);
   }
@@ -64,7 +62,6 @@ export class WatchPillPopupService {
     const pill = this.currentPillSubject.value;
     if (!pill) return;
 
-    console.log('✅ Watch: Marking pill as taken:', pill.name);
     const today = new Date().toISOString().split('T')[0];
     this.dataService.recordPillAction(userId, pill.id, today, 'taken');
     
@@ -77,7 +74,6 @@ export class WatchPillPopupService {
     const pill = this.currentPillSubject.value;
     if (!pill) return;
 
-    console.log('❌ Watch: Marking pill as skipped:', pill.name);
     const today = new Date().toISOString().split('T')[0];
     this.dataService.recordPillAction(userId, pill.id, today, 'skipped');
     
@@ -85,12 +81,10 @@ export class WatchPillPopupService {
     this.router.navigate(['/watch/home']);
   }
 
-  // Mark current pill as postponed with custom minutes
-  confirmPostponed(userId: string, minutes: number = 30) {
+  confirmPostponed(userId: string, minutes: number) {
     const pill = this.currentPillSubject.value;
     if (!pill) return;
 
-    console.log(`⏱️ Watch: Postponing pill ${pill.name} for ${minutes} minutes`);
     const today = new Date().toISOString().split('T')[0];
     const postponedTo = new Date(Date.now() + minutes * 60000).toISOString();
     
@@ -102,7 +96,6 @@ export class WatchPillPopupService {
 
   // Close popup and reset state
   close() {
-    console.log('🚪 Watch: Closing popup');
     this.stateSubject.next('closed');
     this.currentPillSubject.next(null);
   }

@@ -47,7 +47,7 @@ export class PillPopupService {
   }
 
   // Mark current pill as postponed
-  markAsPostponed(userId: string, postponeMinutes: number = 30) {
+  markAsPostponed(userId: string, postponeMinutes: number) {
     const pill = this.getCurrentPill();
     if (!pill) return;
 

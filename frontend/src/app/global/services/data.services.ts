@@ -189,7 +189,7 @@ export class DataService {
   }
   
   // Record a pill action (taken, skipped, postponed)
-  recordPillAction(userId: string, pillId: string, date: string, status: 'taken' | 'skipped' | 'postponed', postponedTo?: string) {
+  recordPillAction(userId: string, pillId: string, date: string, status: 'taken' | 'skipped' | 'postponed' | 'upcoming', postponedTo?: string) {
     const stats = this.pillStatsSubject.value;
     const userStats = stats.find(s => s.userId === userId);
     

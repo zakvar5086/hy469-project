@@ -8,7 +8,7 @@ import { Subject, interval, takeUntil } from 'rxjs';
 export class PillReminderService implements OnDestroy {
   
   private destroy$ = new Subject<void>();
-  private checkedPills = new Set<string>(); // Track pills shown today
+  private checkedPills = new Set<string>();
 
   constructor(
     private dataService: DataService,
@@ -42,21 +42,40 @@ export class PillReminderService implements OnDestroy {
     const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
     const today = now.toISOString().split('T')[0];
 
-
     this.dataService.getPillsForUser(userId).subscribe(pills => {
       pills.forEach(pill => {
         const pillKey = `${pill.id}-${today}`;
-        
-        // Check if this pill is due now and hasn't been shown today
-        if (pill.time === currentTime && !this.checkedPills.has(pillKey)) {
-          // Check if it's still upcoming
-          this.dataService.getPillStatus(userId, pill.id, today).subscribe(status => {
-            if (status === 'upcoming') {
-              this.pillPopupService.open(pill);
-              this.checkedPills.add(pillKey);
-            }
-          });
-        }
+
+        // Get the pill's current status
+        this.dataService.getPillStatus(userId, pill.id, today).subscribe(status => {
+          
+          // If pill has a key and isn't postponed, return
+          if (this.checkedPills.has(pillKey) && status !== 'postponed') return;
+
+          // Case 1: Regular scheduled upcoming pills
+          if (status === 'upcoming' && pill.time === currentTime) {
+            this.pillPopupService.open(pill);
+            this.checkedPills.add(pillKey);
+          }
+          
+          // Case 2: Postponed pill
+          if (status === 'postponed') {
+            this.dataService.getUserIntakeRecords(userId).subscribe(records => {
+              const record = records.find(r => r.pillId === pill.id && r.date === today);
+              
+              if (record && record.postponedTo) {
+                const postponedDate = new Date(record.postponedTo);
+                const postponedTime = `${String(postponedDate.getHours()).padStart(2, '0')}:${String(postponedDate.getMinutes()).padStart(2, '0')}`;
+                
+                if (postponedTime === currentTime) {
+                  this.pillPopupService.open(pill);
+                  this.checkedPills.add(pillKey);                  
+                  this.dataService.recordPillAction(userId, pill.id, today, 'upcoming');
+                }
+              }
+            });
+          }
+        });
       });
     });
 

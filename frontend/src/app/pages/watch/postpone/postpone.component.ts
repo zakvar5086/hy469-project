@@ -19,6 +19,7 @@ export class PostponeComponent implements OnInit, OnDestroy {
     selectedMinutes: number = 5;
     
     postponeOptions = [5, 10, 15, 20, 25, 30];
+    currentIndex = 0;
     
     private destroy$ = new Subject<void>();
     private touchStartY: number = 0;
@@ -35,6 +36,9 @@ export class PostponeComponent implements OnInit, OnDestroy {
             .subscribe(pill => {
                 this.pill = pill;
             });
+        
+        // Initialize selected minutes to first option
+        this.selectedMinutes = this.postponeOptions[this.currentIndex];
     }
 
     ngOnDestroy() {
@@ -53,8 +57,18 @@ export class PostponeComponent implements OnInit, OnDestroy {
         });
     }
 
-    selectTime(minutes: number) {
-        this.selectedMinutes = minutes;
+    increaseTime() {
+        if (this.currentIndex < this.postponeOptions.length - 1) {
+            this.currentIndex++;
+            this.selectedMinutes = this.postponeOptions[this.currentIndex];
+        }
+    }
+
+    decreaseTime() {
+        if (this.currentIndex > 0) {
+            this.currentIndex--;
+            this.selectedMinutes = this.postponeOptions[this.currentIndex];
+        }
     }
 
     onConfirm() {
