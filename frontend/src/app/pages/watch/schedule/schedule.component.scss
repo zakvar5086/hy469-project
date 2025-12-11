@@ -4,30 +4,40 @@
     height: 252px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    background-color: #fff;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
     .back {
-        position: fixed;
+        position: sticky;
         top: 0;
         z-index: 10;
-
         width: 100%;            
         background-color: white;  
-
-        padding: 10px 15px;       
+        padding: 10px 15px;
         display: flex;
         align-items: center;
+        box-sizing: border-box;
+        flex-shrink: 0;
     }
 
     .date-indicator{
-        padding-top: 50px;  
-        margin: 10px;
+        width: 100%;
+        padding: 10px 15px;
+        box-sizing: border-box;
 
         p{
-            font-size: 20px;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 10px 0;
         }
     }
-
 }
-
-

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { WatchPillPopupService } from 'src/app/global/services/watch-pill-reminder.service';
@@ -22,7 +22,13 @@ export class PostponeComponent implements OnInit, OnDestroy {
     currentIndex = 0;
     
     private destroy$ = new Subject<void>();
+    
+    // Swipe detection properties
+    private touchStartX: number = 0;
     private touchStartY: number = 0;
+    private touchStartTime: number = 0;
+    private swipeThreshold: number = 40;
+    private swipeTimeLimit: number = 300;
     
     constructor(
         private router: Router,
@@ -85,18 +91,29 @@ export class PostponeComponent implements OnInit, OnDestroy {
         }
     }
 
-    // Swipe down to go back to notification
+    @HostListener('touchstart', ['$event'])
     onTouchStart(event: TouchEvent) {
         this.touchStartY = event.touches[0].clientY;
+        this.touchStartX = event.touches[0].clientX;
+        this.touchStartTime = Date.now();
     }
 
+    @HostListener('touchend', ['$event'])
     onTouchEnd(event: TouchEvent) {
         const touchEndY = event.changedTouches[0].clientY;
-        const diff = touchEndY - this.touchStartY;
+        const touchEndX = event.changedTouches[0].clientX;
+        const touchEndTime = Date.now();
         
-        // Swipe down threshold
-        if (diff > 60) {
-            this.navigateTo('popNot');
+        const deltaY = touchEndY - this.touchStartY;
+        const deltaX = Math.abs(touchEndX - this.touchStartX);
+        const deltaTime = touchEndTime - this.touchStartTime;
+
+        if (
+            Math.abs(deltaY) > this.swipeThreshold &&
+            deltaX < Math.abs(deltaY) &&
+            deltaTime < this.swipeTimeLimit
+        ) {
+            if (deltaY > 0) this.navigateTo('popNot');
         }
     }
 }

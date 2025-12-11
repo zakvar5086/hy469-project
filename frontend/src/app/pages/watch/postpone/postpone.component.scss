@@ -2,11 +2,13 @@
     display: flex;
     width: 208px;
     height: 252px;
-    padding: 10px;
+    padding: 15px 15px 15px 15px;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    background: #1E1E1E;
+    background: #1C1C1E;
+    overflow: hidden;
+    box-sizing: border-box;
 
     .postpone-message{  
         display: flex;
@@ -14,25 +16,27 @@
         align-items: center;
         flex-direction: column;
         flex-shrink: 0;
+        text-align: center;
 
         .postpone{
-            font-size: 18px;
-            color: white;
+            font-size: 16px;
+            color: #888;
             margin: 0;
         }
 
         .medication{
-            font-size: 22px;
+            font-size: 20px;
+            font-weight: 600;
             color: white;
-            margin: 0;
+            margin: 5px 0;
             text-align: center;
+            line-height: 1.2;
         }
 
         .for{
-            font-size: 16px;
-            color: white;
-            margin-top: 8px;
-            margin-bottom: 0;
+            font-size: 15px;
+            color: #888;
+            margin: 0;
         }
     }
 
@@ -40,28 +44,30 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 15px;
+        gap: 12px;
         width: 100%;
-        padding: 20px 0;
+        padding: 10px 0;
+        flex-shrink: 0;
 
         .arrow-btn{
-            background: #2c2c2e;
+            background: #2C2C2E;
             color: white;
             border: 1px solid #444;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.2s ease;
-            font-size: 32px;
+            font-size: 28px;
             padding: 0;
             line-height: 1;
+            flex-shrink: 0;
 
             &:active{
-                background: #3c3c3e;
+                background: #3A3A3C;
                 transform: scale(0.95);
             }
 
@@ -76,17 +82,18 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-width: 70px;
+            min-width: 60px;
+            flex-shrink: 0;
 
             .time-value{
-                font-size: 42px;
+                font-size: 38px;
                 font-weight: 600;
                 color: #2BC94B;
                 line-height: 1;
             }
 
             .time-unit{
-                font-size: 16px;
+                font-size: 14px;
                 color: #888;
                 margin-top: 2px;
             }
@@ -97,26 +104,27 @@
         display: flex;
         width: 100%;
         gap: 8px;
-        padding: 0 10px;
+        padding: 0;
         flex-shrink: 0;
 
         .cancel-btn,
         .confirm-btn{
             flex: 1;
-            height: 40px;
+            height: 44px;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
 
             &:active{
-                transform: scale(0.95);
+                transform: scale(0.98);
             }
         }
 
         .cancel-btn{
-            background: #f44336;
+            background: #FF3B30;
             color: white;
 
             &:active{
@@ -138,11 +146,19 @@
         width: 100%;
         text-align: center;
         flex-shrink: 0;
+        padding: 10px 0 0 0;
+        touch-action: pan-y;
+        cursor: grab;
+
+        &:active {
+            cursor: grabbing;
+        }
 
         p{
             font-size: 12px;
-            color: #888;
+            color: #666;
             margin: 0;
+            user-select: none;
         }
     }
 }

@@ -2,25 +2,24 @@ $item-height: 40px;
 $picker-height: 120px;
 
 .calendar-container {
-    width: 100%;
-    height: 100vh;
+    width: 208px;
+    height: 252px;
     background: #000;
     display: flex;
     flex-direction: column;
     justify-content: space-between; 
     align-items: center;
     overflow: hidden;
+    box-sizing: border-box;
 
     .back {
         position: absolute;   
-        top:10px;
+        top: 10px;
         left: 15px;        
         filter: invert(1);
         cursor: pointer;
-        z-index: 10; 
-        //padding: 10px 15px;
+        z-index: 10;
     }
-
 
     .content {
         width: 100%;
@@ -31,7 +30,7 @@ $picker-height: 120px;
         justify-content: center;
         align-items: center;
         padding: 40px 0;
-        
+        flex: 1;
         
         .selection-overlay {
             position: absolute;
@@ -44,7 +43,6 @@ $picker-height: 120px;
             pointer-events: none;
         }
 
-
         .spinner {
             height: $picker-height; 
             width: 30%;
@@ -53,7 +51,10 @@ $picker-height: 120px;
             padding: calc((#{$picker-height} - #{$item-height}) / 2) 0;
             scrollbar-width: none;
             color: white;
-        
+            
+            &::-webkit-scrollbar {
+                display: none;
+            }
            
             .spinner-item {
                 height: $item-height;
@@ -61,7 +62,6 @@ $picker-height: 120px;
                 font-size: 0.9rem;
                 opacity: 0.3;
                 transition: opacity 0.3s, font-size 0.3s;
-
 
                 &.selected {
                     opacity: 1;
@@ -72,29 +72,28 @@ $picker-height: 120px;
         }
     }
 
-
     .ok{
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
+        padding: 0 10px 10px 10px;
+        box-sizing: border-box;
+        flex-shrink: 0;
 
         .okBtn {
-            width: 80%;
+            width: 100%;
             background-color: rgb(255, 255, 255);
-            border: 1px solid gray ;
+            border: 1px solid gray;
             border-radius: 7px;
-            margin-bottom: 20px;
-            padding: 5px;
-            font-size: 1.3rem;
+            padding: 8px;
+            font-size: 1.1rem;
             outline: none;
+            cursor: pointer;
+
+            &:active {
+                background-color: #e0e0e0;
+            }
         }
     }
 }
-
-
-
-
-
-
-

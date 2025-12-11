@@ -2,72 +2,90 @@
    position: fixed;
    top: 0;
    z-index: 10;
-
-   width: 100%;            
+   width: 208px;
    background-color: white;  
-
-  padding: 10px 15px;       
+   padding: 10px 15px;       
    display: flex;
    align-items: center;
+   box-sizing: border-box;
 }
-
 
 .pill-container{
     display: flex;
-    height: 100vh;
-    width: 100%;
-    margin-top: 50px;
-   // padding: 20px 60px 0 150px;
-    //flex-direction: row;
+    width: 208px;
+    height: 252px;
+    overflow-y: auto;
     overflow-x: hidden;
+    box-sizing: border-box;
+    background-color: #fff;
+    
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
-
-     .pill-det {
+    .pill-det {
         display: flex;
         flex-direction: column;
         flex: 1;
-        padding-left: 15px;
+        padding: 50px 15px 15px 15px;
+        box-sizing: border-box;
 
         .header{
             display: flex;
             flex-direction: row;
-            //align-self: flex-start;
-            //align-items: start;
-            //flex: 1;
             width: 100%;
-            //margin-left: 15px;
-            //gap: 10px;
             align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
 
             .title {
-                font-size: 25px;
+                font-size: 1.3rem;
                 font-weight: 600;
-                text-align: center;
-                margin-top: 8px;
+                margin: 0;
             }
 
             .pill-img {
-                width: 50px;
-                height: 50px;
+                width: 45px;
+                height: 45px;
                 object-fit: contain;
-                border-radius: 10px;
+                border-radius: 8px;
+                background: #f0f0f0;
+                padding: 5px;
             }
         }
 
+        .pill-info {
+            margin-bottom: 10px;
 
+            .info-row {
+                display: flex;
+                justify-content: space-between;
+                padding: 8px 0;
+                border-bottom: 1px solid #eee;
+                font-size: 0.85rem;
 
+                .label {
+                    font-weight: 600;
+                    color: #555;
+                }
+
+                .value {
+                    color: #222;
+                }
+            }
+        }
 
         .short {
             display: flex;
             flex-direction: row;
-            //background: #EAF3FF;
-            //padding: 7px 15px;
-            border-radius: 20px;
+            border-radius: 15px;
             align-items: flex-start;
             color: #000;
-            font-size: 13px;
+            font-size: 0.8rem;
             font-weight: 500;
-            
             margin: 4px 0;
             width: fit-content;
         }
@@ -77,36 +95,48 @@
             background: #2c2c2e;
             padding: 10px 0;
             text-align: center;
-            border-radius: 16px;
-
-            font-size: 15px;
+            border-radius: 12px;
+            font-size: 0.9rem;
             font-weight: 500;
             color: #d9d9d9;
+            cursor: pointer;
+
+            &:active {
+                background: #3a3a3c;
+            }
         }
 
-         .long {
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-            padding: 20px;
+        .long {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            padding: 15px;
             margin-top: 10px;
-            font-size: 15px;
+            font-size: 0.85rem;
             line-height: 1.5;
             color: #000;
             border-bottom: none;
             flex: 1;
             box-shadow: 0 -1px 20px rgba(0, 0, 0, 0.12);
 
-
             h2{
-                font-size: 25px;
+                font-size: 1.2rem;
                 text-align: center;
+                margin: 0 0 10px 0;
             }
 
+            p {
+                margin: 0;
+            }
         }
+    }
 
-
-     }
-
-
-
+    .no-pill {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        color: #999;
+        font-size: 1rem;
+    }
 }

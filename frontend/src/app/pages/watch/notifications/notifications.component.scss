@@ -1,78 +1,72 @@
 .notifications-container{
-    padding: 10px;
-    height: 100vh;
-    width: 100vw;
-
-
-    .back {
-        position: fixed;
-        top: 0;
-        z-index: 10;
-
-        width: 100%;            
-        background-color: white;  
-
-       padding: 10px 0;       
-        display: flex;
-        align-items: center;
+    width: 208px;
+    height: 252px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    background-color: #fff;
+    
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    
+    &::-webkit-scrollbar {
+        display: none;
     }
 
+    .back {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        width: 100%;            
+        background-color: white;  
+        padding: 10px 15px;       
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        flex-shrink: 0;
+    }
 
     .notif-header{
-        margin-top: 20px;
+        padding: 0 10px;
+        margin-top: 10px;
         margin-bottom: 10px;
         font-weight: bold;
         color: #444; 
 
         h2{
-            margin-top: 40px ;
-            font-size:1.5rem;
+            font-size: 1.3rem;
             padding-bottom: 5px;
-            border-bottom: 1px solid #080808;
+            border-bottom: 1px solid #ddd;
+            margin: 0 0 10px 0;
         }
 
-        
         .notif-body{
             border-radius: 10px;
-           // background: #EAF3FF;
             display: flex;
             align-items: center;
-            //padding: 12px 0 12px 20px;
             margin-bottom: 10px;
-//width: calc(100% - 150px);
-
-        
-            //border-bottom: 2px solid #2E5CFF;
 
             .notif-content{
-                font-size: 1.2rem;
+                font-size: 1rem;
                 font-weight: lighter;
                 flex: 1;
 
                 .notif-title {
                     font-weight: 500;
                     margin-bottom: 3px;
-                    margin-left: 10px;
                 }
 
                 .notif-message {
                     color: #555;
-                    font-size:1rem;
-                    margin-left: 10px;
+                    font-size: 0.9rem;
                 }
 
                 .notif-time {
-                    font-size: 0.9rem;
+                    font-size: 0.8rem;
                     color: #999;
                     margin-top: 4px;
-                    margin-left: 10px;
                 }
-            
+            }
         }
-   }
- 
+    }
 }
-}
-
-
-

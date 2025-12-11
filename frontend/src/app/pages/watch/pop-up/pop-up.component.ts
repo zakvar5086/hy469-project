@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { WatchPillPopupService } from 'src/app/global/services/watch-pill-reminder.service';
@@ -17,6 +17,13 @@ export class PopUpComponent implements OnInit, OnDestroy {
     
     pill: Pill | null = null;
     private destroy$ = new Subject<void>();
+    
+    // Swipe detection properties
+    private touchStartY: number = 0;
+    private touchStartX: number = 0;
+    private touchStartTime: number = 0;
+    private swipeThreshold: number = 40;
+    private swipeTimeLimit: number = 300;
     
     constructor(
         private router: Router,
@@ -55,18 +62,29 @@ export class PopUpComponent implements OnInit, OnDestroy {
         }
     }
 
-    private startY: number = 0;
-    private swipeThreshold = 60; 
-
-    startSwipe(event: TouchEvent) {
-        this.startY = event.touches[0].clientY;
+    @HostListener('touchstart', ['$event'])
+    onTouchStart(event: TouchEvent) {
+        this.touchStartY = event.touches[0].clientY;
+        this.touchStartX = event.touches[0].clientX;
+        this.touchStartTime = Date.now();
     }
 
-    moveSwipe(event: TouchEvent) {
-        const currentY = event.touches[0].clientY;
-        const diffY = this.startY - currentY;
-        if (diffY > this.swipeThreshold) {
-            this.navigateTo("postpone");
+    @HostListener('touchend', ['$event'])
+    onTouchEnd(event: TouchEvent) {
+        const touchEndY = event.changedTouches[0].clientY;
+        const touchEndX = event.changedTouches[0].clientX;
+        const touchEndTime = Date.now();
+        
+        const deltaY = this.touchStartY - touchEndY;
+        const deltaX = Math.abs(touchEndX - this.touchStartX);
+        const deltaTime = touchEndTime - this.touchStartTime;
+        
+        if (
+            Math.abs(deltaY) > this.swipeThreshold &&
+            deltaX < Math.abs(deltaY) &&
+            deltaTime < this.swipeTimeLimit
+        ) {
+            if (deltaY > 0) this.navigateTo('postpone');
         }
     }
 }
