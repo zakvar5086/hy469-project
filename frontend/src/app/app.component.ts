@@ -36,9 +36,11 @@ export class AppComponent implements OnInit {
   }
 
   showNavbar(): boolean {
-    const hideOnRoutes = ['/persona', '/watch'];
+    const hideOnRoutes = ['/persona', '/watch', '/tablet/pill-details', '/phone/pill-details'];
     return !hideOnRoutes.some(route => this.router.url.startsWith(route));
   }
+
+  
   
   showpopup(): boolean {
     const hideOnRoutes = ['/persona', '/watch'];

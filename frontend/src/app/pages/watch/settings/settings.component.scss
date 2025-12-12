@@ -51,10 +51,19 @@
                 border-radius: 50%;
             }
 
-            .info-text p{
-                font-size: 0.9rem;
-                margin: 0;
-                font-weight: 600;
+            .info-text{
+                .value{
+                    font-size: 0.9rem;
+                    margin: 0;
+                    font-weight: 600;
+                }
+
+                .label{
+                    font-size: 0.8rem;
+                    margin: 0;
+                    color: grey;
+                }
+
             }
         }
 

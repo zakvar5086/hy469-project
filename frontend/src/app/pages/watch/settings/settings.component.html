@@ -9,8 +9,9 @@
         <div class="user-info">
             <img [src]="avatar" alt="User Avatar" class="avatar" />
             <div class="info-text">
-                <p class="label">{{ name }}</p>
-                <p class="value">@{{ username }}</p>
+                <!-- <p class="label">{{ name }}</p> -->
+                <p class="label">Username</p>
+                <p class="value">{{ username }}</p>
             </div>
         </div>
         <button class="btn" (click)="changePersona()">Change Persona</button>
